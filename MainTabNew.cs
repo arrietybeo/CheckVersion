@@ -961,29 +961,19 @@ public class MainTabNew : AvMain
 		{
 			num = id - 40;
 		}
-		switch (num)
+		return num switch
 		{
-		case 0:
-			return mFont.tahoma_7_white;
-		case 1:
-			return mFont.tahoma_7_blue;
-		case 2:
-			return mFont.tahoma_7_yellow;
-		case 3:
-			return mFont.tahoma_7_violet;
-		case 4:
-			return mFont.tahoma_7_orange;
-		case 5:
-			return mFont.tahoma_7_green;
-		case 6:
-			return mFont.tahoma_7_red;
-		case 7:
-			return mFont.tahoma_7_black;
-		case 8:
-			return mFont.tahoma_7_gray;
-		default:
-			return mFont.tahoma_7_white;
-		}
+			0 => mFont.tahoma_7_white, 
+			1 => mFont.tahoma_7_blue, 
+			2 => mFont.tahoma_7_yellow, 
+			3 => mFont.tahoma_7_violet, 
+			4 => mFont.tahoma_7_orange, 
+			5 => mFont.tahoma_7_green, 
+			6 => mFont.tahoma_7_red, 
+			7 => mFont.tahoma_7_black, 
+			8 => mFont.tahoma_7_gray, 
+			_ => mFont.tahoma_7_white, 
+		};
 	}
 
 	public static mFont setTextColorName(int id)
@@ -1001,27 +991,18 @@ public class MainTabNew : AvMain
 		{
 			num = id - 40;
 		}
-		switch (num)
+		return num switch
 		{
-		case 0:
-			return mFont.tahoma_7b_white;
-		case 1:
-			return mFont.tahoma_7b_blue;
-		case 2:
-			return mFont.tahoma_7b_yellow;
-		case 3:
-			return mFont.tahoma_7b_violet;
-		case 4:
-			return mFont.tahoma_7b_orange;
-		case 5:
-			return mFont.tahoma_7b_green;
-		case 7:
-			return mFont.tahoma_7b_black;
-		case 8:
-			return mFont.tahoma_7_gray;
-		default:
-			return mFont.tahoma_7b_white;
-		}
+			0 => mFont.tahoma_7b_white, 
+			1 => mFont.tahoma_7b_blue, 
+			2 => mFont.tahoma_7b_yellow, 
+			3 => mFont.tahoma_7b_violet, 
+			4 => mFont.tahoma_7b_orange, 
+			5 => mFont.tahoma_7b_green, 
+			7 => mFont.tahoma_7b_black, 
+			8 => mFont.tahoma_7_gray, 
+			_ => mFont.tahoma_7b_white, 
+		};
 	}
 
 	public virtual void setPaintInfo()

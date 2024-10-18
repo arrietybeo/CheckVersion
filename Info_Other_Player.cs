@@ -186,7 +186,7 @@ public class Info_Other_Player : MainScreen
 			GlobalService.gI().Friend(0, showObject.name);
 			break;
 		case 0:
-			GameCanvas.msgchat.addNewChat(showObject.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
+			GameCanvas.msgchat.addNewChat(showObject.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
 			GameCanvas.start_Chat_Dialog();
 			break;
 		case 2:
@@ -249,7 +249,7 @@ public class Info_Other_Player : MainScreen
 		{
 			mVector3.addElement(cmdThachDau);
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, T.giaotiep, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.giaotiep, isFocus: false, null);
 	}
 
 	public override void paint(mGraphics g)
@@ -324,7 +324,7 @@ public class Info_Other_Player : MainScreen
 		}
 		if (!GameCanvas.menu2.isShowMenu && GameCanvas.currentDialog == null && MainTabNew.timePaintInfo > MainTabNew.timeRequest)
 		{
-			maintab.paintContent(g, false);
+			maintab.paintContent(g, isOnlyName: false);
 		}
 		base.paint(g);
 	}
@@ -459,7 +459,7 @@ public class Info_Other_Player : MainScreen
 		{
 			if (idSelect >= 0)
 			{
-				idSelect = (sbyte)resetSelect(idSelect, TabMySeftNew.maxSize - 1, false);
+				idSelect = (sbyte)resetSelect(idSelect, TabMySeftNew.maxSize - 1, isreset: false);
 				MainTabNew.timePaintInfo = 0;
 				itemSelect = (Item)vecEquipShow.get(string.Empty + (idSelect + indexTab));
 			}

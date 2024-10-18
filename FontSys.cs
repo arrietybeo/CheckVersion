@@ -116,14 +116,14 @@ public class FontSys
     public Color bigColor(int id)
     {
         Color[] array = new Color[6]
-        {
+       {
             Color.red,
             Color.yellow,
             Color.green,
             Color.white,
             setColor(40404),
             Color.red
-        };
+       };
         return array[id - 25];
     }
 
@@ -142,6 +142,7 @@ public class FontSys
 
     public Color setColorFont(sbyte id)
     {
+        //IL_0009: Unknown result type (might be due to invalid IL or missing references)
         return setColor(colorJava[id]);
     }
 
@@ -328,11 +329,17 @@ public class FontSys
 
     public int getWidthExactOf(string s)
     {
+        //IL_0000: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0006: Expected O, but got Unknown
+        //IL_0014: Unknown result type (might be due to invalid IL or missing references)
+        //IL_001e: Expected O, but got Unknown
+        //IL_0019: Unknown result type (might be due to invalid IL or missing references)
+        //IL_001e: Unknown result type (might be due to invalid IL or missing references)
         try
         {
-            GUIStyle gUIStyle = new GUIStyle();
-            gUIStyle.font = myFont;
-            return (int)gUIStyle.CalcSize(new GUIContent(s)).x / mGraphics.zoomLevel;
+            GUIStyle val = new GUIStyle();
+            val.font = myFont;
+            return (int)val.CalcSize(new GUIContent(s)).x / mGraphics.zoomLevel;
         }
         catch (Exception ex)
         {
@@ -348,15 +355,21 @@ public class FontSys
 
     public int getHeight()
     {
+        //IL_0019: Unknown result type (might be due to invalid IL or missing references)
+        //IL_001f: Expected O, but got Unknown
+        //IL_0032: Unknown result type (might be due to invalid IL or missing references)
+        //IL_003c: Expected O, but got Unknown
+        //IL_0037: Unknown result type (might be due to invalid IL or missing references)
+        //IL_003c: Unknown result type (might be due to invalid IL or missing references)
         if (height > 0)
         {
             return height / mGraphics.zoomLevel;
         }
-        GUIStyle gUIStyle = new GUIStyle();
-        gUIStyle.font = myFont;
+        GUIStyle val = new GUIStyle();
+        val.font = myFont;
         try
         {
-            height = (int)gUIStyle.CalcSize(new GUIContent("Adg")).y + 2;
+            height = (int)val.CalcSize(new GUIContent("Adg")).y + 2;
         }
         catch (Exception ex)
         {
@@ -368,9 +381,12 @@ public class FontSys
 
     public void _drawString(mGraphics g, string st, int x0, int y0, int align, bool useClip)
     {
+        //IL_0015: Unknown result type (might be due to invalid IL or missing references)
+        //IL_001b: Expected O, but got Unknown
+        //IL_00a9: Unknown result type (might be due to invalid IL or missing references)
         y0 += yAddFont;
-        GUIStyle gUIStyle = new GUIStyle(GUI.skin.label);
-        gUIStyle.font = myFont;
+        GUIStyle val = new GUIStyle(GUI.skin.label);
+        val.font = myFont;
         float num = 0f;
         float num2 = 0f;
         switch (align)
@@ -378,23 +394,23 @@ public class FontSys
             case 0:
                 num = x0;
                 num2 = y0;
-                gUIStyle.alignment = TextAnchor.UpperLeft;
+                val.alignment = (TextAnchor)0;
                 break;
             case 1:
                 num = x0 - GameCanvas.w;
                 num2 = y0;
-                gUIStyle.alignment = TextAnchor.UpperRight;
+                val.alignment = (TextAnchor)2;
                 break;
             case 2:
             case 3:
                 num = x0 - GameCanvas.w / 2;
                 num2 = y0;
-                gUIStyle.alignment = TextAnchor.UpperCenter;
+                val.alignment = (TextAnchor)1;
                 break;
         }
         int width = getWidth(st);
-        gUIStyle.normal.textColor = color1;
-        g.drawString(st, (int)num, (int)num2, gUIStyle, width, useClip);
+        val.normal.textColor = color1;
+        g.drawString(st, (int)num, (int)num2, val, width, useClip);
     }
 
     public static string[] splitStringSv(string _text, string _searchStr)

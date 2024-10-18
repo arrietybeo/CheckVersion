@@ -418,7 +418,7 @@ public class TabMySeftNew : MainTabNew
 		}
 		else
 		{
-			paintInfoPlayer(g, xBegin + w5 * 2 + 4 + delta, yBegin + 4, GameScreen.player.mInfoChar, true);
+			paintInfoPlayer(g, xBegin + w5 * 2 + 4 + delta, yBegin + 4, GameScreen.player.mInfoChar, isNew: true);
 		}
 		if (MainTabNew.Focus == MainTabNew.INFO)
 		{
@@ -658,7 +658,7 @@ public class TabMySeftNew : MainTabNew
 					selectList++;
 					GameCanvas.clearKeyHold(6);
 				}
-				selectList = resetSelect(selectList, vecItemMenu.size() - 1, true);
+				selectList = resetSelect(selectList, vecItemMenu.size() - 1, isreset: true);
 				if (num != selectList)
 				{
 					MainScreen.cameraSub.moveCamera(selectList * wsize - maxList * wsize / 2, 0);
@@ -730,7 +730,7 @@ public class TabMySeftNew : MainTabNew
 				}
 				if (idSelect >= 0)
 				{
-					idSelect = (sbyte)resetSelect(idSelect, maxSize - 1, false);
+					idSelect = (sbyte)resetSelect(idSelect, maxSize - 1, isreset: false);
 				}
 				else
 				{
@@ -960,11 +960,7 @@ public class TabMySeftNew : MainTabNew
 		{
 			for (int i = 0; i < vecListCmd.size(); i++)
 			{
-				iCommand iCommand2 = (iCommand)vecListCmd.elementAt(i);
-				if (iCommand2 != null)
-				{
-					iCommand2.updatePointer();
-				}
+				((iCommand)vecListCmd.elementAt(i))?.updatePointer();
 			}
 		}
 		base.updatePointer();

@@ -51,11 +51,11 @@ public class SelectCharScreen : MainScreen
 		mSound.stopSoundAll();
 		if (LoginScreen.MusicRandom == 0)
 		{
-			mSound.playMus(0, mSound.volumeMusic, true);
+			mSound.playMus(0, mSound.volumeMusic, loop: true);
 		}
 		else
 		{
-			mSound.playMus(1, mSound.volumeMusic, true);
+			mSound.playMus(1, mSound.volumeMusic, loop: true);
 		}
 		timeSelect = 0;
 		objSelect = null;
@@ -161,7 +161,7 @@ public class SelectCharScreen : MainScreen
 
 	public override void update()
 	{
-        GameScreen.infoGame.updateInfoChar();
+		GameScreen.infoGame.updateInfoChar();
 		if (LoginScreen.hShowServer < 20)
 		{
 			LoginScreen.hShowServer += 4;
@@ -170,7 +170,7 @@ public class SelectCharScreen : MainScreen
 				LoginScreen.hShowServer = 20;
 			}
 		}
-        if (timeSelect > 0)
+		if (timeSelect > 0)
 		{
 			timeSelect++;
 			if (timeSelect == 18)
@@ -194,7 +194,7 @@ public class SelectCharScreen : MainScreen
 		{
 			autoSelect();
 		}
-        for (int i = 0; i < VecSelectChar.size(); i++)
+		for (int i = 0; i < VecSelectChar.size(); i++)
 		{
 			Other_Players other_Players = (Other_Players)VecSelectChar.elementAt(i);
 			if (other_Players.Action == 2)
@@ -258,7 +258,7 @@ public class SelectCharScreen : MainScreen
 				selectChar++;
 				GameCanvas.clearKeyHold();
 			}
-			selectChar = resetSelect(selectChar, 2, true);
+			selectChar = resetSelect(selectChar, 2, isreset: true);
 			base.updatekey();
 		}
 	}
@@ -349,7 +349,7 @@ public class SelectCharScreen : MainScreen
 				{
 					selectChar = i;
 					doSelect();
-					selectChar = resetSelect(selectChar, 2, true);
+					selectChar = resetSelect(selectChar, 2, isreset: true);
 					GameCanvas.isPointerSelect = false;
 					break;
 				}

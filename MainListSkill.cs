@@ -315,12 +315,7 @@ public class MainListSkill
 
 	public static int getRange(int index)
 	{
-		Skill skillFormId = getSkillFormId(index);
-		if (skillFormId != null)
-		{
-			return skillFormId.range;
-		}
-		return 50;
+		return getSkillFormId(index)?.range ?? 50;
 	}
 
 	public static Skill getSkillFormId(int id)

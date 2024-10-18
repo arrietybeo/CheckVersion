@@ -131,7 +131,7 @@ public class Buy_Sell_Screen : MainScreen
 			MainTabNew.timePaintInfo = 0;
 			break;
 		case 1:
-			input.setinfo(T.nhapsotien, new iCommand(T.xacnhan, 0, this), true, T.buySell);
+			input.setinfo(T.nhapsotien, new iCommand(T.xacnhan, 0, this), isNum: true, T.buySell);
 			GameCanvas.currentDialog = input;
 			break;
 		}
@@ -183,7 +183,7 @@ public class Buy_Sell_Screen : MainScreen
 			break;
 		}
 		case 3:
-			inputChat.setinfo(T.trochuyenvoi + nameBuy, new iCommand(T.chat, 2, this), false, T.buySell);
+			inputChat.setinfo(T.trochuyenvoi + nameBuy, new iCommand(T.chat, 2, this), isNum: false, T.buySell);
 			GameCanvas.currentDialog = inputChat;
 			break;
 		}
@@ -525,7 +525,7 @@ public class Buy_Sell_Screen : MainScreen
 		if (!GameCanvas.menu2.isShowMenu && GameCanvas.currentDialog == null && MainTabNew.timePaintInfo > MainTabNew.timeRequest)
 		{
 			g.translate(0, -cameraDia.yCam);
-			maintab.paintContent(g, false);
+			maintab.paintContent(g, isOnlyName: false);
 		}
 		GameCanvas.resetTrans(g);
 	}
@@ -539,7 +539,7 @@ public class Buy_Sell_Screen : MainScreen
 		{
 			mVector3.addElement(cmdchat);
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, T.select, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.select, isFocus: false, null);
 	}
 
 	public void setmIdBuy(MainItem item)
@@ -670,7 +670,7 @@ public class Buy_Sell_Screen : MainScreen
 				}
 				GameCanvas.clearKeyHold(6);
 			}
-			idSelectBuy = resetSelect(idSelectBuy, 8, false);
+			idSelectBuy = resetSelect(idSelectBuy, 8, isreset: false);
 			if (idSelectBuy != num)
 			{
 				MainTabNew.timePaintInfo = 0;
@@ -737,7 +737,7 @@ public class Buy_Sell_Screen : MainScreen
 			}
 			if (!GameCanvas.isTouch)
 			{
-				idSelect = resetSelect(idSelect, Item.VecInvetoryPlayer.size() - 1, false);
+				idSelect = resetSelect(idSelect, Item.VecInvetoryPlayer.size() - 1, isreset: false);
 			}
 			if (idSelect < -1)
 			{
@@ -1038,7 +1038,7 @@ public class Buy_Sell_Screen : MainScreen
 			{
 				mchat[index] = new PopupChat();
 			}
-			mchat[index].setChat(str, true);
+			mchat[index].setChat(str, isStop: true);
 			int num = yDia;
 			if (!isSmall)
 			{

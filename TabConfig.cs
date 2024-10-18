@@ -1,3 +1,5 @@
+using UnityEngine.UI;
+
 public class TabConfig : MainTabNew
 {
 	public static TabConfig me;
@@ -326,10 +328,10 @@ public class TabConfig : MainTabNew
 			break;
 		case 16:
 			inputWorld = new InputDialog();
-			inputWorld.setinfo(T.nhapnoidung, new iCommand(T.chat, 17, this), false, T.textkenhthegioi);
+			inputWorld.setinfo(T.nhapnoidung, new iCommand(T.chat, 17, this), isNum: false, T.textkenhthegioi);
 			inputWorld.tfInput.isnewTF = true;
 			newinput.TYPE_INPUT = 2;
-			newinput.input.Select();
+			((Selectable)newinput.input).Select();
 			newinput.input.ActivateInputField();
 			GameCanvas.currentDialog = inputWorld;
 			break;
@@ -358,7 +360,7 @@ public class TabConfig : MainTabNew
 			mVector mVector7 = new mVector("TabConfig menu");
 			mVector7.addElement(cmdDiamondIOSVND);
 			mVector7.addElement(cmdDiamondIOS);
-			GameCanvas.menu2.startAt(mVector7, 2, "Kiểu nạp tiền", false, null);
+			GameCanvas.menu2.startAt(mVector7, 2, "Kiểu nạp tiền", isFocus: false, null);
 			break;
 		}
 		case 20:
@@ -387,7 +389,7 @@ public class TabConfig : MainTabNew
 				iCommand o5 = new iCommand(itemID[1][i], 24 + i, this);
 				mVector6.addElement(o5);
 			}
-			GameCanvas.menu2.startAt(mVector6, 2, T.buy + " item", false, null);
+			GameCanvas.menu2.startAt(mVector6, 2, T.buy + " item", isFocus: false, null);
 			break;
 		}
 		case 24:

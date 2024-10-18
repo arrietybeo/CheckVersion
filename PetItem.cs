@@ -268,19 +268,14 @@ public class PetItem : Item
 
 	public int getframe(int animIdx)
 	{
-		switch (type)
+		return type switch
 		{
-		case 0:
-			return Pet.mOwl[animIdx][0][GameCanvas.gameTick % Pet.mOwl[animIdx][0].Length];
-		case 1:
-			return Pet.mBat[animIdx][0][GameCanvas.gameTick % Pet.mBat[animIdx][0].Length];
-		case 2:
-			return Pet.mWoftAnimFrame[animIdx][0][GameCanvas.gameTick % Pet.mWoftAnimFrame[animIdx][0].Length];
-		case 3:
-			return Pet.mEagle[animIdx][0][GameCanvas.gameTick % Pet.mEagle[animIdx][0].Length];
-		default:
-			return Pet.mElfAnimFrame[animIdx][0][GameCanvas.gameTick % Pet.mElfAnimFrame[animIdx][0].Length];
-		}
+			0 => Pet.mOwl[animIdx][0][GameCanvas.gameTick % Pet.mOwl[animIdx][0].Length], 
+			1 => Pet.mBat[animIdx][0][GameCanvas.gameTick % Pet.mBat[animIdx][0].Length], 
+			2 => Pet.mWoftAnimFrame[animIdx][0][GameCanvas.gameTick % Pet.mWoftAnimFrame[animIdx][0].Length], 
+			3 => Pet.mEagle[animIdx][0][GameCanvas.gameTick % Pet.mEagle[animIdx][0].Length], 
+			_ => Pet.mElfAnimFrame[animIdx][0][GameCanvas.gameTick % Pet.mElfAnimFrame[animIdx][0].Length], 
+		};
 	}
 
 	public bool isFly()

@@ -218,7 +218,7 @@ public class MainBuff
 					num3 = EffectSkill.colorStar[0][line.idColor];
 					g.setColor(num3);
 					num = num3;
-					g.fillRect(line.x0, line.y0, 1, line.Rec_h, false);
+					g.fillRect(line.x0, line.y0, 1, line.Rec_h, useClip: false);
 					if (line.is2Line)
 					{
 						g.fillRect(line.x0 + 2, line.y0 + 1, 1, line.Rec_h, mGraphics.isFalse);

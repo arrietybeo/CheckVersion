@@ -188,9 +188,9 @@ public class Monsterplus : MainMonster
 		empty = LoadMap.convertSecondsToHMmSs(now);
 		if (!empty.Equals(string.Empty))
 		{
-			mFont.tahoma_7_yellow.drawString(g, empty, x, y - ysai - dy + dyWater - hOne - 40, 3, false);
+			mFont.tahoma_7_yellow.drawString(g, empty, x, y - ysai - dy + dyWater - hOne - 40, 3, useClip: false);
 		}
-		mFont.tahoma_7_yellow.drawString(g, T.level + Lv, x, y - ysai - dy + dyWater - hOne - 55, 3, false);
+		mFont.tahoma_7_yellow.drawString(g, T.level + Lv, x, y - ysai - dy + dyWater - hOne - 55, 3, useClip: false);
 		for (int i = 0; i < arr_radian.Length; i++)
 		{
 			if (fraImgEff != null)

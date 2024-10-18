@@ -18,7 +18,7 @@ public class List_Ip_Server_Screen : MainScreen
 
 	public List_Ip_Server_Screen()
 	{
-		LogoScreen.getServerList(LogoScreen.strListserver, false);
+		LogoScreen.getServerList(LogoScreen.strListserver, isFrist: false);
 		hItem = GameCanvas.hCommand;
 		w = GameCanvas.w - 20;
 		if (w > 180)

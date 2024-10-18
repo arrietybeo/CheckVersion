@@ -109,11 +109,11 @@ public class LoginScreen : MainScreen
 			MusicRandom = CRes.random(2);
 			if (MusicRandom == 0)
 			{
-				mSound.playMus(0, mSound.volumeMusic, true);
+				mSound.playMus(0, mSound.volumeMusic, loop: true);
 			}
 			else
 			{
-				mSound.playMus(1, mSound.volumeMusic, true);
+				mSound.playMus(1, mSound.volumeMusic, loop: true);
 			}
 			base.Show();
 			if (isAutoLogin)
@@ -254,7 +254,7 @@ public class LoginScreen : MainScreen
 		}
 		if (flag)
 		{
-			tfusername.setFocus(true);
+			tfusername.setFocus(isFocus: true);
 		}
 		cmdLogin = new iCommand(T.choi_daco_TK, 0);
 		cmdQuickPlay = new iCommand(T.choimoi, 1);
@@ -278,7 +278,7 @@ public class LoginScreen : MainScreen
 			hpaint = -15;
 		}
 		strhelpregister = mFont.tahoma_7_black.splitFontArray(T.texthelpRegister, wBorder - 20);
-		setHeightBorder(false);
+		setHeightBorder(istext: false);
 	}
 
 	public void setCaptionCmd()
@@ -373,11 +373,11 @@ public class LoginScreen : MainScreen
 			case 1:
 				if (GameCanvas.isTouch)
 				{
-					AvMain.paintTabNew(g, GameCanvas.hw - wBorder / 2, yLoginBox - 5, wBorder, hBorder + 5, true, 14);
+					AvMain.paintTabNew(g, GameCanvas.hw - wBorder / 2, yLoginBox - 5, wBorder, hBorder + 5, ismore: true, 14);
 				}
 				else
 				{
-					AvMain.paintTabNew(g, GameCanvas.hw - wBorder / 2, yBorder - 5, wBorder, hBorder + 5, true, 14);
+					AvMain.paintTabNew(g, GameCanvas.hw - wBorder / 2, yBorder - 5, wBorder, hBorder + 5, ismore: true, 14);
 				}
 				tfusername.paint(g);
 				tfpassword.paint(g);
@@ -447,7 +447,7 @@ public class LoginScreen : MainScreen
 		{
 			if (tfusername.isFocusedz())
 			{
-				tfusername.setFocus(false);
+				tfusername.setFocus(isFocus: false);
 				bool flag = true;
 				if (GameCanvas.isTouch && !Main.isPC)
 				{
@@ -455,7 +455,7 @@ public class LoginScreen : MainScreen
 				}
 				if (flag)
 				{
-					tfpassword.setFocus(true);
+					tfpassword.setFocus(isFocus: true);
 				}
 			}
 			else if (tfpassword.isFocusedz())
@@ -467,9 +467,9 @@ public class LoginScreen : MainScreen
 				}
 				if (flag2)
 				{
-					tfusername.setFocus(true);
+					tfusername.setFocus(isFocus: true);
 				}
-				tfpassword.setFocus(false);
+				tfpassword.setFocus(isFocus: false);
 			}
 			GameCanvas.releaseKeyDown();
 			GameCanvas.clearKeyHold(8);
@@ -478,13 +478,13 @@ public class LoginScreen : MainScreen
 		{
 			if (tfusername.isFocusedz())
 			{
-				tfusername.setFocus(false);
-				tfpassword.setFocus(true);
+				tfusername.setFocus(isFocus: false);
+				tfpassword.setFocus(isFocus: true);
 			}
 			else if (tfpassword.isFocusedz())
 			{
-				tfusername.setFocus(true);
-				tfpassword.setFocus(false);
+				tfusername.setFocus(isFocus: true);
+				tfpassword.setFocus(isFocus: false);
 			}
 			GameCanvas.releaseKeyUp();
 			GameCanvas.clearKeyHold(2);
@@ -629,7 +629,7 @@ public class LoginScreen : MainScreen
 		{
 		}
 		mVector3.addElement(cmdThoat);
-		GameCanvas.menu2.startAt(mVector3, 2, T.menuChinh, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.menuChinh, isFocus: false, null);
 	}
 
 	public void setScreen()
@@ -642,7 +642,7 @@ public class LoginScreen : MainScreen
 				hpaint = 10;
 			}
 			tfusername.setFocus(Main.isPC ? true : false);
-			tfpassword.setFocus(false);
+			tfpassword.setFocus(isFocus: false);
 			if (!GameCanvas.isTouch)
 			{
 				left = cmdSubMenu;
@@ -667,12 +667,12 @@ public class LoginScreen : MainScreen
 		case 1:
 			if (!GameCanvas.isTouch)
 			{
-				tfusername.setFocus(true);
-				tfpassword.setFocus(false);
+				tfusername.setFocus(isFocus: true);
+				tfpassword.setFocus(isFocus: false);
 			}
 			left = cmdNewPlay;
 			center = cmdOK;
-			setHeightBorder(false);
+			setHeightBorder(istext: false);
 			if (GameCanvas.h < 240)
 			{
 				hpaint = 10;

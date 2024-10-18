@@ -755,7 +755,7 @@ public class Pet : MainMonster
 
 	public static void setDataPet(sbyte[] data, int id, int idImg)
 	{
-		DataEffect dataEffect = new DataEffect(data, idImg, true);
+		DataEffect dataEffect = new DataEffect(data, idImg, isMonster: true);
 		dataEffect.name = "QUAI THU: " + id;
 		mVector mVector3 = new mVector();
 		mVector3.addElement(dataEffect);

@@ -67,8 +67,6 @@ public class mGraphics
 
     public static int zoomLevel = 1;
 
-    public static int xlevel = 2;
-
     public static Hashtable cachedTextures = new Hashtable();
 
     public static int addYWhenOpenKeyBoard;
@@ -121,7 +119,7 @@ public class mGraphics
         y0 *= zoomLevel;
         w0 *= zoomLevel;
         h0 *= zoomLevel;
-        _drawRegion(arg0.image, x0, y0, w0, h0, arg5, x, y, anchor, false);
+        _drawRegion(arg0.image, x0, y0, w0, h0, arg5, x, y, anchor, useClip: false);
     }
 
     public void translate(int tx, int ty)
@@ -174,7 +172,7 @@ public class mGraphics
     {
         float alpha = 0.5f;
         setColor(color, alpha);
-        fillRect(x, y, w, h, false);
+        fillRect(x, y, w, h, useClip: false);
     }
 
     public void fillRect(int x, int y, int w, int h, int color, int alpha, bool useClip)
@@ -248,9 +246,20 @@ public class mGraphics
 
     public void CreateLineMaterial()
     {
+        //IL_0016: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0020: Expected O, but got Unknown
+        //if (!Object.op_Implicit((Object)(object)lineMaterial))
+        //{
+        //    lineMaterial = new Material("Shader \"Lines/Colored Blended\" {SubShader { Pass {  Blend SrcAlpha OneMinusSrcAlpha  ZWrite Off Cull Off Fog { Mode Off }  BindChannels { Bind \"vertex\", vertex Bind \"color\", color }} } }");
+        //    ((Object)lineMaterial).hideFlags = (HideFlags)61;
+        //    ((Object)lineMaterial.shader).hideFlags = (HideFlags)61;
+        //}
+
         if (!lineMaterial)
         {
-            lineMaterial = new Material("Shader \"Custom/SimpleColoredShader\"\r\n{\r\n    Properties\r\n    {\r\n        _Color (\"Color\", Color) = (1,1,1,1)\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" }\r\n        LOD 100\r\n\r\n        CGPROGRAM\r\n        #pragma surface surf Lambert\r\n\r\n        struct Input\r\n        {\r\n            float2 uv_MainTex;\r\n        };\r\n\r\n        fixed4 _Color;\r\n\r\n        void surf (Input IN, inout SurfaceOutput o)\r\n        {\r\n            o.Albedo = _Color.rgb;\r\n            o.Alpha = _Color.a;\r\n        }\r\n        ENDCG\r\n    }\r\n    FallBack \"Diffuse\"\r\n}");
+            lineMaterial = new Material("Shader \"Lines/Colored Blended\" {SubShader { Pass {  Blend SrcAlpha OneMinusSrcAlpha  ZWrite Off Cull Off Fog { Mode Off }  BindChannels { Bind \"vertex\", vertex Bind \"color\", color }} } }");
+
+            //lineMaterial = new Material("Shader \"Custom/SimpleColoredShader\"\r\n{\r\n    Properties\r\n    {\r\n        _Color (\"Color\", Color) = (1,1,1,1)\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" }\r\n        LOD 100\r\n\r\n        CGPROGRAM\r\n        #pragma surface surf Lambert\r\n\r\n        struct Input\r\n        {\r\n            float2 uv_MainTex;\r\n        };\r\n\r\n        fixed4 _Color;\r\n\r\n        void surf (Input IN, inout SurfaceOutput o)\r\n        {\r\n            o.Albedo = _Color.rgb;\r\n            o.Alpha = _Color.a;\r\n        }\r\n        ENDCG\r\n    }\r\n    FallBack \"Diffuse\"\r\n}");
             lineMaterial.hideFlags = HideFlags.HideAndDontSave;
             lineMaterial.shader.hideFlags = HideFlags.HideAndDontSave;
         }
@@ -484,6 +493,8 @@ public class mGraphics
 
     public void drawString(string s, int x, int y, GUIStyle style, bool useClip)
     {
+        //IL_00ba: Unknown result type (might be due to invalid IL or missing references)
+        //IL_009e: Unknown result type (might be due to invalid IL or missing references)
         x *= zoomLevel;
         y *= zoomLevel;
         if (isTranslate)
@@ -509,9 +520,9 @@ public class mGraphics
         }
         if (isClip && useClip)
         {
-            GUI.BeginGroup(new Rect(num, num2, num3, num4));
+            GUI.BeginGroup(new Rect((float)num, (float)num2, (float)num3, (float)num4));
         }
-        GUI.Label(new Rect(x - num, y - num2, ScaleGUI.WIDTH, 100f), s, style);
+        GUI.Label(new Rect((float)(x - num), (float)(y - num2), ScaleGUI.WIDTH, 100f), s, style);
         if (isClip && useClip)
         {
             GUI.EndGroup();
@@ -531,6 +542,8 @@ public class mGraphics
 
     public void drawString(string s, int x, int y, GUIStyle style, int wString, bool useClip)
     {
+        //IL_00de: Unknown result type (might be due to invalid IL or missing references)
+        //IL_00a8: Unknown result type (might be due to invalid IL or missing references)
         x *= zoomLevel;
         y *= zoomLevel;
         wString *= zoomLevel;
@@ -557,14 +570,14 @@ public class mGraphics
         }
         if (isClip && useClip)
         {
-            GUI.BeginGroup(new Rect(num, num2, num3, num4));
+            GUI.BeginGroup(new Rect((float)num, (float)num2, (float)num3, (float)num4));
         }
         int num5 = 0;
         if ((float)wString > ScaleGUI.WIDTH)
         {
             num5 = wString;
         }
-        GUI.Label(new Rect(x - num, y - num2 - 4, ScaleGUI.WIDTH + (float)num5, 100f), s, style);
+        GUI.Label(new Rect((float)(x - num), (float)(y - num2 - 4), ScaleGUI.WIDTH + (float)num5, 100f), s, style);
         if (isClip && useClip)
         {
             GUI.EndGroup();
@@ -768,6 +781,7 @@ public class mGraphics
         GUI.BeginGroup(new Rect(x, y, w, h));
     }
 
+
     public void enClip()
     {
         GUI.EndGroup();
@@ -775,24 +789,34 @@ public class mGraphics
 
     public void drawRegionGui2(Image image, float x0, float y0, float w, float h, int transform, float x, float y, int anchor)
     {
-        GUI.DrawTextureWithTexCoords(new Rect(x, y, w, h), texCoords: new Rect(0f, 0f, w / (float)image.texture.width, 1f), image: image.texture);
+        Rect val = new Rect(x, y, w, h);
+        Rect val2 = new Rect(0f, 0f, w / (float)image.texture.width, 1f);
+        GUI.DrawTextureWithTexCoords(val, image.texture, val2);
         Debug.Log(w / (float)image.texture.width + ".");
     }
 
+    //public void drawRegionGui2(Image image, float x0, float y0, float w, float h, int transform, float x, float y, int anchor)
+    //{
+    //    GUI.DrawTextureWithTexCoords(new Rect(x, y, w, h), texCoords: new Rect(0f, 0f, w / (float)image.texture.width, 1f), image: image.texture);
+    //    Debug.Log(w / (float)image.texture.width + ".");
+    //}
+
     public void drawRegionT(Texture2D imageTexture, float x0, float y0, int w, int h, int transform, float x, float y, float wScale, float hScale, int anchor)
     {
+
         if (transform == 0)
         {
-            GUI.DrawTextureWithTexCoords(new Rect(x0, y0, w, h), imageTexture, new Rect(x / (float)imageTexture.width, y / (float)imageTexture.height, wScale / (float)imageTexture.width, hScale / (float)imageTexture.height));
+            GUI.DrawTextureWithTexCoords(new Rect(x0, y0, (float)w, (float)h), (Texture)(object)imageTexture, new Rect(x / (float)((Texture)imageTexture).width, y / (float)((Texture)imageTexture).height, wScale / (float)((Texture)imageTexture).width, hScale / (float)((Texture)imageTexture).height));
         }
         if (transform == 2)
         {
-            GUI.DrawTextureWithTexCoords(new Rect(x0, y0, w, h), imageTexture, new Rect((x + wScale) / (float)imageTexture.width, y / (float)imageTexture.height, (0f - wScale) / (float)imageTexture.width, hScale / (float)imageTexture.height));
+            GUI.DrawTextureWithTexCoords(new Rect(x0, y0, (float)w, (float)h), (Texture)(object)imageTexture, new Rect((x + wScale) / (float)((Texture)imageTexture).width, y / (float)((Texture)imageTexture).height, (0f - wScale) / (float)((Texture)imageTexture).width, hScale / (float)((Texture)imageTexture).height));
         }
     }
 
     public void drawRegionGui(Image image, float x0, float y0, int w, int h, int transform, float x, float y, int anchor)
     {
+        //IL_0006: Unknown result type (might be due to invalid IL or missing references)
         GUI.color = setColorMiniMap(807956);
         x *= (float)zoomLevel;
         y *= (float)zoomLevel;
@@ -804,6 +828,7 @@ public class mGraphics
 
     public void drawRegion2(Image image, float x0, float y0, int w, int h, int transform, int x, int y, int anchor, bool useClip)
     {
+
         GUI.color = image.colorBlend;
         if (isTranslate)
         {
@@ -811,12 +836,12 @@ public class mGraphics
             y += translateY;
         }
         string key = "dg" + x0 + y0 + w + h + transform + image.GetHashCode();
-        Texture2D texture2D = (Texture2D)cachedTextures[key];
-        if (texture2D == null)
+        Texture2D val = (Texture2D)cachedTextures[key];
+        if ((Object)(object)val == (Object)null)
         {
             Image image2 = Image.createImage(image, (int)x0, (int)y0, w, h, transform);
-            texture2D = image2.texture;
-            cache(key, texture2D);
+            val = image2.texture;
+            cache(key, (Texture)(object)val);
         }
         int num = 0;
         int num2 = 0;
@@ -858,9 +883,9 @@ public class mGraphics
         }
         if (isClip && useClip)
         {
-            GUI.BeginGroup(new Rect(num, num2, num3, num4));
+            GUI.BeginGroup(new Rect((float)num, (float)num2, (float)num3, (float)num4));
         }
-        GUI.DrawTexture(new Rect(x - num, y - num2, w, h), texture2D);
+        GUI.DrawTexture(new Rect((float)(x - num), (float)(y - num2), (float)w, (float)h), (Texture)(object)val);
         if (isClip && useClip)
         {
             GUI.EndGroup();
@@ -872,7 +897,7 @@ public class mGraphics
     {
         x *= (float)zoomLevel;
         y *= (float)zoomLevel;
-        GUI.DrawTexture(new Rect(x + (float)translateX, y + (float)translateY, image.image.getRealImageWidth(), image.image.getRealImageHeight()), image.image.texture);
+        GUI.DrawTexture(new Rect(x + (float)translateX, y + (float)translateY, (float)image.image.getRealImageWidth(), (float)image.image.getRealImageHeight()), (Texture)(object)image.image.texture);
     }
 
     public void drawImage(mImage image, int x, int y, int anchor, bool useClip)
@@ -915,14 +940,10 @@ public class mGraphics
         float num2 = r1.y;
         float x = r2.x;
         float y = r2.y;
-        float num3 = num;
-        num3 += r1.width;
-        float num4 = num2;
-        num4 += r1.height;
-        float num5 = x;
-        num5 += r2.width;
-        float num6 = y;
-        num6 += r2.height;
+        float num3 = num + r1.width;
+        float num4 = num2 + r1.height;
+        float num5 = x + r2.width;
+        float num6 = y + r2.height;
         if (num < x)
         {
             num = x;
@@ -949,7 +970,7 @@ public class mGraphics
         {
             num4 = -30000f;
         }
-        return new Rect(num, num2, (int)num3, (int)num4);
+        return new Rect(num, num2, (float)(int)num3, (float)(int)num4);
     }
 
     public void drawImageScale(Image image, int x, int y, int w, int h, int tranform)
@@ -961,17 +982,18 @@ public class mGraphics
         h *= zoomLevel;
         if (image != null)
         {
-            Graphics.DrawTexture(new Rect(x + translateX, y + translateY, (tranform != 0) ? (-w) : w, h), image.texture);
+            Graphics.DrawTexture(new Rect((float)(x + translateX), (float)(y + translateY), (float)((tranform != 0) ? (-w) : w), (float)h), (Texture)(object)image.texture);
         }
     }
 
     public void drawImageSimple(Image image, int x, int y)
     {
+        //IL_002a: Unknown result type (might be due to invalid IL or missing references)
         x *= zoomLevel;
         y *= zoomLevel;
         if (image != null)
         {
-            Graphics.DrawTexture(new Rect(x, y, image.w, image.h), image.texture);
+            Graphics.DrawTexture(new Rect((float)x, (float)y, (float)image.w, (float)image.h), (Texture)(object)image.texture);
         }
     }
 
@@ -987,6 +1009,10 @@ public class mGraphics
 
     public static bool isNotTranColor(Color color)
     {
+        //IL_0000: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0001: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0010: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0011: Unknown result type (might be due to invalid IL or missing references)
         if (color == Color.clear || color == transParentColor)
         {
             return false;

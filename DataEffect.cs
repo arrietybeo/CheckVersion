@@ -360,11 +360,11 @@ public class DataEffect
 				}
 				if (partFrame.flip != 1)
 				{
-					g.drawRegion(img, num4, num5, num2, num3, way, x + num, y + partFrame.dy, 0, false);
+					g.drawRegion(img, num4, num5, num2, num3, way, x + num, y + partFrame.dy, 0, useClip: false);
 				}
 				else
 				{
-					g.drawRegion(img, num4, num5, num2, num3, (way != 2) ? 2 : 0, x + num, y + partFrame.dy, 0, false);
+					g.drawRegion(img, num4, num5, num2, num3, (way != 2) ? 2 : 0, x + num, y + partFrame.dy, 0, useClip: false);
 				}
 			}
 		}

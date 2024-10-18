@@ -160,7 +160,7 @@ public class TabSkillsNew : MainTabNew
 					num = 10 - Player.mCurentLvSkill[skill.Id];
 				}
 				inputDialog = new InputDialog();
-				inputDialog.setinfo(T.nhapsodiem + skill.name + T.nhohonhoacbang + num + ")", cmdSendSetPoint, true, T.tabkynang);
+				inputDialog.setinfo(T.nhapsodiem + skill.name + T.nhohonhoacbang + num + ")", cmdSendSetPoint, isNum: true, T.tabkynang);
 				GameCanvas.currentDialog = inputDialog;
 			}
 			break;
@@ -211,7 +211,7 @@ public class TabSkillsNew : MainTabNew
 				iCommand2 = (GameCanvas.isTouch ? new iCommand(T.oso + (i + 1), 4, i, this) : ((!TField.isQwerty) ? new iCommand(T.phim + PaintInfoGameScreen.mValueHotKey[i], 4, i, this) : new iCommand(T.phim + PaintInfoGameScreen.mValueChar[i], 4, i, this)));
 				mVector4.addElement(iCommand2);
 			}
-			GameCanvas.menu2.startAt(mVector4, 2, T.setKey, false, null);
+			GameCanvas.menu2.startAt(mVector4, 2, T.setKey, isFocus: false, null);
 			break;
 		}
 		case 4:
@@ -238,7 +238,7 @@ public class TabSkillsNew : MainTabNew
 			mVector3 = doMenu();
 			if (mVector3 != null && mVector3.size() > 0)
 			{
-				GameCanvas.menu2.startAt(mVector3, 2, T.kynang, false, null);
+				GameCanvas.menu2.startAt(mVector3, 2, T.kynang, isFocus: false, null);
 			}
 			break;
 		}
@@ -361,7 +361,7 @@ public class TabSkillsNew : MainTabNew
 		{
 			return;
 		}
-		paintPopupContent(g, false);
+		paintPopupContent(g, isOnlyName: false);
 		if (vecListCmd != null)
 		{
 			for (int k = 0; k < vecListCmd.size(); k++)
@@ -533,7 +533,7 @@ public class TabSkillsNew : MainTabNew
 		}
 		if (idSelect >= 0)
 		{
-			idSelect = resetSelect(idSelect, vecPaintSkill.size() - 1, false);
+			idSelect = resetSelect(idSelect, vecPaintSkill.size() - 1, isreset: false);
 			Skill skill = null;
 			if (idSelect != num && idSelect >= 0 && idSelect <= vecPaintSkill.size() - 1)
 			{
@@ -674,7 +674,7 @@ public class TabSkillsNew : MainTabNew
 					mVector3 = doMenu();
 					if (mVector3 != null && mVector3.size() > 0)
 					{
-						GameCanvas.menu2.startAt(mVector3, 2, T.kynang, false, null);
+						GameCanvas.menu2.startAt(mVector3, 2, T.kynang, isFocus: false, null);
 					}
 				}
 				GameCanvas.isPointerSelect = false;
@@ -781,8 +781,8 @@ public class TabSkillsNew : MainTabNew
 			}
 			if (GameScreen.player.Lv > 1)
 			{
-				MainItem.setAddHotKey(1, false);
-				MainItem.setAddHotKey(0, false);
+				MainItem.setAddHotKey(1, isStop: false);
+				MainItem.setAddHotKey(0, isStop: false);
 			}
 			return;
 		}
@@ -820,8 +820,8 @@ public class TabSkillsNew : MainTabNew
 			}
 			if (GameScreen.player.Lv > 1)
 			{
-				MainItem.setAddHotKey(1, false);
-				MainItem.setAddHotKey(0, false);
+				MainItem.setAddHotKey(1, isStop: false);
+				MainItem.setAddHotKey(0, isStop: false);
 			}
 		}
 	}

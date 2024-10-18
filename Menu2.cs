@@ -792,7 +792,7 @@ public class Menu2 : AvMain
 				SelectFocus++;
 				GameCanvas.clearKeyPressed(6);
 			}
-			SelectFocus = resetSelect(SelectFocus, vecFocus.size() - 1, true);
+			SelectFocus = resetSelect(SelectFocus, vecFocus.size() - 1, isreset: true);
 			if (SelectFocus != selectFocus)
 			{
 				objSelect = (MainObject)vecFocus.elementAt(SelectFocus);
@@ -813,7 +813,7 @@ public class Menu2 : AvMain
 				GameCanvas.clearKeyHold(6);
 				GameCanvas.clearKeyHold(8);
 			}
-			menuSelectedItem = resetSelect(menuSelectedItem, menuItems.size() - 1, false);
+			menuSelectedItem = resetSelect(menuSelectedItem, menuItems.size() - 1, isreset: false);
 			if (num != menuSelectedItem)
 			{
 				for (int i = 0; i < menuItems.size(); i++)
@@ -1037,7 +1037,7 @@ public class Menu2 : AvMain
 				SelectFocus++;
 				GameCanvas.isPointerSelect = false;
 			}
-			SelectFocus = resetSelect(SelectFocus, vecFocus.size() - 1, true);
+			SelectFocus = resetSelect(SelectFocus, vecFocus.size() - 1, isreset: true);
 			if (SelectFocus != selectFocus)
 			{
 				objSelect = (MainObject)vecFocus.elementAt(SelectFocus);

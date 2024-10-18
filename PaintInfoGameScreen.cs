@@ -409,11 +409,7 @@ public class PaintInfoGameScreen
 				DelaySkill delaySkill = null;
 				if (hotKey.type == HotKey.SKILL)
 				{
-					Skill skillFormId = MainListSkill.getSkillFormId(hotKey.id);
-					if (skillFormId != null)
-					{
-						skillFormId.paint(g, xPaintSkill + j * wSkill + 11, yPaintSkill - num + 11, 3);
-					}
+					MainListSkill.getSkillFormId(hotKey.id)?.paint(g, xPaintSkill + j * wSkill + 11, yPaintSkill - num + 11, 3);
 					delaySkill = Player.timeDelaySkill[hotKey.id];
 				}
 				else if (hotKey.type == HotKey.POTION && MainTemplateItem.isload)
@@ -427,8 +423,8 @@ public class PaintInfoGameScreen
 					else
 					{
 						hotKey.setHotKey(0, HotKey.NULL, 0);
-						MainItem.setAddHotKey(1, false);
-						MainItem.setAddHotKey(0, false);
+						MainItem.setAddHotKey(1, isStop: false);
+						MainItem.setAddHotKey(0, isStop: false);
 					}
 				}
 				if (hotKey.type != HotKey.NULL && delaySkill != null && delaySkill.limit > 0)
@@ -512,11 +508,7 @@ public class PaintInfoGameScreen
 			}
 			else if (hotKey.type == HotKey.POTION)
 			{
-				Item itemInventory = Item.getItemInventory(4, hotKey.id);
-				if (itemInventory != null)
-				{
-					itemInventory.paintItem(g, xPaintSkill + i % 5 * wSkill + 11, num + yPaintSkill + 11, MainTabNew.wOneItem, 0, 3);
-				}
+				Item.getItemInventory(4, hotKey.id)?.paintItem(g, xPaintSkill + i % 5 * wSkill + 11, num + yPaintSkill + 11, MainTabNew.wOneItem, 0, 3);
 			}
 		}
 	}
@@ -1166,7 +1158,7 @@ public class PaintInfoGameScreen
 			strInfoServer = (string)GameScreen.VecInfoServer.elementAt(0);
 			if (strInfoServer != null && strInfoServer.Trim().Length > 0)
 			{
-				GameCanvas.msgchat.addNewChat(T.tinden, T.text2kenhthegioi, strInfoServer, ChatDetail.TYPE_SERVER, false);
+				GameCanvas.msgchat.addNewChat(T.tinden, T.text2kenhthegioi, strInfoServer, ChatDetail.TYPE_SERVER, isFocus: false);
 			}
 			int num = GameScreen.VecInfoServer.size();
 			if (num < 2)
@@ -1391,7 +1383,7 @@ public class PaintInfoGameScreen
 				MainEvent mainEvent = EventScreen.setEvent(eventShow.nameEvent, (sbyte)eventShow.IDCmd);
 				if (mainEvent != null)
 				{
-					GameCanvas.mevent.doEvent(false, mainEvent);
+					GameCanvas.mevent.doEvent(isre: false, mainEvent);
 				}
 				if (timeEvent > 40)
 				{
@@ -1565,19 +1557,11 @@ public class PaintInfoGameScreen
 			}
 			else if (hotKey != null && hotKey.type == HotKey.SKILL)
 			{
-				Skill skillFormId = MainListSkill.getSkillFormId(hotKey.id);
-				if (skillFormId != null)
-				{
-					skillFormId.paint(g, xPointKill + hShowInGame, yPointKill, 3);
-				}
+				MainListSkill.getSkillFormId(hotKey.id)?.paint(g, xPointKill + hShowInGame, yPointKill, 3);
 			}
 			else if (hotKey != null && hotKey.type == HotKey.POTION)
 			{
-				Item itemInventory = Item.getItemInventory(4, hotKey.id);
-				if (itemInventory != null)
-				{
-					itemInventory.paintItem(g, xPointKill + hShowInGame, yPointKill, MainTabNew.wOneItem, 0, 3);
-				}
+				Item.getItemInventory(4, hotKey.id)?.paintItem(g, xPointKill + hShowInGame, yPointKill, MainTabNew.wOneItem, 0, 3);
 			}
 			for (int l = 0; l < mPosKill.Length; l++)
 			{
@@ -1591,11 +1575,7 @@ public class PaintInfoGameScreen
 				hotKey = Player.mhotkey[Player.levelTab][l + ((l > 1) ? 1 : 0)];
 				if (hotKey != null && hotKey.type == HotKey.SKILL)
 				{
-					Skill skillFormId2 = MainListSkill.getSkillFormId(hotKey.id);
-					if (skillFormId2 != null)
-					{
-						skillFormId2.paint(g, mPosKill[l][0] + hShowInGame, mPosKill[l][1], 3);
-					}
+					MainListSkill.getSkillFormId(hotKey.id)?.paint(g, mPosKill[l][0] + hShowInGame, mPosKill[l][1], 3);
 				}
 				else
 				{
@@ -1603,19 +1583,19 @@ public class PaintInfoGameScreen
 					{
 						continue;
 					}
-					Item itemInventory2 = Item.getItemInventory(4, hotKey.id);
-					if (itemInventory2 != null)
+					Item itemInventory = Item.getItemInventory(4, hotKey.id);
+					if (itemInventory != null)
 					{
 						if (MainTemplateItem.isload)
 						{
-							itemInventory2.paintItem(g, mPosKill[l][0] + hShowInGame, mPosKill[l][1], MainTabNew.wOneItem, 0, 3);
+							itemInventory.paintItem(g, mPosKill[l][0] + hShowInGame, mPosKill[l][1], MainTabNew.wOneItem, 0, 3);
 						}
 					}
 					else
 					{
 						hotKey.setHotKey(0, HotKey.NULL, 0);
-						MainItem.setAddHotKey(1, false);
-						MainItem.setAddHotKey(0, false);
+						MainItem.setAddHotKey(1, isStop: false);
+						MainItem.setAddHotKey(0, isStop: false);
 					}
 				}
 			}
@@ -1645,10 +1625,10 @@ public class PaintInfoGameScreen
 				}
 				else if (hotKey2 != null && hotKey2.type == HotKey.POTION && MainTemplateItem.isload)
 				{
-					Item itemInventory3 = Item.getItemInventory(4, hotKey2.id);
-					if (itemInventory3 != null && itemInventory3.typePotion < 2)
+					Item itemInventory2 = Item.getItemInventory(4, hotKey2.id);
+					if (itemInventory2 != null && itemInventory2.typePotion < 2)
 					{
-						delaySkill = Player.timeDelayPotion[itemInventory3.typePotion];
+						delaySkill = Player.timeDelayPotion[itemInventory2.typePotion];
 					}
 				}
 				if (delaySkill == null || delaySkill.limit <= 0)
@@ -1723,7 +1703,7 @@ public class PaintInfoGameScreen
 							{
 								if (GameScreen.ObjFocus != null)
 								{
-									GameScreen.player.setActionHotKey(num, false);
+									GameScreen.player.setActionHotKey(num, isSetDef: false);
 								}
 							}
 							else
@@ -1979,7 +1959,7 @@ public class PaintInfoGameScreen
 					{
 						GameScreen.player.setPointFocus();
 						isPaintInfoFocus = true;
-						GameScreen.addEffectKill(68, GameScreen.player.ID, 0, GameScreen.ObjFocus.ID, GameScreen.ObjFocus.typeObject, 0, GameScreen.ObjFocus.hp, (sbyte)((GameScreen.ObjFocus.typeObject != 1) ? 1 : 0));
+						GameScreen.addEffectKill(68, GameScreen.player.ID, 0, GameScreen.ObjFocus.ID, GameScreen.ObjFocus.typeObject, 0, GameScreen.ObjFocus.hp, (GameScreen.ObjFocus.typeObject != 1) ? ((sbyte)1) : ((sbyte)0));
 						posTam = null;
 					}
 					if (GameCanvas.isPointerSelect)
@@ -2187,11 +2167,7 @@ public class PaintInfoGameScreen
 			}
 			else if (hotKey != null && hotKey.type == HotKey.POTION)
 			{
-				Item itemInventory = Item.getItemInventory(4, hotKey.id);
-				if (itemInventory != null)
-				{
-					itemInventory.paintItem(g, x, y, MainTabNew.wOneItem, 0, 3);
-				}
+				Item.getItemInventory(4, hotKey.id)?.paintItem(g, x, y, MainTabNew.wOneItem, 0, 3);
 			}
 			num -= 45;
 		}
@@ -2617,8 +2593,8 @@ public class PaintInfoGameScreen
 			}
 			int width = mFont.tahoma_7_white.getWidth("18+ Chơi quá 180 phút mỗi ngày sẽ hại sức khỏe.");
 			g.setColor(0, 0.6f);
-			g.fillRect(x, 0, width, 12, false);
-			mFont.tahoma_7_white.drawString(g, "18+ Chơi quá 180 phút mỗi ngày sẽ hại sức khỏe.", x, 0, 0, false);
+			g.fillRect(x, 0, width, 12, useClip: false);
+			mFont.tahoma_7_white.drawString(g, "18+ Chơi quá 180 phút mỗi ngày sẽ hại sức khỏe.", x, 0, 0, useClip: false);
 		}
 	}
 

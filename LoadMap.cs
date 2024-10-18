@@ -1,8 +1,5 @@
-using Newtonsoft.Json.Linq;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Purchasing;
 
 public class LoadMap
 {
@@ -192,17 +189,14 @@ public class LoadMap
 					array[i][1] = dataInputStream.readByte();
 				}
 				vecMapItem.addElement(new MainItemMap(num2, iDImage, dx, dy, array));
-               
-
-				
-            }
-        }
-        catch (Exception ex)
-        {
-            mSystem.outloi("loi load map 1");
-            Cout.Log(" Loi Tai !!! : " + ex.ToString());
-        }
-    }
+			}
+		}
+		catch (Exception ex)
+		{
+			mSystem.outloi("loi load map 1");
+			Cout.Log(" Loi Tai !!! : " + ex.ToString());
+		}
+	}
 
 	public static void loadTileBig(int id, bool isLogin)
 	{
@@ -279,7 +273,7 @@ public class LoadMap
 			if (idTile != num)
 			{
 				idTile = num;
-				loadTileBig(num, false);
+				loadTileBig(num, isLogin: false);
 				imgTileWater = mImage.createImage("/tilewater" + idTile + ".png");
 				DataInputStream dataInputStream2 = mImage.openFile("/tile_map_info_" + idTile);
 				fWater = dataInputStream2.read();
@@ -476,7 +470,7 @@ public class LoadMap
 		}
 		catch (Exception ex)
 		{
-			Debug.Log(ex.ToString() + " LOI--------");
+			Debug.Log((object)(ex.ToString() + " LOI--------"));
 			return null;
 		}
 	}
@@ -612,26 +606,19 @@ public class LoadMap
 	{
 		if (!isTileMoi())
 		{
-			if (!Main.isSprite)
+			if (Main.isSprite)
 			{
-				return;
-			}
-			for (int i = 0; i < mSystem.totalImageMap.size(); i++)
-			{
-				ItemMapSprite itemMapSprite = (ItemMapSprite)mSystem.totalImageMap.elementAt(i);
-				if (itemMapSprite != null)
+				for (int i = 0; i < mSystem.totalImageMap.size(); i++)
 				{
-					itemMapSprite.update();
+					((ItemMapSprite)mSystem.totalImageMap.elementAt(i))?.update();
 				}
 			}
-			return;
 		}
-		for (int j = 0; j < mSystem.totalImageMap.size(); j++)
+		else
 		{
-			ItemMapSprite itemMapSprite2 = (ItemMapSprite)mSystem.totalImageMap.elementAt(j);
-			if (itemMapSprite2 != null)
+			for (int j = 0; j < mSystem.totalImageMap.size(); j++)
 			{
-				itemMapSprite2.update();
+				((ItemMapSprite)mSystem.totalImageMap.elementAt(j))?.update();
 			}
 		}
 	}

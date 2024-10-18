@@ -1082,7 +1082,7 @@ public class EffectSkill : MainEffect
 			}
 			fRemove = 10;
 			timeAddNum = 7;
-			createLighting(toX + CRes.random_Am_0(20), MainScreen.cameraMain.yCam - 5, toX, toY, true);
+			createLighting(toX + CRes.random_Am_0(20), MainScreen.cameraMain.yCam - 5, toX, toY, isEnd: true);
 			if (objKill == GameScreen.player)
 			{
 				mSound.playSound(32, mSound.volumeSound);
@@ -1747,7 +1747,7 @@ public class EffectSkill : MainEffect
 			fRemove = 10;
 			timeAddNum = 7;
 			setBeginKill(0);
-			createLighting(x, y - hOne / 2, x1000, y1000, true);
+			createLighting(x, y - hOne / 2, x1000, y1000, isEnd: true);
 			if (objKill == GameScreen.player)
 			{
 				mSound.playSound(32, mSound.volumeSound);
@@ -1830,7 +1830,7 @@ public class EffectSkill : MainEffect
 			setBeginKill(0);
 			dxTower = 0;
 			dyTower = 50;
-			createLighting(x - dxTower, y - hOne / 2 - dyTower, x1000, y1000, true);
+			createLighting(x - dxTower, y - hOne / 2 - dyTower, x1000, y1000, isEnd: true);
 			if (objKill == GameScreen.player)
 			{
 				mSound.playSound(32, mSound.volumeSound);
@@ -2331,7 +2331,7 @@ public class EffectSkill : MainEffect
 				}
 				if (f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			case 23:
@@ -2343,7 +2343,7 @@ public class EffectSkill : MainEffect
 				for (int num48 = 0; num48 < VecEff.size(); num48++)
 				{
 					Point point33 = (Point)VecEff.elementAt(num48);
-					paint_Bullet(g, fraImgEff, frame, point33.x, point33.y, false);
+					paint_Bullet(g, fraImgEff, frame, point33.x, point33.y, isMore: false);
 				}
 				break;
 			}
@@ -2363,7 +2363,7 @@ public class EffectSkill : MainEffect
 				}
 				if (typeEffect == 25 && f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			}
@@ -2462,11 +2462,11 @@ public class EffectSkill : MainEffect
 						int num37 = (point26.y + point26.vy) / 1000;
 						if (f / 2 % 2 == 0)
 						{
-							paint_Bullet(g, fraImgEff, point26.frame, num36, num37, false);
+							paint_Bullet(g, fraImgEff, point26.frame, num36, num37, isMore: false);
 						}
 						else
 						{
-							paint_Bullet(g, fraImgSub2Eff, point26.frame, num36, num37, false);
+							paint_Bullet(g, fraImgSub2Eff, point26.frame, num36, num37, isMore: false);
 						}
 					}
 				}
@@ -2921,7 +2921,7 @@ public class EffectSkill : MainEffect
 					Point point38 = (Point)VecEff.elementAt(num54);
 					if (point38.f > 0)
 					{
-						paint_Bullet(g, fraImgEff, point38.frame, point38.x, point38.y, false);
+						paint_Bullet(g, fraImgEff, point38.frame, point38.x, point38.y, isMore: false);
 					}
 				}
 				break;
@@ -2937,7 +2937,7 @@ public class EffectSkill : MainEffect
 					Point point35 = (Point)VecEff.elementAt(num50);
 					if (point35.f > 0)
 					{
-						paint_Bullet(g, fraImgEff, point35.frame, point35.x, point35.y, false);
+						paint_Bullet(g, fraImgEff, point35.frame, point35.x, point35.y, isMore: false);
 					}
 				}
 				break;
@@ -2958,7 +2958,7 @@ public class EffectSkill : MainEffect
 					Point point29 = (Point)VecEff.elementAt(num40);
 					if (point29.f > 0)
 					{
-						paint_Bullet(g, fraImgEff, point29.frame, point29.x, point29.y, false);
+						paint_Bullet(g, fraImgEff, point29.frame, point29.x, point29.y, isMore: false);
 					}
 				}
 				break;
@@ -3025,7 +3025,7 @@ public class EffectSkill : MainEffect
 				for (int num15 = 0; num15 < VecEff.size(); num15++)
 				{
 					Point_Focus point_Focus2 = (Point_Focus)VecEff.elementAt(num15);
-					paint_Bullet(g, fraImgEff, point_Focus2.frame, point_Focus2.x, point_Focus2.y, false);
+					paint_Bullet(g, fraImgEff, point_Focus2.frame, point_Focus2.x, point_Focus2.y, isMore: false);
 				}
 				break;
 			}
@@ -3123,7 +3123,7 @@ public class EffectSkill : MainEffect
 				}
 				if (f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			case 90:
@@ -3215,7 +3215,7 @@ public class EffectSkill : MainEffect
 				}
 				if (f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			case 97:
@@ -3271,7 +3271,7 @@ public class EffectSkill : MainEffect
 				}
 				if (f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			case 99:
@@ -3281,7 +3281,7 @@ public class EffectSkill : MainEffect
 				}
 				if (f < fRemove)
 				{
-					paint_Bullet(g, fraImgEff, frame, x, y, false);
+					paint_Bullet(g, fraImgEff, frame, x, y, isMore: false);
 				}
 				break;
 			case 100:
@@ -6415,7 +6415,7 @@ public class EffectSkill : MainEffect
 		int a = CRes.angle(toX - x, toY - y);
 		int xTo = x + CRes.cos(a) * distance / 1000;
 		int yTo = y + CRes.sin(a) * distance / 1000;
-		createLighting(x, y, xTo, yTo, false);
+		createLighting(x, y, xTo, yTo, isEnd: false);
 	}
 
 	private void create_Nova()
@@ -6712,7 +6712,7 @@ public class EffectSkill : MainEffect
 			}
 			int num4 = x1000 + CRes.random_Am_0(15);
 			int num5 = y1000 - CRes.random_Am_0(10);
-			line.setLine(num4, num5, num4, num5 - num2, 0, -num3, false);
+			line.setLine(num4, num5, num4, num5 - num2, 0, -num3, is2Line: false);
 			line.idColor = CRes.random(3);
 			VecEff.addElement(line);
 		}
@@ -7689,7 +7689,7 @@ public class EffectSkill : MainEffect
 			Point point = (Point)VecEff.elementAt(i);
 			if (point.f < fRemove)
 			{
-				paint_Bullet(g, fraImgEff, point.frame, point.x / 1000, point.y / 1000, false);
+				paint_Bullet(g, fraImgEff, point.frame, point.x / 1000, point.y / 1000, isMore: false);
 			}
 		}
 	}
@@ -7705,7 +7705,7 @@ public class EffectSkill : MainEffect
 			Point point = (Point)VecEff.elementAt(i);
 			if (point.f < fRemove)
 			{
-				paint_Bullet(g, fraImgEff, point.frame, point.x / 1000, point.y / 1000, false);
+				paint_Bullet(g, fraImgEff, point.frame, point.x / 1000, point.y / 1000, isMore: false);
 			}
 		}
 	}

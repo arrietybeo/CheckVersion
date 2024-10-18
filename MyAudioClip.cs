@@ -10,13 +10,15 @@ public class MyAudioClip
 
 	public MyAudioClip(string filename)
 	{
+		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0017: Expected O, but got Unknown
 		clip = (AudioClip)Resources.Load(filename);
 		name = filename;
 	}
 
 	public void Play()
 	{
-		Main.main.GetComponent<AudioSource>().PlayOneShot(clip);
+		((Component)Main.main).GetComponent<AudioSource>().PlayOneShot(clip);
 		timeStart = mSystem.currentTimeMillis();
 	}
 

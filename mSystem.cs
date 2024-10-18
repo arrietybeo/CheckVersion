@@ -31,7 +31,7 @@ public class mSystem
 
 	public static void mDebug(string s)
 	{
-		Debug.LogWarning(s);
+		Debug.LogWarning((object)s);
 	}
 
 	public static string getLong()
@@ -304,11 +304,11 @@ public class mSystem
 		try
 		{
 			Cout.LogError2(" LOAD IMAGE --------------------");
-			Texture2D texture2D = Resources.Load<Texture2D>(path);
+			Texture2D val = Resources.Load<Texture2D>(path);
 			mImage mImage2 = new mImage();
-			mImage2.image.texture = texture2D;
-			mImage2.image.w = texture2D.width;
-			mImage2.image.h = texture2D.height;
+			mImage2.image.texture = val;
+			mImage2.image.w = ((Texture)val).width;
+			mImage2.image.h = ((Texture)val).height;
 			timeRemove = (int)(currentTimeMillis() / 1000);
 			isLoadOK = true;
 			return mImage2;

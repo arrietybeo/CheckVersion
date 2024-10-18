@@ -161,7 +161,7 @@ public class Clan_Screen : MainScreen
 					mVector3.addElement(cmdRoiClan);
 				}
 			}
-			GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, isFocus: false, null);
 			break;
 		}
 		case 1:
@@ -174,12 +174,12 @@ public class Clan_Screen : MainScreen
 			break;
 		case 3:
 			inputDialog = new InputDialog();
-			inputDialog.setinfo(T.nhapsoxumuongop, new iCommand(T.gop, 5, 6, this), true, T.gop + T.coin);
+			inputDialog.setinfo(T.nhapsoxumuongop, new iCommand(T.gop, 5, 6, this), isNum: true, T.gop + T.coin);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 4:
 			inputDialog = new InputDialog();
-			inputDialog.setinfo(T.nhapsoluongmuongop, new iCommand(T.gop, 5, 7, this), true, T.gop + T.gem);
+			inputDialog.setinfo(T.nhapsoluongmuongop, new iCommand(T.gop, 5, 7, this), isNum: true, T.gop + T.gem);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 5:
@@ -217,7 +217,7 @@ public class Clan_Screen : MainScreen
 				mVector4.addElement(cmdChangeSlogan);
 				mVector4.addElement(cmdChangeNoiQuy);
 				mVector4.addElement(cmdThongBao);
-				GameCanvas.menu2.startAt(mVector4, 2, T.chucnang, false, null);
+				GameCanvas.menu2.startAt(mVector4, 2, T.chucnang, isFocus: false, null);
 			}
 			else
 			{
@@ -226,12 +226,12 @@ public class Clan_Screen : MainScreen
 			break;
 		case 8:
 			inputDialog = new InputDialog();
-			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 16, this), false, T.change + " " + T.slogan);
+			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 16, this), isNum: false, T.change + " " + T.slogan);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 9:
 			inputDialog = new InputDialog();
-			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 17, this), false, T.change + " " + T.noiquy);
+			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 17, this), isNum: false, T.change + " " + T.noiquy);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 10:
@@ -248,12 +248,12 @@ public class Clan_Screen : MainScreen
 			GameCanvas.start_Left_Dialog(T.hoiroiClan, new iCommand(T.roiclan, 15, this));
 			break;
 		case 12:
-			GameCanvas.msgchat.addNewChat(T.tabBangHoi, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
+			GameCanvas.msgchat.addNewChat(T.tabBangHoi, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
 			GameCanvas.start_Chat_Dialog();
 			break;
 		case 13:
 			inputDialog = new InputDialog();
-			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 2, this), false, T.change + " " + T.thongbao);
+			inputDialog.setinfo(T.nhapthongtindoi, new iCommand(T.change, 10, 2, this), isNum: false, T.change + " " + T.thongbao);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 14:

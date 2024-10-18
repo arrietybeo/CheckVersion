@@ -9,7 +9,7 @@ public class newinput : MonoBehaviour
 
 	private void Start()
 	{
-		input = GetComponent<InputField>();
+		input = ((Component)this).GetComponent<InputField>();
 		TYPE_INPUT = -1;
 	}
 
@@ -19,7 +19,7 @@ public class newinput : MonoBehaviour
 		{
 			if (ChatTextField.isShow)
 			{
-				input.Select();
+				((Selectable)input).Select();
 				input.ActivateInputField();
 			}
 			else
@@ -31,7 +31,7 @@ public class newinput : MonoBehaviour
 		{
 			if (MsgChat.curentfocus != null && MsgChat.curentfocus.tfchat != null)
 			{
-				input.Select();
+				((Selectable)input).Select();
 				input.ActivateInputField();
 			}
 			else

@@ -24,8 +24,10 @@ public class myReader
 
 	public myReader(string filename)
 	{
-		TextAsset textAsset = (TextAsset)Resources.Load(filename, typeof(TextAsset));
-		buffer = mSystem.convertToSbyte(textAsset.bytes);
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Expected O, but got Unknown
+		TextAsset val = (TextAsset)Resources.Load(filename, typeof(TextAsset));
+		buffer = mSystem.convertToSbyte(val.bytes);
 	}
 
 	public sbyte readSByte()
@@ -109,12 +111,12 @@ public class myReader
 
 	public bool readBool()
 	{
-		return (readSByte() > 0) ? true : false;
+		return readSByte() > 0;
 	}
 
 	public bool readBoolean()
 	{
-		return (readSByte() > 0) ? true : false;
+		return readSByte() > 0;
 	}
 
 	public string readString()

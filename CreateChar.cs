@@ -73,11 +73,11 @@ public class CreateChar : MainScreen
 		mSound.stopSoundAll();
 		if (LoginScreen.MusicRandom == 0)
 		{
-			mSound.playMus(0, mSound.volumeMusic, true);
+			mSound.playMus(0, mSound.volumeMusic, loop: true);
 		}
 		else
 		{
-			mSound.playMus(1, mSound.volumeMusic, true);
+			mSound.playMus(1, mSound.volumeMusic, loop: true);
 		}
 		this.index = index;
 		base.Show();
@@ -129,7 +129,7 @@ public class CreateChar : MainScreen
 			{
 				MainScreen.cameraSub.xCam = -wRectChar / 4;
 			}
-			indexChar = resetSelect(indexChar, T.mClass.Length - 1, true);
+			indexChar = resetSelect(indexChar, T.mClass.Length - 1, isreset: true);
 			MainScreen.cameraSub.xTo = indexChar * wRectChar / 4;
 			cmdclass.caption = T.mClass[indexChar];
 			Other_Players other_Players = (Other_Players)VecDefaultChar.elementAt(indexChar);
@@ -187,7 +187,7 @@ public class CreateChar : MainScreen
 		tfNameChar.showSubTextField = true;
 		if (!GameCanvas.isTouch)
 		{
-			tfNameChar.setFocus(true);
+			tfNameChar.setFocus(isFocus: true);
 			return;
 		}
 		cmdclass = new iCommand(T.mClass[indexChar], 0, this);
@@ -217,7 +217,7 @@ public class CreateChar : MainScreen
 	{
 		BackGround.paint(g);
 		BackGround.paintLight(g);
-		AvMain.paintTabNew(g, GameCanvas.hw - wRectChar / 2, GameCanvas.hh - hRectChar / 2 - GameCanvas.hCommand / 2, wRectChar, hRectChar, true, 0);
+		AvMain.paintTabNew(g, GameCanvas.hw - wRectChar / 2, GameCanvas.hh - hRectChar / 2 - GameCanvas.hCommand / 2, wRectChar, hRectChar, ismore: true, 0);
 		g.translate(GameCanvas.hw - wRectChar / 2, GameCanvas.hh - hRectChar / 2 - GameCanvas.hCommand / 2);
 		Other_Players other_Players = (Other_Players)VecDefaultChar.elementAt(indexChar);
 		for (int i = 0; i < T.textCreateChar.Length; i++)
@@ -388,7 +388,7 @@ public class CreateChar : MainScreen
 				GameCanvas.clearKeyHold(8);
 			}
 		}
-		selectClass = resetSelect(selectClass, T.textCreateChar.Length - 1, true);
+		selectClass = resetSelect(selectClass, T.textCreateChar.Length - 1, isreset: true);
 		if (indexChar == 4)
 		{
 			MainScreen.cameraSub.xCam = -wRectChar / 4;
@@ -397,7 +397,7 @@ public class CreateChar : MainScreen
 		{
 			MainScreen.cameraSub.xCam = 4 * wRectChar / 4;
 		}
-		indexChar = resetSelect(indexChar, T.mClass.Length - 1, true);
+		indexChar = resetSelect(indexChar, T.mClass.Length - 1, isreset: true);
 		MainScreen.cameraSub.xTo = indexChar * wRectChar / 4;
 		if (tfNameChar.isFocusedz())
 		{
@@ -424,7 +424,7 @@ public class CreateChar : MainScreen
 		{
 		case 1:
 			other_Players.hair += i;
-			other_Players.hair = indexChar / numHair * numHair + resetSelect(other_Players.hair - indexChar / numHair * numHair, numHair - 1, true);
+			other_Players.hair = indexChar / numHair * numHair + resetSelect(other_Players.hair - indexChar / numHair * numHair, numHair - 1, isreset: true);
 			if (GameCanvas.isTouch)
 			{
 				cmdtoc.caption = T.mCreateChar_HAIR[indexChar / 2][other_Players.hair % numHair];
@@ -432,7 +432,7 @@ public class CreateChar : MainScreen
 			break;
 		case 2:
 			other_Players.eye += i;
-			other_Players.eye = 8 + indexChar / numEye * numEye + resetSelect(other_Players.eye - 8 - indexChar / numEye * numEye, numEye - 1, true);
+			other_Players.eye = 8 + indexChar / numEye * numEye + resetSelect(other_Players.eye - 8 - indexChar / numEye * numEye, numEye - 1, isreset: true);
 			other_Players.EyeMain = other_Players.eye;
 			mSystem.outz("eye" + other_Players.eye);
 			if (GameCanvas.isTouch)
@@ -447,7 +447,7 @@ public class CreateChar : MainScreen
 			break;
 		case 3:
 			other_Players.head += i;
-			other_Players.head = resetSelect(other_Players.head, T.mCreateChar_EYE_FACE[1].Length - 1, true);
+			other_Players.head = resetSelect(other_Players.head, T.mCreateChar_EYE_FACE[1].Length - 1, isreset: true);
 			if (GameCanvas.isTouch)
 			{
 				cmddau.caption = T.mCreateChar_EYE_FACE[1][other_Players.head];

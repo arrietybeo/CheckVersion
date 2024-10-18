@@ -84,26 +84,27 @@ public class GameCanvas
 
 	public static sbyte IndexRes = -1;
 
-	public static sbyte IndexServer = 4;
+	public static sbyte IndexServer = 6;
 
 	public static short IndexCharPar = -1;
 
 	public static long timenextLogin;
 
-	public static string[,] listServer = new string[7, 2]
+	public static string[,] listServer = new string[8, 2]
 	{
 		{ "Chiến Thần", "112.213.85.108" },
 		{ "Rồng Lửa", "27.0.12.133" },
 		{ "Global Server", "hsglobal.teamobi.com" },
 		{ "Phượng Hoàng", "112.213.85.75" },
 		{ "Nhân Mã", "27.0.14.90" },
-		{ "Kì Lân (New)", "127.0.0.1" },
+		{ "Kì Lân", "27.0.12.41" },
+		{ "Thiên Hà (New)", "hs7.teamobi.com" },
 		{ "Thách Đấu", "112.213.84.17" }
 	};
 
-	public static int[] portServer = new int[7] { 19129, 19129, 19129, 19129, 19129, 19129, 19129 };
+	public static int[] portServer = new int[8] { 19129, 19129, 19129, 19129, 19129, 19129, 19129, 19129 };
 
-	public static int[] langServer = new int[7] { 0, 0, 1, 0, 0, 0, 0 };
+	public static int[] langServer = new int[8] { 0, 0, 1, 0, 0, 0, 0, 0 };
 
 	public static long countLogin = 0L;
 
@@ -267,7 +268,7 @@ public class GameCanvas
 		catch (Exception)
 		{
 		}
-		IndexServer = 5;
+		IndexServer = 6;
 		try
 		{
 			sbyte[] array4 = CRes.loadRMS("isIndexServer");
@@ -566,28 +567,28 @@ public class GameCanvas
 	public static void start_Ok_Dialog(string str)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfo(str, new iCommand("Ok", -1), true);
+		msgDialog.setinfo(str, new iCommand("Ok", -1), isOnlyCenter: true);
 		currentDialog = msgDialog;
 	}
 
 	public static void start_Ok_Dialog(string str, sbyte t)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfo(str, new iCommand("Ok", t), true);
+		msgDialog.setinfo(str, new iCommand("Ok", t), isOnlyCenter: true);
 		currentDialog = msgDialog;
 	}
 
 	public static void start_Download_Dialog(string str, string link)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfoDownload(str, link, false);
+		msgDialog.setinfoDownload(str, link, isOnlyCenter: false);
 		currentDialog = msgDialog;
 	}
 
 	public static void start_Show_Dialog(string str, string name)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfoSHOW(str, new iCommand(T.close, -1), true, name);
+		msgDialog.setinfoSHOW(str, new iCommand(T.close, -1), isOnlyCenter: true, name);
 		currentDialog = msgDialog;
 	}
 
@@ -608,14 +609,14 @@ public class GameCanvas
 	public static void start_Center_Dialog_Only(string str, iCommand cmd)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfo(str, cmd, true);
+		msgDialog.setinfo(str, cmd, isOnlyCenter: true);
 		currentDialog = msgDialog;
 	}
 
 	public static void start_Left_Dialog(string str, iCommand cmd)
 	{
 		MsgDialog msgDialog = new MsgDialog();
-		msgDialog.setinfo(str, cmd, false);
+		msgDialog.setinfo(str, cmd, isOnlyCenter: false);
 		currentDialog = msgDialog;
 	}
 
@@ -833,105 +834,105 @@ public class GameCanvas
 		}
 		switch (keyCode)
 		{
-			case 100:
-				keyMyHold[40] = true;
-				keyMyPressed[40] = true;
-				break;
-			case 97:
-				keyMyHold[39] = true;
-				keyMyPressed[39] = true;
-				break;
-			case 115:
-				keyMyHold[38] = true;
-				keyMyPressed[38] = true;
-				break;
-			case 99:
-				keyMyHold[37] = true;
-				keyMyPressed[37] = true;
-				break;
-			case -1:
-				keyMyHold[31] = true;
-				keyMyPressed[31] = true;
-				break;
-			case -2:
-				keyMyHold[32] = true;
-				keyMyPressed[32] = true;
-				break;
-			case -3:
-				keyMyHold[33] = true;
-				keyMyPressed[33] = true;
-				break;
-			case -4:
-				keyMyHold[34] = true;
-				keyMyPressed[34] = true;
-				break;
-			case -5:
-				keyMyHold[36] = true;
-				keyMyPressed[36] = true;
-				break;
-			case 10:
+		case 100:
+			keyMyHold[40] = true;
+			keyMyPressed[40] = true;
+			break;
+		case 97:
+			keyMyHold[39] = true;
+			keyMyPressed[39] = true;
+			break;
+		case 115:
+			keyMyHold[38] = true;
+			keyMyPressed[38] = true;
+			break;
+		case 99:
+			keyMyHold[37] = true;
+			keyMyPressed[37] = true;
+			break;
+		case -1:
+			keyMyHold[31] = true;
+			keyMyPressed[31] = true;
+			break;
+		case -2:
+			keyMyHold[32] = true;
+			keyMyPressed[32] = true;
+			break;
+		case -3:
+			keyMyHold[33] = true;
+			keyMyPressed[33] = true;
+			break;
+		case -4:
+			keyMyHold[34] = true;
+			keyMyPressed[34] = true;
+			break;
+		case -5:
+			keyMyHold[36] = true;
+			keyMyPressed[36] = true;
+			break;
+		case 10:
+			keyMyHold[5] = true;
+			keyMyPressed[5] = true;
+			break;
+		case 48:
+			keyMyHold[0] = true;
+			keyMyPressed[0] = true;
+			break;
+		case 49:
+			keyMyHold[1] = true;
+			keyMyPressed[1] = true;
+			break;
+		case 50:
+			keyMyHold[2] = true;
+			keyMyPressed[2] = true;
+			break;
+		case 51:
+			keyMyHold[3] = true;
+			keyMyPressed[3] = true;
+			break;
+		case 52:
+			keyMyHold[4] = true;
+			keyMyPressed[4] = true;
+			break;
+		case 53:
+			if (currentScreen == GameScreen.gI() && !ChatTextField.isShow)
+			{
 				keyMyHold[5] = true;
 				keyMyPressed[5] = true;
-				break;
-			case 48:
-				keyMyHold[0] = true;
-				keyMyPressed[0] = true;
-				break;
-			case 49:
-				keyMyHold[1] = true;
-				keyMyPressed[1] = true;
-				break;
-			case 50:
-				keyMyHold[2] = true;
-				keyMyPressed[2] = true;
-				break;
-			case 51:
-				keyMyHold[3] = true;
-				keyMyPressed[3] = true;
-				break;
-			case 52:
-				keyMyHold[4] = true;
-				keyMyPressed[4] = true;
-				break;
-			case 53:
-				if (currentScreen == GameScreen.gI() && !ChatTextField.isShow)
-				{
-					keyMyHold[5] = true;
-					keyMyPressed[5] = true;
-				}
-				break;
-			case 54:
-				keyMyHold[6] = true;
-				keyMyPressed[6] = true;
-				break;
-			case 55:
-			case 56:
-			case 57:
-				keyMyHold[keyCode - 28] = true;
-				keyMyPressed[keyCode - 28] = true;
-				break;
-			case 42:
-				keyMyHold[10] = true;
-				keyMyPressed[10] = true;
-				break;
-			case 35:
-				keyMyHold[11] = true;
-				keyMyPressed[11] = true;
-				break;
-			case -21:
-			case -6:
-				keyMyHold[12] = true;
-				keyMyPressed[12] = true;
-				break;
-			case -22:
-			case -7:
-				keyMyHold[13] = true;
-				keyMyPressed[13] = true;
-				break;
-			case 119:
-				keyMyHold[30] = true;
-				keyMyPressed[30] = true;
-				break;
+			}
+			break;
+		case 54:
+			keyMyHold[6] = true;
+			keyMyPressed[6] = true;
+			break;
+		case 55:
+		case 56:
+		case 57:
+			keyMyHold[keyCode - 28] = true;
+			keyMyPressed[keyCode - 28] = true;
+			break;
+		case 42:
+			keyMyHold[10] = true;
+			keyMyPressed[10] = true;
+			break;
+		case 35:
+			keyMyHold[11] = true;
+			keyMyPressed[11] = true;
+			break;
+		case -21:
+		case -6:
+			keyMyHold[12] = true;
+			keyMyPressed[12] = true;
+			break;
+		case -22:
+		case -7:
+			keyMyHold[13] = true;
+			keyMyPressed[13] = true;
+			break;
+		case 119:
+			keyMyHold[30] = true;
+			keyMyPressed[30] = true;
+			break;
 		}
 	}
 
@@ -939,84 +940,84 @@ public class GameCanvas
 	{
 		switch (keyCode)
 		{
-			case 100:
-				keyMyHold[40] = false;
-				break;
-			case 97:
-				keyMyHold[39] = false;
-				break;
-			case 115:
-				keyMyHold[38] = false;
-				break;
-			case 71:
-				keyMyHold[37] = false;
-				break;
-			case -1:
-				keyMyHold[31] = false;
-				break;
-			case -2:
-				keyMyHold[32] = false;
-				break;
-			case -3:
-				keyMyHold[33] = false;
-				break;
-			case -4:
-				keyMyHold[34] = false;
-				break;
-			case -5:
-				keyMyHold[36] = false;
-				break;
-			case 10:
-				keyMyHold[5] = false;
-				keyMyPressed[5] = false;
-				break;
-			case 48:
-				keyMyHold[0] = false;
-				break;
-			case 49:
-				keyMyHold[1] = false;
-				break;
-			case 50:
-				keyMyHold[2] = false;
-				break;
-			case 51:
-				keyMyHold[3] = false;
-				keyMyPressed[3] = true;
-				break;
-			case 4:
-				keyMyHold[36] = false;
-				break;
-			case 52:
-				keyMyHold[4] = true;
-				break;
-			case 53:
-				keyMyHold[5] = false;
-				break;
-			case 54:
-				keyMyHold[6] = false;
-				break;
-			case 55:
-			case 56:
-			case 57:
-				keyMyHold[keyCode - 28] = false;
-				break;
-			case 42:
-				keyMyHold[10] = false;
-				break;
-			case 35:
-				keyMyHold[11] = false;
-				break;
-			case -21:
-			case -6:
-				keyMyHold[12] = false;
-				break;
-			case -22:
-			case -7:
-				keyMyHold[13] = false;
-				break;
-			case 119:
-				keyMyHold[30] = false;
-				break;
+		case 100:
+			keyMyHold[40] = false;
+			break;
+		case 97:
+			keyMyHold[39] = false;
+			break;
+		case 115:
+			keyMyHold[38] = false;
+			break;
+		case 71:
+			keyMyHold[37] = false;
+			break;
+		case -1:
+			keyMyHold[31] = false;
+			break;
+		case -2:
+			keyMyHold[32] = false;
+			break;
+		case -3:
+			keyMyHold[33] = false;
+			break;
+		case -4:
+			keyMyHold[34] = false;
+			break;
+		case -5:
+			keyMyHold[36] = false;
+			break;
+		case 10:
+			keyMyHold[5] = false;
+			keyMyPressed[5] = false;
+			break;
+		case 48:
+			keyMyHold[0] = false;
+			break;
+		case 49:
+			keyMyHold[1] = false;
+			break;
+		case 50:
+			keyMyHold[2] = false;
+			break;
+		case 51:
+			keyMyHold[3] = false;
+			keyMyPressed[3] = true;
+			break;
+		case 4:
+			keyMyHold[36] = false;
+			break;
+		case 52:
+			keyMyHold[4] = true;
+			break;
+		case 53:
+			keyMyHold[5] = false;
+			break;
+		case 54:
+			keyMyHold[6] = false;
+			break;
+		case 55:
+		case 56:
+		case 57:
+			keyMyHold[keyCode - 28] = false;
+			break;
+		case 42:
+			keyMyHold[10] = false;
+			break;
+		case 35:
+			keyMyHold[11] = false;
+			break;
+		case -21:
+		case -6:
+			keyMyHold[12] = false;
+			break;
+		case -22:
+		case -7:
+			keyMyHold[13] = false;
+			break;
+		case 119:
+			keyMyHold[30] = false;
+			break;
 		}
 	}
 
@@ -1234,30 +1235,30 @@ public class GameCanvas
 		{
 			switch (Dir)
 			{
-				case 1:
-					if (keyMyHold[30] || keyMyHold[2] || keyMyHold[22])
-					{
-						return true;
-					}
-					break;
-				case 0:
-					if (keyMyHold[38] || keyMyHold[8] || keyMyHold[28])
-					{
-						return true;
-					}
-					break;
-				case 2:
-					if (keyMyHold[39] || keyMyHold[4] || keyMyHold[24])
-					{
-						return true;
-					}
-					break;
-				case 3:
-					if (keyMyHold[40] || keyMyHold[6] || keyMyHold[26])
-					{
-						return true;
-					}
-					break;
+			case 1:
+				if (keyMyHold[30] || keyMyHold[2] || keyMyHold[22])
+				{
+					return true;
+				}
+				break;
+			case 0:
+				if (keyMyHold[38] || keyMyHold[8] || keyMyHold[28])
+				{
+					return true;
+				}
+				break;
+			case 2:
+				if (keyMyHold[39] || keyMyHold[4] || keyMyHold[24])
+				{
+					return true;
+				}
+				break;
+			case 3:
+				if (keyMyHold[40] || keyMyHold[6] || keyMyHold[26])
+				{
+					return true;
+				}
+				break;
 			}
 		}
 		return false;
@@ -1272,26 +1273,26 @@ public class GameCanvas
 		}
 		switch (Dir)
 		{
-			case 1:
-				keyMyHold[30] = false;
-				keyMyHold[2] = false;
-				keyMyHold[22] = false;
-				break;
-			case 0:
-				keyMyHold[38] = false;
-				keyMyHold[8] = false;
-				keyMyHold[28] = false;
-				break;
-			case 2:
-				keyMyHold[40] = false;
-				keyMyHold[4] = false;
-				keyMyHold[24] = false;
-				break;
-			case 3:
-				keyMyHold[39] = false;
-				keyMyHold[6] = false;
-				keyMyHold[26] = false;
-				break;
+		case 1:
+			keyMyHold[30] = false;
+			keyMyHold[2] = false;
+			keyMyHold[22] = false;
+			break;
+		case 0:
+			keyMyHold[38] = false;
+			keyMyHold[8] = false;
+			keyMyHold[28] = false;
+			break;
+		case 2:
+			keyMyHold[40] = false;
+			keyMyHold[4] = false;
+			keyMyHold[24] = false;
+			break;
+		case 3:
+			keyMyHold[39] = false;
+			keyMyHold[6] = false;
+			keyMyHold[26] = false;
+			break;
 		}
 	}
 

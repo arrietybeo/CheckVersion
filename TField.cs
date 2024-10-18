@@ -242,7 +242,7 @@ public class TField : AvMain
 		this.width = width;
 		this.widthTouch = widthTouch;
 		init();
-		setFocus(false);
+		setFocus(isFocus: false);
 		setheightText();
 	}
 
@@ -388,7 +388,7 @@ public class TField : AvMain
 			caretPos--;
 			setOffset();
 			setPasswordTest();
-			setFocusWithKb(true);
+			setFocusWithKb(isFocus: true);
 			if (kb != null)
 			{
 				kb.text = string.Empty;
@@ -916,7 +916,7 @@ public class TField : AvMain
 		}
 		if (GameCanvas.isPoint(x, y, width - widthTouch, height))
 		{
-			setFocusWithKb(true);
+			setFocusWithKb(isFocus: true);
 			doChangeToTextBox();
 			GameCanvas.isPointerSelect = false;
 			return;
@@ -931,7 +931,7 @@ public class TField : AvMain
 		{
 			isFocus = false;
 		}
-		setFocus(false);
+		setFocus(isFocus: false);
 	}
 
 	public void updatepointerByList()
@@ -1004,10 +1004,10 @@ public class TField : AvMain
 				{
 					isFocus = false;
 				}
-				setFocus(false);
+				setFocus(isFocus: false);
 			}
 		}
-		setFocusWithKb(true);
+		setFocusWithKb(isFocus: true);
 		doChangeToTextBox();
 		GameCanvas.isPointerSelect = false;
 	}
@@ -1062,7 +1062,7 @@ public class TField : AvMain
 			{
 				type = true;
 			}
-			kb = TouchScreenKeyboard.Open(currentTField.text, t, false, false, type, false, currentTField.name);
+			kb = TouchScreenKeyboard.Open(currentTField.text, t, b1: false, b2: false, type, b3: false, currentTField.name);
 			if (kb != null)
 			{
 				kb.text = currentTField.text;

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.UI;
 
 public class InputDialog : MainDialog
 {
@@ -206,7 +207,7 @@ public class InputDialog : MainDialog
 		}
 		if (!GameCanvas.isTouch)
 		{
-			mtfInput[0].setFocus(true);
+			mtfInput[0].setFocus(isFocus: true);
 			right = mtfInput[0].cmdClear;
 		}
 		if (iscroll)
@@ -272,7 +273,7 @@ public class InputDialog : MainDialog
 			cmd.setPos(xDia + wDia / 2, yDia + hDia - iCommand.hButtonCmd / 2 - 5, null, cmd.caption);
 			center = cmd;
 			left = cmdClose;
-			tfInput.setFocus(true);
+			tfInput.setFocus(isFocus: true);
 			right = tfInput.cmdClear;
 		}
 	}
@@ -368,7 +369,7 @@ public class InputDialog : MainDialog
 		}
 		if (!GameCanvas.isTouch)
 		{
-			mtfInput[0].setFocus(true);
+			mtfInput[0].setFocus(isFocus: true);
 			right = mtfInput[0].cmdClear;
 		}
 		if (iscroll)
@@ -432,7 +433,7 @@ public class InputDialog : MainDialog
 		{
 			center = cmd;
 			left = cmdClose;
-			tfInput.setFocus(true);
+			tfInput.setFocus(isFocus: true);
 			right = tfInput.cmdClear;
 		}
 	}
@@ -492,7 +493,7 @@ public class InputDialog : MainDialog
 		{
 			center = cmd;
 			left = cmdClose;
-			tfInput.setFocus(true);
+			tfInput.setFocus(isFocus: true);
 			right = tfInput.cmdClear;
 		}
 	}
@@ -562,7 +563,7 @@ public class InputDialog : MainDialog
 		{
 			if (tfInput.isnewTF && tfInput.isFocus && !newinput.input.isFocused)
 			{
-				newinput.input.Select();
+				((Selectable)newinput.input).Select();
 				newinput.input.ActivateInputField();
 			}
 			tfInput.update();
@@ -614,10 +615,10 @@ public class InputDialog : MainDialog
 					{
 						continue;
 					}
-					mtfInput[i].setFocus(false);
+					mtfInput[i].setFocus(isFocus: false);
 					if (i < mtfInput.Length - 1)
 					{
-						mtfInput[i + 1].setFocus(true);
+						mtfInput[i + 1].setFocus(isFocus: true);
 						idSelect = i + 1;
 						if (Main.isPC)
 						{
@@ -626,7 +627,7 @@ public class InputDialog : MainDialog
 					}
 					else
 					{
-						mtfInput[0].setFocus(true);
+						mtfInput[0].setFocus(isFocus: true);
 						idSelect = 0;
 						if (Main.isPC)
 						{
@@ -643,15 +644,15 @@ public class InputDialog : MainDialog
 				{
 					if (mtfInput[j].isFocusedz())
 					{
-						mtfInput[j].setFocus(false);
+						mtfInput[j].setFocus(isFocus: false);
 						if (j > 0)
 						{
-							mtfInput[j - 1].setFocus(true);
+							mtfInput[j - 1].setFocus(isFocus: true);
 							idSelect = j - 1;
 						}
 						else
 						{
-							mtfInput[mtfInput.Length - 1].setFocus(true);
+							mtfInput[mtfInput.Length - 1].setFocus(isFocus: true);
 							idSelect = mtfInput.Length - 1;
 						}
 						break;
@@ -659,7 +660,7 @@ public class InputDialog : MainDialog
 				}
 				GameCanvas.clearKeyHold(2);
 			}
-			idSelect = resetSelect(idSelect, mtfInput.Length - 1, false);
+			idSelect = resetSelect(idSelect, mtfInput.Length - 1, isreset: false);
 			if (num != idSelect && !Main.isPC)
 			{
 				MainScreen.cameraSub.moveCamera(0, idSelect * 40 - hDia / 2 + 40 + GameCanvas.hCommand);

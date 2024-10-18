@@ -66,12 +66,12 @@ public class SMS
 		}
 		if (j == 500)
 		{
-			Debug.LogError("TOO LONG FOR SEND SMS " + content);
+			Debug.LogError((object)("TOO LONG FOR SEND SMS " + content));
 			status = 0;
 		}
 		else
 		{
-			Debug.Log("Send SMS " + content + " done in " + j * 5 + "ms");
+			Debug.Log((object)("Send SMS " + content + " done in " + j * 5 + "ms"));
 		}
 		return _result;
 	}
@@ -85,7 +85,7 @@ public class SMS
 			f = true;
 			sendEnable = true;
 			iOSPlugins.SMSsend(to, content, num);
-			Screen.orientation = ScreenOrientation.AutoRotation;
+			Screen.orientation = (ScreenOrientation)5;
 		}
 		return num;
 	}
@@ -110,7 +110,7 @@ public class SMS
 			}
 			catch (Exception)
 			{
-				Debug.Log("CANNOT SEND SMS");
+				Debug.Log((object)"CANNOT SEND SMS");
 			}
 			status = 0;
 		}
@@ -122,23 +122,23 @@ public class SMS
 		{
 			if (iOSPlugins.checkRotation() == 1)
 			{
-				Screen.orientation = ScreenOrientation.LandscapeLeft;
+				Screen.orientation = (ScreenOrientation)3;
 			}
 			else if (iOSPlugins.checkRotation() == -1)
 			{
-				Screen.orientation = ScreenOrientation.Portrait;
+				Screen.orientation = (ScreenOrientation)1;
 			}
 			else if (iOSPlugins.checkRotation() == 0)
 			{
-				Screen.orientation = ScreenOrientation.AutoRotation;
+				Screen.orientation = (ScreenOrientation)5;
 			}
 			else if (iOSPlugins.checkRotation() == 2)
 			{
-				Screen.orientation = ScreenOrientation.LandscapeRight;
+				Screen.orientation = (ScreenOrientation)4;
 			}
 			else if (iOSPlugins.checkRotation() == 3)
 			{
-				Screen.orientation = ScreenOrientation.PortraitUpsideDown;
+				Screen.orientation = (ScreenOrientation)2;
 			}
 			if (time0 < 5)
 			{
@@ -153,7 +153,7 @@ public class SMS
 		}
 		if (iOSPlugins.unpause() == 1)
 		{
-			Screen.orientation = ScreenOrientation.LandscapeLeft;
+			Screen.orientation = (ScreenOrientation)3;
 			if (time0 < 5)
 			{
 				time0++;

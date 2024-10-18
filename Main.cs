@@ -60,6 +60,8 @@ public class Main : MonoBehaviour
 
     private bool isRun;
 
+    private static Material lineMaterial;
+
     public static mImage[] imgTileMapLogin;
 
     public static bool isMiniApp = true;
@@ -107,11 +109,24 @@ public class Main : MonoBehaviour
 
     public void init()
     {
-        Debug.Log("INIT DATA");
         CRes.init();
         MainObject.init();
         Player.init0();
     }
+
+    //private void OnGUI()
+    //{
+    //    if (cout >= 10)
+    //    {
+    //        checkInput();
+    //        Session_ME.update();
+    //        if (((Enum)Event.current.type).Equals((object)(EventType)7))
+    //        {
+    //            TemMidlet.temCanvas.paint(g);
+    //            g.reset();
+    //        }
+    //    }
+    //}
 
     private void OnGUI()
     {
@@ -119,10 +134,13 @@ public class Main : MonoBehaviour
         {
             checkInput();
             Session_ME.update();
-            if (Event.current.type.Equals(EventType.Repaint))
+            if (Event.current != null && Event.current.type.Equals(EventType.Repaint))
             {
-                TemMidlet.temCanvas.paint(g);
-                g.reset();
+                if (TemMidlet.temCanvas != null)
+                {
+                    TemMidlet.temCanvas.paint(g);
+                    g.reset();
+                }
             }
         }
     }
@@ -162,10 +180,6 @@ public class Main : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-    }
-
     private void FixedUpdate()
     {
         Rms.update();
@@ -177,10 +191,10 @@ public class Main : MonoBehaviour
         if (!isRun)
         {
             isRun = true;
-            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            Screen.orientation = (ScreenOrientation)3;
             Application.runInBackground = true;
             Application.targetFrameRate = 30;
-            base.useGUILayout = false;
+            ((MonoBehaviour)this).useGUILayout = false;
             isCompactDevice = detectCompactDevice();
             if (main == null)
             {
@@ -212,7 +226,7 @@ public class Main : MonoBehaviour
                 num = 3;
             }
             TemMidlet.DIVICE = (sbyte)num;
-            Debug.Log("typeClient :" + TemMidlet.DIVICE);
+            Debug.Log((object)("typeClient :" + TemMidlet.DIVICE));
             if (iPhoneSettings.generation == iPhoneGeneration.iPodTouch4Gen)
             {
                 isIpod = true;
@@ -223,8 +237,8 @@ public class Main : MonoBehaviour
             }
             init();
             g = new mGraphics();
-            g.CreateLineMaterial();
-            tMidlet = new TemMidlet();// quan trong
+            //g.CreateLineMaterial();
+            tMidlet = new TemMidlet();
             if (mGraphics.zoomLevel == 1 && !isWindowsPhone)
             {
                 isSprite = false;
@@ -236,7 +250,17 @@ public class Main : MonoBehaviour
         }
         Load_Data_And_Img.load.run();
         ipKeyboard.update();
-        TemMidlet.temCanvas.update();
+        //TemMidlet.temCanvas.update();
+
+        if (TemMidlet.temCanvas == null)
+        {
+            TemMidlet.temCanvas = new TemCanvas();
+            Debug.LogError("temCanvas is null");
+        }
+        else
+        {
+            TemMidlet.temCanvas.update();
+        }
         Image.update();
         DataInputStream.update();
         SMS.update();
@@ -249,10 +273,48 @@ public class Main : MonoBehaviour
         {
             CRes.load.run();
         }
+        if (!isPC)
+        {
+            int num2 = 1 / a;
+        }
+    }
+
+    private void Update()
+    {
+    }
+
+    public void CreateLineMaterial()
+    {
+        if (!lineMaterial)
+        {
+            lineMaterial = new Material("Shader \"Lines/Colored Blended\" {SubShader { Pass {  Blend SrcAlpha OneMinusSrcAlpha  ZWrite Off Cull Off Fog { Mode Off }  BindChannels { Bind \"vertex\", vertex Bind \"color\", color }} } }");
+
+            //lineMaterial = new Material("Shader \"Custom/SimpleColoredShader\"\r\n{\r\n    Properties\r\n    {\r\n        _Color (\"Color\", Color) = (1,1,1,1)\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" }\r\n        LOD 100\r\n\r\n        CGPROGRAM\r\n        #pragma surface surf Lambert\r\n\r\n        struct Input\r\n        {\r\n            float2 uv_MainTex;\r\n        };\r\n\r\n        fixed4 _Color;\r\n\r\n        void surf (Input IN, inout SurfaceOutput o)\r\n        {\r\n            o.Albedo = _Color.rgb;\r\n            o.Alpha = _Color.a;\r\n        }\r\n        ENDCG\r\n    }\r\n    FallBack \"Diffuse\"\r\n}");
+            lineMaterial.hideFlags = HideFlags.HideAndDontSave;
+            lineMaterial.shader.hideFlags = HideFlags.HideAndDontSave;
+        }
     }
 
     private void checkInput()
     {
+        //IL_000b: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0010: Unknown result type (might be due to invalid IL or missing references)
+        //IL_007a: Unknown result type (might be due to invalid IL or missing references)
+        //IL_007f: Unknown result type (might be due to invalid IL or missing references)
+        //IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+        //IL_00ee: Unknown result type (might be due to invalid IL or missing references)
+        //IL_01de: Unknown result type (might be due to invalid IL or missing references)
+        //IL_01e4: Invalid comparison between Unknown and I4
+        //IL_015c: Unknown result type (might be due to invalid IL or missing references)
+        //IL_0162: Invalid comparison between Unknown and I4
+        //IL_01ee: Unknown result type (might be due to invalid IL or missing references)
+        //IL_016c: Unknown result type (might be due to invalid IL or missing references)
+        //IL_019a: Unknown result type (might be due to invalid IL or missing references)
+        //IL_019f: Unknown result type (might be due to invalid IL or missing references)
+        //IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+        //IL_01a5: Invalid comparison between Unknown and I4
+        //IL_01aa: Unknown result type (might be due to invalid IL or missing references)
+        //IL_01ae: Invalid comparison between Unknown and I4
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePosition = Input.mousePosition;
@@ -274,19 +336,22 @@ public class Main : MonoBehaviour
             lastMousePos.y = mousePosition3.y + (float)(mGraphics.addYWhenOpenKeyBoard * mGraphics.zoomLevel);
             TemMidlet.temCanvas.pointerReleased((int)mousePosition3.x, (int)((float)Screen.height - mousePosition3.y) + mGraphics.addYWhenOpenKeyBoard * mGraphics.zoomLevel);
         }
-        if (Input.anyKeyDown && Event.current.type == EventType.KeyDown)
+        if (Input.anyKeyDown && (int)Event.current.type == 4)
         {
             int num = MyKeyMap.map(Event.current.keyCode);
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            if (Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303))
             {
-                switch (Event.current.keyCode)
+                KeyCode keyCode = Event.current.keyCode;
+                if ((int)keyCode != 45)
                 {
-                    case KeyCode.Alpha2:
+                    if ((int)keyCode == 50)
+                    {
                         num = 64;
-                        break;
-                    case KeyCode.Minus:
-                        num = 95;
-                        break;
+                    }
+                }
+                else
+                {
+                    num = 95;
                 }
             }
             if (num != 0)
@@ -294,7 +359,7 @@ public class Main : MonoBehaviour
                 TemMidlet.temCanvas.keyPressed(num);
             }
         }
-        if (Event.current.type == EventType.KeyUp)
+        if ((int)Event.current.type == 5)
         {
             int num2 = MyKeyMap.map(Event.current.keyCode);
             if (num2 != 0)
@@ -306,7 +371,7 @@ public class Main : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.LogWarning("APP QUIT");
+        Debug.LogWarning((object)"APP QUIT");
         Session_ME.gI().close();
         if (isPC)
         {

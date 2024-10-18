@@ -355,7 +355,7 @@ public class Other_Players : MainObject
 				iCommand o2 = new iCommand(T.quest, 5, this);
 				mVector3.addElement(o2);
 			}
-			GameCanvas.menu2.startAt(mVector3, 2, T.giaotiep, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, T.giaotiep, isFocus: false, null);
 		}
 		else if (typeObject == 0 && typeSpec == 0)
 		{
@@ -378,7 +378,7 @@ public class Other_Players : MainObject
 			}
 			mVector mVector5 = vectorObjectNear();
 			mVector5.insertElementAt(this, 0);
-			GameCanvas.menu2.startAt(mVector4, 2, T.giaotiep, true, mVector5);
+			GameCanvas.menu2.startAt(mVector4, 2, T.giaotiep, isFocus: true, mVector5);
 		}
 	}
 
@@ -473,7 +473,7 @@ public class Other_Players : MainObject
 			GameCanvas.menu2.doCloseMenu();
 			GameCanvas.clearKeyHold();
 			GameCanvas.clearKeyPressed();
-			GameCanvas.menu2.startAt(mVector3, 2, T.quest, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, T.quest, isFocus: false, null);
 		}
 	}
 

@@ -320,7 +320,7 @@ public class GameScreen : MainScreen
 		case 2:
 			if (Menu2.objSelect != null)
 			{
-				GameCanvas.msgchat.addNewChat(Menu2.objSelect.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
+				GameCanvas.msgchat.addNewChat(Menu2.objSelect.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
 			}
 			GameCanvas.start_Chat_Dialog();
 			break;
@@ -395,7 +395,7 @@ public class GameScreen : MainScreen
 		{
 			mVector3.addElement(cmdEndHelp);
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, isFocus: false, null);
 	}
 
 	public void doArea()
@@ -501,7 +501,7 @@ public class GameScreen : MainScreen
 				}
 				mVector4.addElement(iCommand3);
 			}
-			GameCanvas.menu2.startAt(mVector4, 4, T.setPk, false, null);
+			GameCanvas.menu2.startAt(mVector4, 4, T.setPk, isFocus: false, null);
 			break;
 		}
 		case 9:
@@ -595,7 +595,7 @@ public class GameScreen : MainScreen
 			GameCanvas.end_Dialog();
 			break;
 		case 25:
-			AddEffWeather(0, false, -4, 300);
+			AddEffWeather(0, isSt: false, -4, 300);
 			break;
 		case 26:
 			if (subIndex >= 0 && subIndex <= menuNgua.size() - 1)
@@ -618,7 +618,7 @@ public class GameScreen : MainScreen
 				iCommand iCommand2 = new iCommand(T.mQuickChat[i], 29, i, this);
 				mVector3.addElement(iCommand2);
 			}
-			GameCanvas.menu2.startAt(mVector3, 4, T.chat, false, null);
+			GameCanvas.menu2.startAt(mVector3, 4, T.chat, isFocus: false, null);
 			break;
 		}
 		case 29:
@@ -741,10 +741,7 @@ public class GameScreen : MainScreen
 			for (int i = 0; i < vecDataeff.size(); i++)
 			{
 				DataSkillEff dataSkillEff = (DataSkillEff)vecDataeff.elementAt(i);
-				if (dataSkillEff != null)
-				{
-					dataSkillEff.paintTop(g, dataSkillEff.x, dataSkillEff.y);
-				}
+				dataSkillEff?.paintTop(g, dataSkillEff.x, dataSkillEff.y);
 			}
 			for (int j = 0; j < LoadMap.Thacnuoc.size(); j++)
 			{
@@ -822,28 +819,18 @@ public class GameScreen : MainScreen
 			}
 			for (int m = 0; m < arrowsUp.size(); m++)
 			{
-				IArrow arrow = (IArrow)arrowsUp.elementAt(m);
-				if (arrow != null)
-				{
-					arrow.paint(g);
-				}
+				((IArrow)arrowsUp.elementAt(m))?.paint(g);
 			}
 			for (int n = 0; n < vecDataeff.size(); n++)
 			{
 				DataSkillEff dataSkillEff2 = (DataSkillEff)vecDataeff.elementAt(n);
-				if (dataSkillEff2 != null)
-				{
-					dataSkillEff2.paintBottom(g, dataSkillEff2.x, dataSkillEff2.y);
-				}
+				dataSkillEff2?.paintBottom(g, dataSkillEff2.x, dataSkillEff2.y);
 			}
 			paintMonsterEffect(g);
 			for (int num = 0; num < vecDataeff.size(); num++)
 			{
 				DataSkillEff dataSkillEff3 = (DataSkillEff)vecDataeff.elementAt(num);
-				if (dataSkillEff3 != null)
-				{
-					dataSkillEff3.paintBottom(g, dataSkillEff3.x, dataSkillEff3.y);
-				}
+				dataSkillEff3?.paintBottom(g, dataSkillEff3.x, dataSkillEff3.y);
 			}
 			for (int num2 = 0; num2 < LoadMap.vecPointChange.size(); num2++)
 			{
@@ -861,11 +848,7 @@ public class GameScreen : MainScreen
 			{
 				for (int num4 = 0; num4 < vecHightEffAuto.size(); num4++)
 				{
-					EffectAuto effectAuto = (EffectAuto)vecHightEffAuto.elementAt(num4);
-					if (effectAuto != null)
-					{
-						effectAuto.paint(g);
-					}
+					((EffectAuto)vecHightEffAuto.elementAt(num4))?.paint(g);
 				}
 			}
 			for (int num5 = 0; num5 < num3; num5++)
@@ -1025,7 +1008,7 @@ public class GameScreen : MainScreen
 				}
 				if (imgCombo != null)
 				{
-					g.drawImage(imgCombo, 5, 46, 0, false);
+					g.drawImage(imgCombo, 5, 46, 0, useClip: false);
 				}
 			}
 			GameCanvas.resetTrans(g);
@@ -1048,11 +1031,7 @@ public class GameScreen : MainScreen
 			}
 			for (int num7 = 0; num7 < vecTimecountDown.size(); num7++)
 			{
-				TimecountDown timecountDown = (TimecountDown)vecTimecountDown.elementAt(num7);
-				if (timecountDown != null)
-				{
-					timecountDown.paint(g);
-				}
+				((TimecountDown)vecTimecountDown.elementAt(num7))?.paint(g);
 			}
 			GameCanvas.resetTrans(g);
 			if (textServer != null && textServer.Length > 0)
@@ -1346,10 +1325,7 @@ public class GameScreen : MainScreen
 					{
 						vecHightEffAuto.removeElement(effectAuto);
 					}
-					if (effectAuto != null)
-					{
-						effectAuto.update();
-					}
+					effectAuto?.update();
 				}
 			}
 			infoGame.countTimeHS();
@@ -1418,7 +1394,7 @@ public class GameScreen : MainScreen
 			mVector3.addElement(cmdGiaotiep);
 		}
 		mVector3.addElement(cmdChangeMap);
-		GameCanvas.menu2.startAt(mVector3, 2, T.menuChinh, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.menuChinh, isFocus: false, null);
 		if (help.setStep_Next(1, 9) || help.setStep_Next(6, 2))
 		{
 			Menu2.isHelp = true;
@@ -1439,7 +1415,7 @@ public class GameScreen : MainScreen
 				string itemName = mainItem.itemName;
 				iCommand iCommand2 = new iCommand(itemName, 26, i, this);
 				mVector3.addElement(iCommand2);
-				GameCanvas.menu2.startAt(mVector3, 2, T.TuseNgua, false, null);
+				GameCanvas.menu2.startAt(mVector3, 2, T.TuseNgua, isFocus: false, null);
 			}
 		}
 	}
@@ -1481,7 +1457,7 @@ public class GameScreen : MainScreen
 			cmdShowAuto.caption = T.off + T.showAuto;
 		}
 		mVector3.addElement(gI().cmdShowAuto);
-		GameCanvas.menu2.startAt(mVector3, 2, T.auto, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.auto, isFocus: false, null);
 	}
 
 	public static void addEffectKill(int type, int idFrom, sbyte temFrom, mVector vec)
@@ -2254,7 +2230,7 @@ public class GameScreen : MainScreen
 					return;
 				}
 			}
-			addEffectNew(type, x, y, time, id, tem, idFrom, 1, (type != 100) ? true : false);
+			addEffectNew(type, x, y, time, id, tem, idFrom, 1, type != 100);
 			return;
 		}
 		for (int j = 0; j < EffectManager.hiEffects.size(); j++)
@@ -2288,7 +2264,7 @@ public class GameScreen : MainScreen
 				return;
 			}
 		}
-		addEffectNew(type, x, y, time, id, tem, idFrom, 1, false);
+		addEffectNew(type, x, y, time, id, tem, idFrom, 1, addLow: false);
 	}
 
 	public static MainObject findOwner(MainObject owner)

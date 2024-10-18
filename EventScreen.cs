@@ -191,7 +191,7 @@ public class EventScreen : MainScreen
 					mVector mVector3 = new mVector("EventScreen vec");
 					mVector3.addElement(cmdSeL);
 					mVector3.addElement(cmdDel);
-					GameCanvas.menu2.startAt(mVector3, 2, T.mevent, false, null);
+					GameCanvas.menu2.startAt(mVector3, 2, T.mevent, isFocus: false, null);
 				}
 				else
 				{
@@ -347,7 +347,7 @@ public class EventScreen : MainScreen
 				idSelect++;
 				GameCanvas.clearKeyHold(8);
 			}
-			idSelect = resetSelect(idSelect, vecListEvent.size() - 1, true);
+			idSelect = resetSelect(idSelect, vecListEvent.size() - 1, isreset: true);
 			cameraDia.moveCamera(0, idSelect * hItem - (hDia / 2 - GameCanvas.hCommand - hbutton));
 		}
 		else if (cmdList.size() > 1)
@@ -373,7 +373,7 @@ public class EventScreen : MainScreen
 					idCommand++;
 					GameCanvas.clearKeyHold(6);
 				}
-				idCommand = resetSelect(idCommand, num - 1, false);
+				idCommand = resetSelect(idCommand, num - 1, isreset: false);
 				if (num2 != idCommand)
 				{
 					for (int i = 0; i < num; i++)
@@ -414,7 +414,7 @@ public class EventScreen : MainScreen
 			if (num >= 0 && num <= vecListEvent.size() - 1)
 			{
 				idSelect = num;
-				idSelect = resetSelect(idSelect, vecListEvent.size() - 1, false);
+				idSelect = resetSelect(idSelect, vecListEvent.size() - 1, isreset: false);
 				bool isre = false;
 				if (GameCanvas.isPointSelect(xDia + wDia - 30, yDia + GameCanvas.hCommand, 30, hDia - GameCanvas.hCommand) && idSelect > 0)
 				{

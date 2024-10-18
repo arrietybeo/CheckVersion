@@ -48,7 +48,7 @@ public class MapBackGround
 
 	public void setBackGround(sbyte type, short h)
 	{
-		Debug.LogWarning("load back ground " + type);
+		Debug.LogWarning((object)("load back ground " + type));
 		typeMap = type;
 		hBack = h;
 		if (GameCanvas.lowGraphic)

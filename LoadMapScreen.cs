@@ -141,11 +141,11 @@ public class LoadMapScreen : MainScreen
 		mSound.stopSoundAll();
 		if (GameCanvas.loadmap.idMap >= mMusic.Length - 1 || mMusic[GameCanvas.loadmap.idMap] < 0)
 		{
-			mSound.playMus(0, mSound.volumeMusic, true);
+			mSound.playMus(0, mSound.volumeMusic, loop: true);
 		}
 		else
 		{
-			mSound.playMus(mMusic[GameCanvas.loadmap.idMap], mSound.volumeMusic, true);
+			mSound.playMus(mMusic[GameCanvas.loadmap.idMap], mSound.volumeMusic, loop: true);
 		}
 	}
 

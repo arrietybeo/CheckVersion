@@ -310,7 +310,7 @@ public class Player : MainObject
 			{
 				setFocus();
 			}
-			setMove(true);
+			setMove(isAutomove: true);
 			updatePlayer();
 			updateEye();
 			updateDataEffect();
@@ -814,7 +814,7 @@ public class Player : MainObject
 				HotKey hotKey = mhotkey[levelTab][j];
 				if (hotKey.type == HotKey.SKILL && setDelaySkill(hotKey.id, -1))
 				{
-					setActionHotKey(j, false);
+					setActionHotKey(j, isSetDef: false);
 					timeFristSkill = num;
 					IndexFire = (sbyte)j;
 					return;
@@ -828,7 +828,7 @@ public class Player : MainObject
 				HotKey hotKey2 = mhotkey[levelTab][k];
 				if (hotKey2.type == HotKey.SKILL && setDelaySkill(hotKey2.id, -1))
 				{
-					setActionHotKey(k, false);
+					setActionHotKey(k, isSetDef: false);
 					timeFristSkill = num;
 					IndexFire = (sbyte)k;
 					return;
@@ -837,7 +837,7 @@ public class Player : MainObject
 		}
 		if (setDelaySkill(0, -1))
 		{
-			setActionHotKey(-1, false);
+			setActionHotKey(-1, isSetDef: false);
 			timeFristSkill = num;
 		}
 	}
@@ -1098,23 +1098,23 @@ public class Player : MainObject
 			}
 			if (GameCanvas.keyMyPressed[(Main.isPC && !isCapCha()) ? 1 : 21])
 			{
-				setActionHotKey(0, true);
+				setActionHotKey(0, isSetDef: true);
 			}
 			else if (GameCanvas.keyMyPressed[(!Main.isPC || isCapCha()) ? 23 : 2])
 			{
-				setActionHotKey(1, true);
+				setActionHotKey(1, isSetDef: true);
 			}
 			else if (GameCanvas.keyMyHold[(!Main.isPC || isCapCha()) ? 5 : 36] || GameCanvas.keyMyPressed[(!Main.isPC || isCapCha()) ? 25 : 3])
 			{
-				setActionHotKey(2, true);
+				setActionHotKey(2, isSetDef: true);
 			}
 			else if (GameCanvas.keyMyPressed[(!Main.isPC || isCapCha()) ? 27 : 4])
 			{
-				setActionHotKey(3, true);
+				setActionHotKey(3, isSetDef: true);
 			}
 			else if (GameCanvas.keyMyPressed[(!Main.isPC || isCapCha()) ? 29 : 5])
 			{
-				setActionHotKey(4, true);
+				setActionHotKey(4, isSetDef: true);
 			}
 		}
 		if (GameCanvas.keyMyHold[(!Main.isPC) ? 20 : 6])
@@ -1924,7 +1924,7 @@ public class Player : MainObject
 						}
 					}
 				}
-				setActionHotKey(IndexFire, false);
+				setActionHotKey(IndexFire, isSetDef: false);
 			}
 			else if (GameScreen.ObjFocus.isSelling())
 			{

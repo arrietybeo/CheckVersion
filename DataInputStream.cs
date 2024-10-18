@@ -18,8 +18,10 @@ public class DataInputStream
 
 	public DataInputStream(string filename)
 	{
-		TextAsset textAsset = (TextAsset)Resources.Load(filename, typeof(TextAsset));
-		r = new myReader(ArrayCast.cast(textAsset.bytes));
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Expected O, but got Unknown
+		TextAsset val = (TextAsset)Resources.Load(filename, typeof(TextAsset));
+		r = new myReader(ArrayCast.cast(val.bytes));
 	}
 
 	public DataInputStream(sbyte[] data)
@@ -56,7 +58,7 @@ public class DataInputStream
 			}
 			if (status != 0)
 			{
-				Debug.LogError("CANNOT GET INPUTSTREAM " + filename + " WHEN GETTING " + filenametemp);
+				Debug.LogError((object)("CANNOT GET INPUTSTREAM " + filename + " WHEN GETTING " + filenametemp));
 				return null;
 			}
 		}
@@ -74,7 +76,7 @@ public class DataInputStream
 		}
 		if (j == 500)
 		{
-			Debug.LogError("TOO LONG FOR CREATE INPUTSTREAM " + filename);
+			Debug.LogError((object)("TOO LONG FOR CREATE INPUTSTREAM " + filename));
 			status = 0;
 			return null;
 		}

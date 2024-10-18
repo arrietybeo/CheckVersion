@@ -99,19 +99,19 @@ public class EffectCharWearing
 		case 0:
 			if (pospaint == 0)
 			{
-				g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, false);
+				g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, useClip: false);
 			}
 			else
 			{
-				g.drawRegion(mImage2, 0, FrameEffect1 * frameHeight, frameWidth, frameHeight, 0, x - dx, y + dy, 3, false);
+				g.drawRegion(mImage2, 0, FrameEffect1 * frameHeight, frameWidth, frameHeight, 0, x - dx, y + dy, 3, useClip: false);
 			}
 			break;
 		case 1:
-			g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, false);
+			g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, useClip: false);
 			break;
 		case 2:
-			g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, false);
-			g.drawRegion(mImage2, 0, FrameEffect1 * frameHeight, frameWidth, frameHeight, 0, x - dx, y + dy, 3, false);
+			g.drawRegion(mImage2, 0, FrameEffect * frameHeight, frameWidth, frameHeight, 0, x + dx, y + dy, 3, useClip: false);
+			g.drawRegion(mImage2, 0, FrameEffect1 * frameHeight, frameWidth, frameHeight, 0, x - dx, y + dy, 3, useClip: false);
 			break;
 		}
 	}

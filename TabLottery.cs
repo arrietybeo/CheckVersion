@@ -299,7 +299,7 @@ public class TabLottery : MainTabNew
 			{
 				return;
 			}
-			paintPopupContent(g, false);
+			paintPopupContent(g, isOnlyName: false);
 			if (vecListCmd != null)
 			{
 				for (int l = 0; l < vecListCmd.size(); l++)
@@ -872,7 +872,7 @@ public class TabLottery : MainTabNew
 				if (flag)
 				{
 					listContent = null;
-					itemIdSelect = resetSelect(itemIdSelect, mVector3.size() - 1, false);
+					itemIdSelect = resetSelect(itemIdSelect, mVector3.size() - 1, isreset: false);
 					if (GameCanvas.isTouch || typeTab == MainTabNew.INVENTORY || typeTab == MainTabNew.CHEST)
 					{
 					}

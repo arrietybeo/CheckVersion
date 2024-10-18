@@ -27,7 +27,9 @@ public class iOSPlugins
 
 	public static int Check()
 	{
-		if (Application.platform == RuntimePlatform.IPhonePlayer)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Invalid comparison between Unknown and I4
+		if ((int)Application.platform == 8)
 		{
 			return checkCanSendSMS();
 		}
@@ -62,7 +64,8 @@ public class iOSPlugins
 
 	public static void SMSsend(string phonenumber, string bodytext, int n)
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			_SMSsend(phonenumber, bodytext, n);
 		}
@@ -70,7 +73,8 @@ public class iOSPlugins
 
 	public static void back()
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			_back();
 		}
@@ -78,7 +82,8 @@ public class iOSPlugins
 
 	public static void Send()
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			_Send();
 		}
@@ -86,7 +91,8 @@ public class iOSPlugins
 
 	public static int unpause()
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			return _unpause();
 		}
@@ -95,7 +101,8 @@ public class iOSPlugins
 
 	public static int checkRotation()
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			return _checkRotation();
 		}
@@ -104,7 +111,8 @@ public class iOSPlugins
 
 	public static void purchaseItem(string itemID, string userName, string gameID)
 	{
-		if (Application.platform != 0)
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		if ((int)Application.platform != 0)
 		{
 			_purchaseItem(itemID, userName, gameID);
 		}

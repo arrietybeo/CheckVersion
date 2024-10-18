@@ -199,7 +199,7 @@ public class MainQuest : AvMain
 			mVector mVector3 = new mVector("MainQuest menu");
 			iCommand o = setCmd();
 			mVector3.addElement(o);
-			GameCanvas.menu2.startAt_NPC(mVector3, mSystem.substring(mstrTalk[step], 1, mstrTalk[step].Length), GameScreen.player.ID, 0, true, 0);
+			GameCanvas.menu2.startAt_NPC(mVector3, mSystem.substring(mstrTalk[step], 1, mstrTalk[step].Length), GameScreen.player.ID, 0, isQuest: true, 0);
 		}
 		else
 		{
@@ -207,7 +207,7 @@ public class MainQuest : AvMain
 			mVector mVector4 = new mVector("MainQuest menu2");
 			iCommand o2 = setCmd();
 			mVector4.addElement(o2);
-			GameCanvas.menu2.startAt_NPC(mVector4, mSystem.substring(mstrTalk[step], 1, mstrTalk[step].Length), idNPCChat, 2, true, 0);
+			GameCanvas.menu2.startAt_NPC(mVector4, mSystem.substring(mstrTalk[step], 1, mstrTalk[step].Length), idNPCChat, 2, isQuest: true, 0);
 		}
 		step++;
 	}

@@ -201,7 +201,7 @@ public class mSound
 	{
 		for (int i = 0; i < player.Length; i++)
 		{
-			if (player[i] != null)
+			if ((Object)(object)player[i] != (Object)null)
 			{
 				player[i].GetComponent<AudioSource>().Pause();
 			}
@@ -227,11 +227,14 @@ public class mSound
 
 	public static void init()
 	{
-		GameObject gameObject = new GameObject();
-		gameObject.name = "Audio Player";
-		gameObject.transform.position = Vector3.zero;
-		gameObject.AddComponent<AudioListener>();
-		SoundBGLoop = gameObject.AddComponent<AudioSource>();
+		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0006: Expected O, but got Unknown
+		//IL_0017: Unknown result type (might be due to invalid IL or missing references)
+		GameObject val = new GameObject();
+		((Object)val).name = "Audio Player";
+		val.transform.position = Vector3.zero;
+		val.AddComponent<AudioListener>();
+		SoundBGLoop = val.AddComponent<AudioSource>();
 	}
 
 	public static void init(int[] musicID, int[] sID)
@@ -240,8 +243,8 @@ public class mSound
 		{
 			init();
 			l1 = musicID.Length;
-			player = new GameObject[musicID.Length + sID.Length];
-			music = new AudioClip[musicID.Length + sID.Length];
+			player = (GameObject[])(object)new GameObject[musicID.Length + sID.Length];
+			music = (AudioClip[])(object)new AudioClip[musicID.Length + sID.Length];
 			isPlaying = new int[musicID.Length + sID.Length];
 			for (int i = 0; i < player.Length; i++)
 			{
@@ -326,27 +329,27 @@ public class mSound
 
 	public static void playSoundRun(int id, int volume)
 	{
-		if (GameCanvas.isPlaySound && !(SoundRun == null))
+		if (GameCanvas.isPlaySound && !((Object)(object)SoundRun == (Object)null))
 		{
-			SoundRun.GetComponent<AudioSource>().loop = true;
-			SoundRun.GetComponent<AudioSource>().clip = music[id];
-			SoundRun.GetComponent<AudioSource>().volume = volume;
-			SoundRun.GetComponent<AudioSource>().Play();
+			((Component)SoundRun).GetComponent<AudioSource>().loop = true;
+			((Component)SoundRun).GetComponent<AudioSource>().clip = music[id];
+			((Component)SoundRun).GetComponent<AudioSource>().volume = volume;
+			((Component)SoundRun).GetComponent<AudioSource>().Play();
 		}
 	}
 
 	public static void sTopSoundRun()
 	{
-		SoundRun.GetComponent<AudioSource>().Stop();
+		((Component)SoundRun).GetComponent<AudioSource>().Stop();
 	}
 
 	public static bool isPlayingSound()
 	{
-		if (SoundRun == null)
+		if ((Object)(object)SoundRun == (Object)null)
 		{
 			return false;
 		}
-		return SoundRun.GetComponent<AudioSource>().isPlaying;
+		return ((Component)SoundRun).GetComponent<AudioSource>().isPlaying;
 	}
 
 	public static int getMediaSoundFile(string fileName)
@@ -364,27 +367,27 @@ public class mSound
 
 	public static void playSoundNatural(int id, int volume, bool isLoop)
 	{
-		if (GameCanvas.isPlaySound && !(SoundBGLoop == null))
+		if (GameCanvas.isPlaySound && !((Object)(object)SoundBGLoop == (Object)null))
 		{
-			SoundWater.GetComponent<AudioSource>().loop = isLoop;
-			SoundWater.GetComponent<AudioSource>().clip = music[id];
-			SoundWater.GetComponent<AudioSource>().volume = volume;
-			SoundWater.GetComponent<AudioSource>().Play();
+			((Component)SoundWater).GetComponent<AudioSource>().loop = isLoop;
+			((Component)SoundWater).GetComponent<AudioSource>().clip = music[id];
+			((Component)SoundWater).GetComponent<AudioSource>().volume = volume;
+			((Component)SoundWater).GetComponent<AudioSource>().Play();
 		}
 	}
 
 	public static void stopSoundNatural(int id)
 	{
-		SoundWater.GetComponent<AudioSource>().Stop();
+		((Component)SoundWater).GetComponent<AudioSource>().Stop();
 	}
 
 	public static bool isPlayingSoundatural(int id)
 	{
-		if (SoundWater == null)
+		if ((Object)(object)SoundWater == (Object)null)
 		{
 			return false;
 		}
-		return SoundWater.GetComponent<AudioSource>().isPlaying;
+		return ((Component)SoundWater).GetComponent<AudioSource>().isPlaying;
 	}
 
 	public static void playMus(int type, int vl, bool loop)
@@ -403,27 +406,27 @@ public class mSound
 
 	public static void playSoundBGLoop(int id, int volume)
 	{
-		if (GameCanvas.isPlaySound && !(SoundBGLoop == null) && !isPlayingSoundBG(id))
+		if (GameCanvas.isPlaySound && !((Object)(object)SoundBGLoop == (Object)null) && !isPlayingSoundBG(id))
 		{
-			SoundBGLoop.GetComponent<AudioSource>().loop = true;
-			SoundBGLoop.GetComponent<AudioSource>().clip = music[id];
-			SoundBGLoop.GetComponent<AudioSource>().volume = volume;
-			SoundBGLoop.GetComponent<AudioSource>().Play();
+			((Component)SoundBGLoop).GetComponent<AudioSource>().loop = true;
+			((Component)SoundBGLoop).GetComponent<AudioSource>().clip = music[id];
+			((Component)SoundBGLoop).GetComponent<AudioSource>().volume = volume;
+			((Component)SoundBGLoop).GetComponent<AudioSource>().Play();
 		}
 	}
 
 	public static void sTopSoundBG(int id)
 	{
-		SoundBGLoop.GetComponent<AudioSource>().Stop();
+		((Component)SoundBGLoop).GetComponent<AudioSource>().Stop();
 	}
 
 	public static bool isPlayingSoundBG(int id)
 	{
-		if (SoundBGLoop == null)
+		if ((Object)(object)SoundBGLoop == (Object)null)
 		{
 			return false;
 		}
-		return SoundBGLoop.GetComponent<AudioSource>().isPlaying;
+		return ((Component)SoundBGLoop).GetComponent<AudioSource>().isPlaying;
 	}
 
 	public static void load(string filename, int pos)
@@ -471,6 +474,8 @@ public class mSound
 
 	private static void __load(string filename, int pos)
 	{
+		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Expected O, but got Unknown
 		music[pos] = (AudioClip)Resources.Load(filename, typeof(AudioClip));
 		GameObject.Find("Main Camera").AddComponent<AudioSource>();
 		player[pos] = GameObject.Find("Main Camera");
@@ -496,7 +501,7 @@ public class mSound
 	{
 		if (status != 0)
 		{
-			Debug.LogError("CANNOT START AUDIO WHEN STARTING");
+			Debug.LogError((object)"CANNOT START AUDIO WHEN STARTING");
 			return;
 		}
 		volumetem = volume;
@@ -513,20 +518,20 @@ public class mSound
 		}
 		if (i == 100)
 		{
-			Debug.LogError("TOO LONG FOR START AUDIO");
+			Debug.LogError((object)"TOO LONG FOR START AUDIO");
 		}
 		else
 		{
-			Debug.Log("Start Audio done in " + i * 5 + "ms");
+			Debug.Log((object)("Start Audio done in " + i * 5 + "ms"));
 		}
 	}
 
 	public static void __start(int volume, int pos)
 	{
-		if (!(player[pos] == null))
+		if (!((Object)(object)player[pos] == (Object)null))
 		{
 			player[pos].GetComponent<AudioSource>().volume = volume;
-			player[pos].GetComponent<AudioSource>().PlayOneShot(music[pos], volume);
+			player[pos].GetComponent<AudioSource>().PlayOneShot(music[pos], (float)volume);
 		}
 	}
 
@@ -546,7 +551,7 @@ public class mSound
 	{
 		if (status != 0)
 		{
-			Debug.LogError("CANNOT STOP AUDIO WHEN STOPPING");
+			Debug.LogError((object)"CANNOT STOP AUDIO WHEN STOPPING");
 			return;
 		}
 		postem = pos;
@@ -562,17 +567,17 @@ public class mSound
 		}
 		if (i == 100)
 		{
-			Debug.LogError("TOO LONG FOR STOP AUDIO");
+			Debug.LogError((object)"TOO LONG FOR STOP AUDIO");
 		}
 		else
 		{
-			Debug.Log("Stop Audio done in " + i * 5 + "ms");
+			Debug.Log((object)("Stop Audio done in " + i * 5 + "ms"));
 		}
 	}
 
 	public static void __stop(int pos)
 	{
-		if (player[pos] != null)
+		if ((Object)(object)player[pos] != (Object)null)
 		{
 			player[pos].GetComponent<AudioSource>().Stop();
 		}

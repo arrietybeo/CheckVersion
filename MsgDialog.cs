@@ -196,146 +196,146 @@ public class MsgDialog : MainDialog
 		GameCanvas.clearKeyPressed();
 		switch (index)
 		{
-			case -1:
-			case 7:
-				closeDialog();
-				GlobalLogicHandler.timeReconnect = 0L;
-				GlobalLogicHandler.isDisConect = false;
-				GlobalLogicHandler.isMelogin = false;
-				isAutologin = false;
-				break;
-			case 6:
-				GameScreen.player.resetPlayer();
-				GameCanvas.login.Show();
-				closeDialog();
-				GlobalLogicHandler.timeReconnect = 0L;
-				GlobalLogicHandler.isDisConect = false;
-				isAutologin = false;
-				GlobalLogicHandler.isMelogin = false;
-				break;
-			case 0:
-				if (GameCanvas.currentScreen != GameCanvas.login && GameCanvas.currentScreen != GameCanvas.load)
+		case -1:
+		case 7:
+			closeDialog();
+			GlobalLogicHandler.timeReconnect = 0L;
+			GlobalLogicHandler.isDisConect = false;
+			GlobalLogicHandler.isMelogin = false;
+			isAutologin = false;
+			break;
+		case 6:
+			GameScreen.player.resetPlayer();
+			GameCanvas.login.Show();
+			closeDialog();
+			GlobalLogicHandler.timeReconnect = 0L;
+			GlobalLogicHandler.isDisConect = false;
+			isAutologin = false;
+			GlobalLogicHandler.isMelogin = false;
+			break;
+		case 0:
+			if (GameCanvas.currentScreen != GameCanvas.login && GameCanvas.currentScreen != GameCanvas.load)
+			{
+				if (SelectCharScreen.isSelectOk)
 				{
-					if (SelectCharScreen.isSelectOk)
+					GameCanvas.login.Show();
+					sbyte[] array = CRes.loadRMS("user_pass");
+					if (array != null)
+					{
+						try
+						{
+							LoginScreen.loadUser_Pass();
+						}
+						catch (Exception)
+						{
+						}
+						GameCanvas.connect();
+						GlobalService.gI().login(LoginScreen.tfusername.getText(), LoginScreen.tfpassword.getText(), GameMidlet.version, "0", "0", "0", SelectCharScreen.IDCHAR, LoadMap.Area);
+						GameScreen.player.resetPlayer();
+						if (WorldMapScreen.namePos == null || TabQuest.nameItemQuest == null)
+						{
+							GlobalService.gI().send_cmd_server(61);
+						}
+						closeDialog();
+					}
+					else
 					{
 						GameCanvas.login.Show();
-						sbyte[] array = CRes.loadRMS("user_pass");
-						if (array != null)
-						{
-							try
-							{
-								LoginScreen.loadUser_Pass();
-							}
-							catch (Exception)
-							{
-							}
-							GameCanvas.connect();
-							GlobalService.gI().login(LoginScreen.tfusername.getText(), LoginScreen.tfpassword.getText(), GameMidlet.version, "0", "0", "0", SelectCharScreen.IDCHAR, LoadMap.Area);
-							GameScreen.player.resetPlayer();
-							if (WorldMapScreen.namePos == null || TabQuest.nameItemQuest == null)
-							{
-								GlobalService.gI().send_cmd_server(61);
-							}
-							closeDialog();
-						}
-						else
-						{
-							GameCanvas.login.Show();
-							closeDialog();
-						}
+						closeDialog();
 					}
 				}
-				else
+			}
+			else
+			{
+				if (GameCanvas.currentScreen != GameCanvas.login)
 				{
-					if (GameCanvas.currentScreen != GameCanvas.login)
-					{
-						GameCanvas.login.Show();
-					}
-					closeDialog();
+					GameCanvas.login.Show();
 				}
-				GlobalLogicHandler.timeReconnect = 0L;
-				GlobalLogicHandler.isDisConect = false;
-				isAutologin = false;
-				GlobalLogicHandler.isMelogin = false;
-				break;
-			case 2:
-				GlobalService.gI().quest((short)IdQuest, main_sub_quest, (sbyte)typeQuest);
 				closeDialog();
-				break;
-			case 1:
-				closeDialog();
-				break;
-			case 3:
-				GameCanvas.worldmap.Show(GameCanvas.game);
-				closeDialog();
-				break;
-			case 4:
-				setMenuParty();
-				break;
-			case 5:
-				Player.isAutoHPMP = true;
-				Player.mhotkey[Player.levelTab][4].type = HotKey.NULL;
-				Player.mhotkey[Player.levelTab][3].type = HotKey.NULL;
-				MainItem.setAddHotKey(1, (isUutien != 0) ? true : false);
-				MainItem.setAddHotKey(0, (isUutien != 0) ? true : false);
-				MainRMS.setSaveAuto();
-				TabSkillsNew.saveSkill();
-				closeDialog();
-				break;
-			case 8:
-				if (Player.party != null)
+			}
+			GlobalLogicHandler.timeReconnect = 0L;
+			GlobalLogicHandler.isDisConect = false;
+			isAutologin = false;
+			GlobalLogicHandler.isMelogin = false;
+			break;
+		case 2:
+			GlobalService.gI().quest((short)IdQuest, main_sub_quest, (sbyte)typeQuest);
+			closeDialog();
+			break;
+		case 1:
+			closeDialog();
+			break;
+		case 3:
+			GameCanvas.worldmap.Show(GameCanvas.game);
+			closeDialog();
+			break;
+		case 4:
+			setMenuParty();
+			break;
+		case 5:
+			Player.isAutoHPMP = true;
+			Player.mhotkey[Player.levelTab][4].type = HotKey.NULL;
+			Player.mhotkey[Player.levelTab][3].type = HotKey.NULL;
+			MainItem.setAddHotKey(1, (isUutien != 0) ? true : false);
+			MainItem.setAddHotKey(0, (isUutien != 0) ? true : false);
+			MainRMS.setSaveAuto();
+			TabSkillsNew.saveSkill();
+			closeDialog();
+			break;
+		case 8:
+			if (Player.party != null)
+			{
+				if (GameScreen.player.name.CompareTo(Player.party.nameMain) == 0)
 				{
-					if (GameScreen.player.name.CompareTo(Player.party.nameMain) == 0)
-					{
-						setChucNangParty();
-						break;
-					}
-					mVector mVector3 = new mVector("MsgChat menu");
-					iCommand o = new iCommand(T.leave, 8, this);
-					mVector3.addElement(o);
-					iCommand o2 = new iCommand(T.chatParty, 15, this);
-					mVector3.addElement(o2);
-					GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, false, null);
-				}
-				break;
-			case 9:
-				{
-					int num = -1;
-					if (mvalueItem[0] < (sbyte)(T.mValueAutoItem[0].Length - 1))
-					{
-						num = mvalueItem[0];
-					}
-					Player.autoItem = new AutoGetItem((sbyte)num, mvalueItem[1], mvalueItem[2]);
-					MainRMS.setSaveAuto();
-					closeDialog();
+					setChucNangParty();
 					break;
 				}
-			case 10:
-				if (idSelect >= 0 && idSelect < MaxSkillBuff)
-				{
-					setAutoBuff(idSelect);
-				}
-				break;
-			case 11:
-				setMusic();
-				closeDialog();
-				break;
-			case 15:
-				closeDialog();
-				GlobalService.gI().arena((sbyte)index);
-				break;
-			case 16:
-				closeDialog();
-				GameScreen.player.resetAction();
-				Session_ME.gI().close();
-				GameCanvas.login.Show();
-				GameScreen.player = new Player(0, 0, "unname", 0, 0);
-				SelectCharScreen.reSelect = false;
-				SelectCharScreen.Canselect = false;
-				break;
-			default:
-				closeDialog();
-				break;
+				mVector mVector3 = new mVector("MsgChat menu");
+				iCommand o = new iCommand(T.leave, 8, this);
+				mVector3.addElement(o);
+				iCommand o2 = new iCommand(T.chatParty, 15, this);
+				mVector3.addElement(o2);
+				GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, isFocus: false, null);
+			}
+			break;
+		case 9:
+		{
+			int num = -1;
+			if (mvalueItem[0] < (sbyte)(T.mValueAutoItem[0].Length - 1))
+			{
+				num = mvalueItem[0];
+			}
+			Player.autoItem = new AutoGetItem((sbyte)num, mvalueItem[1], mvalueItem[2]);
+			MainRMS.setSaveAuto();
+			closeDialog();
+			break;
+		}
+		case 10:
+			if (idSelect >= 0 && idSelect < MaxSkillBuff)
+			{
+				setAutoBuff(idSelect);
+			}
+			break;
+		case 11:
+			setMusic();
+			closeDialog();
+			break;
+		case 15:
+			closeDialog();
+			GlobalService.gI().arena((sbyte)index);
+			break;
+		case 16:
+			closeDialog();
+			GameScreen.player.resetAction();
+			Session_ME.gI().close();
+			GameCanvas.login.Show();
+			GameScreen.player = new Player(0, 0, "unname", 0, 0);
+			SelectCharScreen.reSelect = false;
+			SelectCharScreen.Canselect = false;
+			break;
+		default:
+			closeDialog();
+			break;
 		}
 	}
 
@@ -346,98 +346,98 @@ public class MsgDialog : MainDialog
 		ObjectParty objectParty = null;
 		switch (index)
 		{
-			case -1:
-				closeDialog();
-				break;
-			case 6:
-				if (Player.party != null)
+		case -1:
+			closeDialog();
+			break;
+		case 6:
+			if (Player.party != null)
+			{
+				objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
+				GlobalService.gI().Party(3, objectParty.name);
+			}
+			break;
+		case 7:
+			closeDialog();
+			GlobalService.gI().Party(4, string.Empty);
+			break;
+		case 8:
+			closeDialog();
+			GlobalService.gI().Party(5, string.Empty);
+			break;
+		case 9:
+			if (Player.party != null)
+			{
+				objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
+				GlobalService.gI().Friend(0, objectParty.name);
+			}
+			break;
+		case 2:
+			if (Player.party != null && idSelect >= 0 && idSelect < Player.party.vecPartys.size())
+			{
+				objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
+				GameCanvas.start_Left_Dialog(T.hoivaonhom + objectParty.name + "?", new iCommand(T.gianhap, 0, this));
+			}
+			break;
+		case 3:
+			if (Player.party != null && idSelect >= 0 && idSelect < Player.party.vecPartys.size())
+			{
+				GameCanvas.start_Left_Dialog(T.hoilapnhom, new iCommand(T.gianhap, 1, this));
+			}
+			break;
+		case 10:
+			if (quest != null)
+			{
+				GameCanvas.start_Left_Dialog(T.hoihuyQuest + quest.name, new iCommand(T.cancel, 11, this));
+			}
+			break;
+		case 11:
+			if (quest != null)
+			{
+				GlobalService.gI().quest((short)quest.ID, (!quest.isMain) ? ((sbyte)1) : ((sbyte)0), 2);
+				TabQuest.me.resetTab(isResetCmy: true);
+				if (!GameScreen.help.setStep_Next(9, 0))
 				{
-					objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
-					GlobalService.gI().Party(3, objectParty.name);
+					closeDialog();
+					closeDialog();
 				}
-				break;
-			case 7:
-				closeDialog();
-				GlobalService.gI().Party(4, string.Empty);
-				break;
-			case 8:
-				closeDialog();
-				GlobalService.gI().Party(5, string.Empty);
-				break;
-			case 9:
-				if (Player.party != null)
-				{
-					objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
-					GlobalService.gI().Friend(0, objectParty.name);
-				}
-				break;
-			case 2:
-				if (Player.party != null && idSelect >= 0 && idSelect < Player.party.vecPartys.size())
-				{
-					objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
-					GameCanvas.start_Left_Dialog(T.hoivaonhom + objectParty.name + "?", new iCommand(T.gianhap, 0, this));
-				}
-				break;
-			case 3:
-				if (Player.party != null && idSelect >= 0 && idSelect < Player.party.vecPartys.size())
-				{
-					GameCanvas.start_Left_Dialog(T.hoilapnhom, new iCommand(T.gianhap, 1, this));
-				}
-				break;
-			case 10:
-				if (quest != null)
-				{
-					GameCanvas.start_Left_Dialog(T.hoihuyQuest + quest.name, new iCommand(T.cancel, 11, this));
-				}
-				break;
-			case 11:
-				if (quest != null)
-				{
-					GlobalService.gI().quest((short)quest.ID, (!quest.isMain) ? ((sbyte)1) : ((sbyte)0), 2);
-					TabQuest.me.resetTab(true);
-					if (!GameScreen.help.setStep_Next(9, 0))
-					{
-						closeDialog();
-						closeDialog();
-					}
-				}
-				break;
-			case 12:
-				if (link.Length > 0)
-				{
-					TemMidlet.openUrl(link);
-				}
-				break;
-			case 14:
-				if (Player.party != null)
-				{
-					objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
-					GameCanvas.msgchat.addNewChat(objectParty.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
-					GameCanvas.start_Chat_Dialog();
-				}
-				break;
-			case 15:
-				GameCanvas.msgchat.addNewChat(T.party, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
+			}
+			break;
+		case 12:
+			if (link.Length > 0)
+			{
+				TemMidlet.openUrl(link);
+			}
+			break;
+		case 14:
+			if (Player.party != null)
+			{
+				objectParty = (ObjectParty)Player.party.vecPartys.elementAt(idSelect);
+				GameCanvas.msgchat.addNewChat(objectParty.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
 				GameCanvas.start_Chat_Dialog();
-				break;
-			case 16:
-				{
-					mVector mVector3 = new mVector("MsgChat vec");
-					TabShopNew tabShopNew = new TabShopNew(Item.VecInvetoryPlayer, MainTabNew.INVENTORY, T.choan, -1, TabShopNew.INVEN_FOOD_PET);
-					tabShopNew.petCur = pet;
-					mVector3.addElement(tabShopNew);
-					GameCanvas.foodPet = new TabScreenNew();
-					GameCanvas.foodPet.selectTab = 0;
-					GameCanvas.foodPet.addMoreTab(mVector3);
-					GameCanvas.foodPet.Show(GameCanvas.currentScreen);
-					break;
-				}
-			case 0:
-			case 1:
-			case 4:
-			case 5:
-			case 13:
-				break;
+			}
+			break;
+		case 15:
+			GameCanvas.msgchat.addNewChat(T.party, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
+			GameCanvas.start_Chat_Dialog();
+			break;
+		case 16:
+		{
+			mVector mVector3 = new mVector("MsgChat vec");
+			TabShopNew tabShopNew = new TabShopNew(Item.VecInvetoryPlayer, MainTabNew.INVENTORY, T.choan, -1, TabShopNew.INVEN_FOOD_PET);
+			tabShopNew.petCur = pet;
+			mVector3.addElement(tabShopNew);
+			GameCanvas.foodPet = new TabScreenNew();
+			GameCanvas.foodPet.selectTab = 0;
+			GameCanvas.foodPet.addMoreTab(mVector3);
+			GameCanvas.foodPet.Show(GameCanvas.currentScreen);
+			break;
+		}
+		case 0:
+		case 1:
+		case 4:
+		case 5:
+		case 13:
+			break;
 		}
 	}
 
@@ -1169,18 +1169,18 @@ public class MsgDialog : MainDialog
 		int num = cmdList.size();
 		switch (num)
 		{
-			case 1:
-				xBegin = xDia + wDia / 2;
-				w2cmd = 0;
-				break;
-			case 2:
-				w2cmd = 10;
-				xBegin = xDia + wDia / 2 - w2cmd / 2 - iCommand.wButtonCmd / 2;
-				break;
-			default:
-				w2cmd = 10;
-				xBegin = xDia + wDia / 2 - w2cmd / 2 - iCommand.wButtonCmd / 2;
-				break;
+		case 1:
+			xBegin = xDia + wDia / 2;
+			w2cmd = 0;
+			break;
+		case 2:
+			w2cmd = 10;
+			xBegin = xDia + wDia / 2 - w2cmd / 2 - iCommand.wButtonCmd / 2;
+			break;
+		default:
+			w2cmd = 10;
+			xBegin = xDia + wDia / 2 - w2cmd / 2 - iCommand.wButtonCmd / 2;
+			break;
 		}
 		for (int i = 0; i < num; i++)
 		{
@@ -1206,373 +1206,373 @@ public class MsgDialog : MainDialog
 		GameCanvas.resetTrans(g);
 		switch (type)
 		{
-			case 0:
+		case 0:
+		{
+			AvMain.paintDialog(g, xDia, yDia, wDia, hDia, 12);
+			for (int l = 0; l < strinfo.Length; l++)
+			{
+				fontDia.drawString(g, strinfo[l], GameCanvas.w / 2, yDia + 12 + l * 15, 2, mGraphics.isTrue);
+			}
+			if (isWaiting)
+			{
+				fraWaiting.drawFrame(fWait % fraWaiting.nFrame, GameCanvas.hw, yDia + 25 + strinfo.Length * 15, 0, mGraphics.VCENTER | mGraphics.HCENTER, g);
+			}
+			break;
+		}
+		case 1:
+		{
+			AvMain.paintTabNew(g, xDia, yDia, wDia, hDia, ismore: true, 0);
+			if (GameCanvas.lowGraphic)
+			{
+				MainTabNew.paintRectLowGraphic(g, GameCanvas.hw - 32, yDia + 11, 64, 14, 2);
+			}
+			else
+			{
+				for (int num21 = 0; num21 < 2; num21++)
 				{
-					AvMain.paintDialog(g, xDia, yDia, wDia, hDia, 12);
-					for (int l = 0; l < strinfo.Length; l++)
-					{
-						fontDia.drawString(g, strinfo[l], GameCanvas.w / 2, yDia + 12 + l * 15, 2, mGraphics.isTrue);
-					}
-					if (isWaiting)
-					{
-						fraWaiting.drawFrame(fWait % fraWaiting.nFrame, GameCanvas.hw, yDia + 25 + strinfo.Length * 15, 0, mGraphics.VCENTER | mGraphics.HCENTER, g);
-					}
-					break;
+					g.drawRegion(MainTabNew.imgTab[2], 0, 0, 32, 14, 0, GameCanvas.hw - 32 + num21 * 32, yDia + 11, 0, mGraphics.isTrue);
 				}
-			case 1:
+			}
+			mFont.tahoma_7b_white.drawString(g, T.quest, GameCanvas.hw, yDia + 12, 2, mGraphics.isTrue);
+			mFont.tahoma_7b_black.drawString(g, status, xDia + 10, yDia + 27, 0, mGraphics.isTrue);
+			g.setClip(xDia + 3, yDia + 39, wDia - 6, hDia - 55 - iCommand.hButtonCmd * sizeButtonQuest);
+			g.translate(0, -cameraDia.yCam);
+			for (int num22 = 0; num22 < strinfo.Length; num22++)
+			{
+				mFont.tahoma_7_black.drawString(g, strinfo[num22], xDia + 11, yDia + 27 + (num22 + 1) * GameCanvas.hText, 0, mGraphics.isTrue);
+			}
+			break;
+		}
+		case 2:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, T.party);
+			int num7 = yDia + GameCanvas.hCommand + 3;
+			int num26 = 2;
+			if (Player.party != null)
+			{
+				if (!GameCanvas.isTouch || timePaintParty > 0)
 				{
-					AvMain.paintTabNew(g, xDia, yDia, wDia, hDia, true, 0);
-					if (GameCanvas.lowGraphic)
+					g.setColor(11904141);
+					g.fillRect(xDia + 9, num7 - 2 + idSelect * hItem, wDia - 17, hItem - 1, mGraphics.isTrue);
+				}
+				if (Player.party != null)
+				{
+					for (int num27 = 0; num27 < Player.party.vecPartys.size(); num27++)
 					{
-						MainTabNew.paintRectLowGraphic(g, GameCanvas.hw - 32, yDia + 11, 64, 14, 2);
-					}
-					else
-					{
-						for (int num21 = 0; num21 < 2; num21++)
+						ObjectParty objectParty = (ObjectParty)Player.party.vecPartys.elementAt(num27);
+						if (objectParty.name.CompareTo(Player.party.nameMain) == 0)
 						{
-							g.drawRegion(MainTabNew.imgTab[2], 0, 0, 32, 14, 0, GameCanvas.hw - 32 + num21 * 32, yDia + 11, 0, mGraphics.isTrue);
-						}
-					}
-					mFont.tahoma_7b_white.drawString(g, T.quest, GameCanvas.hw, yDia + 12, 2, mGraphics.isTrue);
-					mFont.tahoma_7b_black.drawString(g, status, xDia + 10, yDia + 27, 0, mGraphics.isTrue);
-					g.setClip(xDia + 3, yDia + 39, wDia - 6, hDia - 55 - iCommand.hButtonCmd * sizeButtonQuest);
-					g.translate(0, -cameraDia.yCam);
-					for (int num22 = 0; num22 < strinfo.Length; num22++)
-					{
-						mFont.tahoma_7_black.drawString(g, strinfo[num22], xDia + 11, yDia + 27 + (num22 + 1) * GameCanvas.hText, 0, mGraphics.isTrue);
-					}
-					break;
-				}
-			case 2:
-				{
-					paintFormList(g, xDia, yDia, wDia, hDia, T.party);
-					int num7 = yDia + GameCanvas.hCommand + 3;
-					int num26 = 2;
-					if (Player.party != null)
-					{
-						if (!GameCanvas.isTouch || timePaintParty > 0)
-						{
-							g.setColor(11904141);
-							g.fillRect(xDia + 9, num7 - 2 + idSelect * hItem, wDia - 17, hItem - 1, mGraphics.isTrue);
-						}
-						if (Player.party != null)
-						{
-							for (int num27 = 0; num27 < Player.party.vecPartys.size(); num27++)
-							{
-								ObjectParty objectParty = (ObjectParty)Player.party.vecPartys.elementAt(num27);
-								if (objectParty.name.CompareTo(Player.party.nameMain) == 0)
-								{
-									AvMain.Font3dColorAndColor(g, objectParty.name + " " + T.Lv + objectParty.Lv, xDia + 11, num7, 0, 7, 0);
-								}
-								else
-								{
-									mFont.tahoma_7b_white.drawString(g, objectParty.name + " " + T.Lv + objectParty.Lv, xDia + 11, num7, 0, mGraphics.isTrue);
-								}
-								if (objectParty.name.CompareTo(GameScreen.player.name) == 0)
-								{
-									objectParty.hp = GameScreen.player.hp;
-									objectParty.maxhp = GameScreen.player.maxHp;
-								}
-								g.setColor(0);
-								g.fillRect(xDia + 11, num7 + 14 - num26, 42, 4, mGraphics.isTrue);
-								g.setColor(8062494);
-								g.fillRect(xDia + 12, num7 + 15 - num26, 40, 2, mGraphics.isTrue);
-								g.setColor(16197705);
-								g.fillRect(xDia + 12, num7 + 15 - num26, 40 * objectParty.hp / objectParty.maxhp, 2, mGraphics.isTrue);
-								string text = "map";
-								if (WorldMapScreen.namePos != null && objectParty.idMap < WorldMapScreen.namePos.Length)
-								{
-									text = WorldMapScreen.namePos[objectParty.idMap];
-								}
-								mFont.tahoma_7_white.drawString(g, text + " - " + T.Area + (objectParty.idArea + 1), xDia + 11, num7 + 20 - num26 * 2, 0, mGraphics.isTrue);
-								num7 += hItem;
-								if (num27 < Player.party.vecPartys.size() - 1)
-								{
-									g.setColor(AvMain.color[4]);
-									g.fillRect(xDia + 12, num7 - 3, wDia - 24, 1, mGraphics.isTrue);
-								}
-							}
-						}
-					}
-					else
-					{
-						mFont.tahoma_7_black.drawString(g, T.noParty, xDia + wDia / 2, num7, 2, mGraphics.isTrue);
-					}
-					base.paint(g);
-					break;
-				}
-			case 4:
-				{
-					paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
-					int num23 = yDia + hItem + 11;
-					int num24 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
-					g.setColor(MainTabNew.color[0]);
-					for (int num25 = 0; num25 < T.mAuto.Length; num25++)
-					{
-						mFont.tahoma_7_white.drawString(g, T.mAuto[num25], num24, num23, 0, mGraphics.isTrue);
-						int width3 = mFont.tahoma_7_black.getWidth(T.mAuto[0]);
-						g.fillRect(num24 + width3, num23 - 3, 35, 18, mGraphics.isTrue);
-						mFont.tahoma_7_white.drawString(g, "   " + mHPMP[num25] + "     %", num24 + 3 + width3, num23, 0, mGraphics.isTrue);
-						num23 += hItem;
-					}
-					mFont.tahoma_7_white.drawString(g, T.mUtien[isUutien], num24, num23, 0, mGraphics.isTrue);
-					if (!GameCanvas.isTouch)
-					{
-						g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num24 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
-					}
-					GameCanvas.resetTrans(g);
-					paintCmd(g);
-					break;
-				}
-			case 5:
-				MainHelp.paintPopup(g, xDia, yDia, wDia, hDia, archor, strinfo);
-				break;
-			case 6:
-				{
-					paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
-					g.setClip(xDia, yDia + GameCanvas.hCommand + 2, wDia, hDia - GameCanvas.hCommand - iCommand.hButtonCmd - 8);
-					g.translate(0, -list.cmx);
-					for (int m = 0; m < strinfo.Length; m++)
-					{
-						mFont.tahoma_7_white.drawString(g, strinfo[m], xDia + 8, yDia + GameCanvas.hCommand + 2 + m * GameCanvas.hText, 0, mGraphics.isTrue);
-					}
-					break;
-				}
-			case 7:
-				{
-					paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
-					int num11 = yDia + hItem + 11;
-					int num12 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
-					g.setColor(MainTabNew.color[3]);
-					for (int n = 0; n < T.mAutoItem.Length; n++)
-					{
-						mFont.tahoma_7b_white.drawString(g, T.mAutoItem[n], num12, num11, 0, mGraphics.isTrue);
-						int width = mFont.tahoma_7b_white.getWidth(T.mAutoItem[n]);
-						mFont.tahoma_7_white.drawString(g, "< " + T.mValueAutoItem[n][mvalueItem[n]] + " >", num12 + 3 + width, num11, 0, mGraphics.isTrue);
-						num11 += hItem;
-					}
-					if (!GameCanvas.isTouch)
-					{
-						g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num12 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
-					}
-					GameCanvas.resetTrans(g);
-					paintCmd(g);
-					break;
-				}
-			case 8:
-				{
-					paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
-					int num28 = yDia + GameCanvas.hCommand + hItem;
-					int num29 = xDia + wbuff / 2;
-					if (!GameCanvas.isTouch)
-					{
-						g.setColor(15722248);
-						g.fillRect(num29 - 12 + idSelect * wbuff, num28 - 12, 24, 24, mGraphics.isTrue);
-					}
-					for (int num30 = 0; num30 < MaxSkillBuff; num30++)
-					{
-						Skill skill = (Skill)TabSkillsNew.vecPaintSkill.elementAt(Autobuff[num30][2]);
-						skill.paint(g, num29, num28, 3);
-						if (Autobuff[num30][1] == 0)
-						{
-							g.drawRegion(AvMain.imgDelaySkill, 0, 0, 20, 20, 0, num29, num28, 3, mGraphics.isTrue);
-						}
-						num29 += wbuff;
-					}
-					GameCanvas.resetTrans(g);
-					paintCmd(g);
-					break;
-				}
-			case 9:
-				{
-					AvMain.paintDialog(g, xDia, yDia, wDia, hDia, 12);
-					for (int num31 = 0; num31 < strinfo.Length; num31++)
-					{
-						if (num31 == strinfo.Length - 1)
-						{
-							fontDia.drawString(g, strinfo[num31] + " " + timeDia + "'.", GameCanvas.w / 2, yDia + 12 + num31 * 15, 2, mGraphics.isTrue);
+							AvMain.Font3dColorAndColor(g, objectParty.name + " " + T.Lv + objectParty.Lv, xDia + 11, num7, 0, 7, 0);
 						}
 						else
 						{
-							fontDia.drawString(g, strinfo[num31], GameCanvas.w / 2, yDia + 12 + num31 * 15, 2, mGraphics.isTrue);
+							mFont.tahoma_7b_white.drawString(g, objectParty.name + " " + T.Lv + objectParty.Lv, xDia + 11, num7, 0, mGraphics.isTrue);
+						}
+						if (objectParty.name.CompareTo(GameScreen.player.name) == 0)
+						{
+							objectParty.hp = GameScreen.player.hp;
+							objectParty.maxhp = GameScreen.player.maxHp;
+						}
+						g.setColor(0);
+						g.fillRect(xDia + 11, num7 + 14 - num26, 42, 4, mGraphics.isTrue);
+						g.setColor(8062494);
+						g.fillRect(xDia + 12, num7 + 15 - num26, 40, 2, mGraphics.isTrue);
+						g.setColor(16197705);
+						g.fillRect(xDia + 12, num7 + 15 - num26, 40 * objectParty.hp / objectParty.maxhp, 2, mGraphics.isTrue);
+						string text = "map";
+						if (WorldMapScreen.namePos != null && objectParty.idMap < WorldMapScreen.namePos.Length)
+						{
+							text = WorldMapScreen.namePos[objectParty.idMap];
+						}
+						mFont.tahoma_7_white.drawString(g, text + " - " + T.Area + (objectParty.idArea + 1), xDia + 11, num7 + 20 - num26 * 2, 0, mGraphics.isTrue);
+						num7 += hItem;
+						if (num27 < Player.party.vecPartys.size() - 1)
+						{
+							g.setColor(AvMain.color[4]);
+							g.fillRect(xDia + 12, num7 - 3, wDia - 24, 1, mGraphics.isTrue);
 						}
 					}
-					break;
 				}
-			case 10:
+			}
+			else
+			{
+				mFont.tahoma_7_black.drawString(g, T.noParty, xDia + wDia / 2, num7, 2, mGraphics.isTrue);
+			}
+			base.paint(g);
+			break;
+		}
+		case 4:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
+			int num23 = yDia + hItem + 11;
+			int num24 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
+			g.setColor(MainTabNew.color[0]);
+			for (int num25 = 0; num25 < T.mAuto.Length; num25++)
+			{
+				mFont.tahoma_7_white.drawString(g, T.mAuto[num25], num24, num23, 0, mGraphics.isTrue);
+				int width3 = mFont.tahoma_7_black.getWidth(T.mAuto[0]);
+				g.fillRect(num24 + width3, num23 - 3, 35, 18, mGraphics.isTrue);
+				mFont.tahoma_7_white.drawString(g, "   " + mHPMP[num25] + "     %", num24 + 3 + width3, num23, 0, mGraphics.isTrue);
+				num23 += hItem;
+			}
+			mFont.tahoma_7_white.drawString(g, T.mUtien[isUutien], num24, num23, 0, mGraphics.isTrue);
+			if (!GameCanvas.isTouch)
+			{
+				g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num24 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
+			}
+			GameCanvas.resetTrans(g);
+			paintCmd(g);
+			break;
+		}
+		case 5:
+			MainHelp.paintPopup(g, xDia, yDia, wDia, hDia, archor, strinfo);
+			break;
+		case 6:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
+			g.setClip(xDia, yDia + GameCanvas.hCommand + 2, wDia, hDia - GameCanvas.hCommand - iCommand.hButtonCmd - 8);
+			g.translate(0, -list.cmx);
+			for (int m = 0; m < strinfo.Length; m++)
+			{
+				mFont.tahoma_7_white.drawString(g, strinfo[m], xDia + 8, yDia + GameCanvas.hCommand + 2 + m * GameCanvas.hText, 0, mGraphics.isTrue);
+			}
+			break;
+		}
+		case 7:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
+			int num11 = yDia + hItem + 11;
+			int num12 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
+			g.setColor(MainTabNew.color[3]);
+			for (int n = 0; n < T.mAutoItem.Length; n++)
+			{
+				mFont.tahoma_7b_white.drawString(g, T.mAutoItem[n], num12, num11, 0, mGraphics.isTrue);
+				int width = mFont.tahoma_7b_white.getWidth(T.mAutoItem[n]);
+				mFont.tahoma_7_white.drawString(g, "< " + T.mValueAutoItem[n][mvalueItem[n]] + " >", num12 + 3 + width, num11, 0, mGraphics.isTrue);
+				num11 += hItem;
+			}
+			if (!GameCanvas.isTouch)
+			{
+				g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num12 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
+			}
+			GameCanvas.resetTrans(g);
+			paintCmd(g);
+			break;
+		}
+		case 8:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, T.auto);
+			int num28 = yDia + GameCanvas.hCommand + hItem;
+			int num29 = xDia + wbuff / 2;
+			if (!GameCanvas.isTouch)
+			{
+				g.setColor(15722248);
+				g.fillRect(num29 - 12 + idSelect * wbuff, num28 - 12, 24, 24, mGraphics.isTrue);
+			}
+			for (int num30 = 0; num30 < MaxSkillBuff; num30++)
+			{
+				Skill skill = (Skill)TabSkillsNew.vecPaintSkill.elementAt(Autobuff[num30][2]);
+				skill.paint(g, num29, num28, 3);
+				if (Autobuff[num30][1] == 0)
 				{
-					paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
-					if (StepShow < 2)
-					{
-						for (int num16 = 0; num16 < posItemNguyenlieu.Length; num16++)
-						{
-							g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num16][0], posItemNguyenlieu[num16][1], 3, mGraphics.isTrue);
-						}
-						if (StepShow == 0)
-						{
-							for (int num17 = 0; num17 < datanguyenlieu.Length; num17++)
-							{
-								if (timeShow >= 4 && datanguyenlieu[num17] != null)
-								{
-									datanguyenlieu[num17].paintItem(g, posItemNguyenlieu[num17][0], posItemNguyenlieu[num17][1], 21, 1, 0);
-								}
-							}
-						}
-					}
-					else if (StepShow == 2)
-					{
-						for (int num18 = 0; num18 < strinfo.Length; num18++)
-						{
-							mFont.tahoma_7_white.drawString(g, strinfo[num18], xDia + 8, yDia + GameCanvas.hCommand + 2 + num18 * GameCanvas.hText, 0, mGraphics.isTrue);
-						}
-						int num19 = posItemNguyenlieu.Length - 1;
-						if (sanpham != null)
-						{
-							sanpham.paintItem(g, posItemNguyenlieu[num19][0], posItemNguyenlieu[num19][1], 21, 1, 0);
-						}
-						g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num19][0], posItemNguyenlieu[num19][1], 3, mGraphics.isTrue);
-					}
-					for (int num20 = 0; num20 < TabRebuildItem.vecEffRe.size(); num20++)
-					{
-						MainEffect mainEffect = (MainEffect)TabRebuildItem.vecEffRe.elementAt(num20);
-						mainEffect.paint(g);
-					}
-					break;
+					g.drawRegion(AvMain.imgDelaySkill, 0, 0, 20, 20, 0, num29, num28, 3, mGraphics.isTrue);
 				}
-			case 11:
+				num29 += wbuff;
+			}
+			GameCanvas.resetTrans(g);
+			paintCmd(g);
+			break;
+		}
+		case 9:
+		{
+			AvMain.paintDialog(g, xDia, yDia, wDia, hDia, 12);
+			for (int num31 = 0; num31 < strinfo.Length; num31++)
+			{
+				if (num31 == strinfo.Length - 1)
 				{
-					paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
-					if (strinfo != null)
-					{
-						for (int num32 = 0; num32 < strinfo.Length; num32++)
-						{
-							mFont.tahoma_7_white.drawString(g, strinfo[num32], xDia + 8, yDia + GameCanvas.hCommand + 2 + num32 * GameCanvas.hText, 0, mGraphics.isTrue);
-						}
-					}
-					for (int num33 = 0; num33 < posItemNguyenlieu.Length; num33++)
-					{
-						if (indexShow1 == -1 || num33 <= indexShow1)
-						{
-							g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num33][0], posItemNguyenlieu[num33][1], 3, mGraphics.isTrue);
-						}
-					}
-					for (int num34 = 0; num34 < itemsanpham.Length; num34++)
-					{
-						if (itemsanpham[num34].canSell != 0)
-						{
-							itemsanpham[num34].paintItem(g, posItemNguyenlieu[num34][0], posItemNguyenlieu[num34][1], 21, 1, 0);
-							if (itemsanpham[num34].ItemCatagory == 3)
-							{
-								MainTabNew.setTextColorName(itemsanpham[num34].colorNameItem).drawString(g, itemsanpham[num34].itemName, posItemNguyenlieu[num34][0], posItemNguyenlieu[num34][1] + 14, 2, mGraphics.isTrue);
-							}
-						}
-					}
-					for (int num35 = 0; num35 < TabRebuildItem.vecEffRe.size(); num35++)
-					{
-						MainEffect mainEffect2 = (MainEffect)TabRebuildItem.vecEffRe.elementAt(num35);
-						mainEffect2.paint(g);
-					}
-					break;
+					fontDia.drawString(g, strinfo[num31] + " " + timeDia + "'.", GameCanvas.w / 2, yDia + 12 + num31 * 15, 2, mGraphics.isTrue);
 				}
-			case 12:
+				else
 				{
-					paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
-					for (int k = 0; k < strinfo.Length; k++)
-					{
-						mFont.tahoma_7_white.drawString(g, strinfo[k], xDia + 8, yDia + GameCanvas.hCommand + 4 + k * GameCanvas.hText, 0, mGraphics.isTrue);
-					}
-					int num5 = xDia + wDia / 2 - wUpdate / 2;
-					int num6 = hUpdate - 10;
-					int num7 = yDia + hDia - num6 - 25;
-					int num8 = num7 - 5;
-					g.setColor(2698542);
-					g.fillRect(num5 - 4, num8 + 15, wUpdate + 2, num6, mGraphics.isTrue);
-					g.fillRect(num5 - 4 + 1, num8 + 14, wUpdate, 1, mGraphics.isTrue);
-					g.fillRect(num5 - 4 + 1, num8 + 15 + num6, wUpdate, 1, mGraphics.isTrue);
-					g.setColor(3027507);
-					g.fillRect(num5 - 4 + 1, num8 + 15, wUpdate, num6, mGraphics.isTrue);
-					int num9 = 0;
-					if (maxupdate > 0 && curupdate > 0)
-					{
-						num9 = curupdate * wUpdate / maxupdate;
-						if (num9 <= 0)
-						{
-							num9 = 1;
-						}
-						else if (num9 > wUpdate)
-						{
-							num9 = wUpdate;
-						}
-						g.setColor(10339648);
-						g.fillRect(num5 - 4 + 1, num8 + 15, num9, num6, mGraphics.isTrue);
-					}
-					int num10 = curupdate * 100 / maxupdate;
-					mFont.tahoma_7b_white.drawString(g, num10 + "%", xDia + wDia / 2, num8, 2, mGraphics.isTrue);
-					break;
+					fontDia.drawString(g, strinfo[num31], GameCanvas.w / 2, yDia + 12 + num31 * 15, 2, mGraphics.isTrue);
 				}
-			case 13:
+			}
+			break;
+		}
+		case 10:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
+			if (StepShow < 2)
+			{
+				for (int num16 = 0; num16 < posItemNguyenlieu.Length; num16++)
 				{
-					paintFormList(g, xDia, yDia, wDia, hDia, T.SetMusic);
-					int num13 = yDia + hItem + 11;
-					int num14 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
-					g.setColor(MainTabNew.color[3]);
-					for (int num15 = 0; num15 < T.mVolume.Length; num15++)
-					{
-						mFont.tahoma_7b_white.drawString(g, T.mVolume[num15], num14, num13, 0, mGraphics.isTrue);
-						int width2 = mFont.tahoma_7b_white.getWidth(T.mVolume[num15]);
-						mFont.tahoma_7_white.drawString(g, "< " + ((mvalueVolume[num15] != 0) ? T.off : T.on) + " >", num14 + 3 + width2, num13, 0, mGraphics.isTrue);
-						num13 += hItem;
-					}
-					if (!GameCanvas.isTouch)
-					{
-						g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num14 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
-					}
-					GameCanvas.resetTrans(g);
-					paintCmd(g);
-					break;
+					g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num16][0], posItemNguyenlieu[num16][1], 3, mGraphics.isTrue);
 				}
-			case 14:
+				if (StepShow == 0)
 				{
-					if (pet == null)
+					for (int num17 = 0; num17 < datanguyenlieu.Length; num17++)
 					{
-						return;
+						if (timeShow >= 4 && datanguyenlieu[num17] != null)
+						{
+							datanguyenlieu[num17].paintItem(g, posItemNguyenlieu[num17][0], posItemNguyenlieu[num17][1], 21, 1, 0);
+						}
 					}
-					paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
-					int num = yDia + hItem * 2;
-					int num2 = xDia + 10;
-					g.setClip(xDia, yDia + GameCanvas.hCommand + 2, wDia, hDia - GameCanvas.hCommand - iCommand.hButtonCmd - 8);
-					g.translate(0, -list.cmx);
-					pet.paintShowPet(g, num2 + MainTabNew.wOneItem / 2, num + MainTabNew.wOneItem / 2 + MainTabNew.wOneItem / 4, MainTabNew.wOneItem, MainTabNew.wOneItem / 2, 0, 1);
-					mFont.tahoma_7_white.drawString(g, T.level + pet.LvItem + " + " + pet.experience / 10 + "," + pet.experience % 10 + "%", num2 + 40, num, 0, mGraphics.isTrue);
-					num += GameCanvas.hText;
-					int num3 = pet.age / 24;
-					int num4 = pet.age % 24;
-					mFont.tahoma_7_white.drawString(g, T.tuoi + num3 + "d " + num4 + "h", num2 + 40, num, 0, mGraphics.isTrue);
-					num += GameCanvas.hText;
-					MainTabNew.setTextColor(Item.colorInfoItem[pet.petAttack.id]).drawString(g, Item.nameInfoItem[pet.petAttack.id] + ": " + pet.petAttack.value + "-" + pet.petAttack.maxDam, num2 + 40, num, 0, mGraphics.isTrue);
+				}
+			}
+			else if (StepShow == 2)
+			{
+				for (int num18 = 0; num18 < strinfo.Length; num18++)
+				{
+					mFont.tahoma_7_white.drawString(g, strinfo[num18], xDia + 8, yDia + GameCanvas.hCommand + 2 + num18 * GameCanvas.hText, 0, mGraphics.isTrue);
+				}
+				int num19 = posItemNguyenlieu.Length - 1;
+				if (sanpham != null)
+				{
+					sanpham.paintItem(g, posItemNguyenlieu[num19][0], posItemNguyenlieu[num19][1], 21, 1, 0);
+				}
+				g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num19][0], posItemNguyenlieu[num19][1], 3, mGraphics.isTrue);
+			}
+			for (int num20 = 0; num20 < TabRebuildItem.vecEffRe.size(); num20++)
+			{
+				MainEffect mainEffect = (MainEffect)TabRebuildItem.vecEffRe.elementAt(num20);
+				mainEffect.paint(g);
+			}
+			break;
+		}
+		case 11:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
+			if (strinfo != null)
+			{
+				for (int num32 = 0; num32 < strinfo.Length; num32++)
+				{
+					mFont.tahoma_7_white.drawString(g, strinfo[num32], xDia + 8, yDia + GameCanvas.hCommand + 2 + num32 * GameCanvas.hText, 0, mGraphics.isTrue);
+				}
+			}
+			for (int num33 = 0; num33 < posItemNguyenlieu.Length; num33++)
+			{
+				if (indexShow1 == -1 || num33 <= indexShow1)
+				{
+					g.drawImage(AvMain.imgHotKey, posItemNguyenlieu[num33][0], posItemNguyenlieu[num33][1], 3, mGraphics.isTrue);
+				}
+			}
+			for (int num34 = 0; num34 < itemsanpham.Length; num34++)
+			{
+				if (itemsanpham[num34].canSell != 0)
+				{
+					itemsanpham[num34].paintItem(g, posItemNguyenlieu[num34][0], posItemNguyenlieu[num34][1], 21, 1, 0);
+					if (itemsanpham[num34].ItemCatagory == 3)
+					{
+						MainTabNew.setTextColorName(itemsanpham[num34].colorNameItem).drawString(g, itemsanpham[num34].itemName, posItemNguyenlieu[num34][0], posItemNguyenlieu[num34][1] + 14, 2, mGraphics.isTrue);
+					}
+				}
+			}
+			for (int num35 = 0; num35 < TabRebuildItem.vecEffRe.size(); num35++)
+			{
+				MainEffect mainEffect2 = (MainEffect)TabRebuildItem.vecEffRe.elementAt(num35);
+				mainEffect2.paint(g);
+			}
+			break;
+		}
+		case 12:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
+			for (int k = 0; k < strinfo.Length; k++)
+			{
+				mFont.tahoma_7_white.drawString(g, strinfo[k], xDia + 8, yDia + GameCanvas.hCommand + 4 + k * GameCanvas.hText, 0, mGraphics.isTrue);
+			}
+			int num5 = xDia + wDia / 2 - wUpdate / 2;
+			int num6 = hUpdate - 10;
+			int num7 = yDia + hDia - num6 - 25;
+			int num8 = num7 - 5;
+			g.setColor(2698542);
+			g.fillRect(num5 - 4, num8 + 15, wUpdate + 2, num6, mGraphics.isTrue);
+			g.fillRect(num5 - 4 + 1, num8 + 14, wUpdate, 1, mGraphics.isTrue);
+			g.fillRect(num5 - 4 + 1, num8 + 15 + num6, wUpdate, 1, mGraphics.isTrue);
+			g.setColor(3027507);
+			g.fillRect(num5 - 4 + 1, num8 + 15, wUpdate, num6, mGraphics.isTrue);
+			int num9 = 0;
+			if (maxupdate > 0 && curupdate > 0)
+			{
+				num9 = curupdate * wUpdate / maxupdate;
+				if (num9 <= 0)
+				{
+					num9 = 1;
+				}
+				else if (num9 > wUpdate)
+				{
+					num9 = wUpdate;
+				}
+				g.setColor(10339648);
+				g.fillRect(num5 - 4 + 1, num8 + 15, num9, num6, mGraphics.isTrue);
+			}
+			int num10 = curupdate * 100 / maxupdate;
+			mFont.tahoma_7b_white.drawString(g, num10 + "%", xDia + wDia / 2, num8, 2, mGraphics.isTrue);
+			break;
+		}
+		case 13:
+		{
+			paintFormList(g, xDia, yDia, wDia, hDia, T.SetMusic);
+			int num13 = yDia + hItem + 11;
+			int num14 = xDia + 30 - (GameCanvas.isTouch ? 10 : 0);
+			g.setColor(MainTabNew.color[3]);
+			for (int num15 = 0; num15 < T.mVolume.Length; num15++)
+			{
+				mFont.tahoma_7b_white.drawString(g, T.mVolume[num15], num14, num13, 0, mGraphics.isTrue);
+				int width2 = mFont.tahoma_7b_white.getWidth(T.mVolume[num15]);
+				mFont.tahoma_7_white.drawString(g, "< " + ((mvalueVolume[num15] != 0) ? T.off : T.on) + " >", num14 + 3 + width2, num13, 0, mGraphics.isTrue);
+				num13 += hItem;
+			}
+			if (!GameCanvas.isTouch)
+			{
+				g.drawRegion(AvMain.imgSelect, 0, 0, 12, 16, 4, num14 - 4 + GameCanvas.gameTick % 3, yDia + hItem + 17 + idSelect * hItem, mGraphics.VCENTER | mGraphics.RIGHT, mGraphics.isTrue);
+			}
+			GameCanvas.resetTrans(g);
+			paintCmd(g);
+			break;
+		}
+		case 14:
+		{
+			if (pet == null)
+			{
+				return;
+			}
+			paintFormList(g, xDia, yDia, wDia, hDia, nameShow);
+			int num = yDia + hItem * 2;
+			int num2 = xDia + 10;
+			g.setClip(xDia, yDia + GameCanvas.hCommand + 2, wDia, hDia - GameCanvas.hCommand - iCommand.hButtonCmd - 8);
+			g.translate(0, -list.cmx);
+			pet.paintShowPet(g, num2 + MainTabNew.wOneItem / 2, num + MainTabNew.wOneItem / 2 + MainTabNew.wOneItem / 4, MainTabNew.wOneItem, MainTabNew.wOneItem / 2, 0, 1);
+			mFont.tahoma_7_white.drawString(g, T.level + pet.LvItem + " + " + pet.experience / 10 + "," + pet.experience % 10 + "%", num2 + 40, num, 0, mGraphics.isTrue);
+			num += GameCanvas.hText;
+			int num3 = pet.age / 24;
+			int num4 = pet.age % 24;
+			mFont.tahoma_7_white.drawString(g, T.tuoi + num3 + "d " + num4 + "h", num2 + 40, num, 0, mGraphics.isTrue);
+			num += GameCanvas.hText;
+			MainTabNew.setTextColor(Item.colorInfoItem[pet.petAttack.id]).drawString(g, Item.nameInfoItem[pet.petAttack.id] + ": " + pet.petAttack.value + "-" + pet.petAttack.maxDam, num2 + 40, num, 0, mGraphics.isTrue);
+			num += hItem;
+			mFont.tahoma_7_white.drawString(g, T.choan, num2 + 8, num, 0, mGraphics.isTrue);
+			paintStatus(g, pet.growpoint, num2 + 65, num + 1, pet.maxgrow);
+			num += hItem;
+			for (int i = 0; i < T.mKynangPet.Length; i++)
+			{
+				mFont.tahoma_7_white.drawString(g, T.mKynangPet[i], num2 + 8, num, 0, mGraphics.isTrue);
+				paintStatus(g, pet.mvaluetiemnang[i], num2 + 65, num + 1, pet.maxtiemnang);
+				num += hItem;
+			}
+			for (int j = 0; j < pet.mInfo.Length; j++)
+			{
+				if (pet.mInfo[j].id > 6)
+				{
+					string st = Item.nameInfoItem[pet.mInfo[j].id] + ": " + Item.getPercent(Item.isPercentInfoItem[pet.mInfo[j].id], pet.mInfo[j].value);
+					MainTabNew.setTextColor(Item.colorInfoItem[pet.mInfo[j].id]).drawString(g, st, num2 + 8, num, 0, mGraphics.isTrue);
 					num += hItem;
-					mFont.tahoma_7_white.drawString(g, T.choan, num2 + 8, num, 0, mGraphics.isTrue);
-					paintStatus(g, pet.growpoint, num2 + 65, num + 1, pet.maxgrow);
-					num += hItem;
-					for (int i = 0; i < T.mKynangPet.Length; i++)
-					{
-						mFont.tahoma_7_white.drawString(g, T.mKynangPet[i], num2 + 8, num, 0, mGraphics.isTrue);
-						paintStatus(g, pet.mvaluetiemnang[i], num2 + 65, num + 1, pet.maxtiemnang);
-						num += hItem;
-					}
-					for (int j = 0; j < pet.mInfo.Length; j++)
-					{
-						if (pet.mInfo[j].id > 6)
-						{
-							string st = Item.nameInfoItem[pet.mInfo[j].id] + ": " + Item.getPercent(Item.isPercentInfoItem[pet.mInfo[j].id], pet.mInfo[j].value);
-							MainTabNew.setTextColor(Item.colorInfoItem[pet.mInfo[j].id]).drawString(g, st, num2 + 8, num, 0, mGraphics.isTrue);
-							num += hItem;
-						}
-					}
-					GameCanvas.resetTrans(g);
-					paintCmd(g);
-					break;
 				}
+			}
+			GameCanvas.resetTrans(g);
+			paintCmd(g);
+			break;
+		}
 		}
 		GameCanvas.resetTrans(g);
 		if (cmdList != null)
@@ -1873,7 +1873,7 @@ public class MsgDialog : MainDialog
 					idSelect++;
 					GameCanvas.clearKeyHold(8);
 				}
-				idSelect = resetSelect(idSelect, Player.party.vecPartys.size() - 1, true);
+				idSelect = resetSelect(idSelect, Player.party.vecPartys.size() - 1, isreset: true);
 			}
 			else
 			{
@@ -1913,29 +1913,29 @@ public class MsgDialog : MainDialog
 				idSelect++;
 				GameCanvas.clearKeyHold(8);
 			}
-			idSelect = resetSelect(idSelect, 2, true);
+			idSelect = resetSelect(idSelect, 2, isreset: true);
 			if (GameCanvas.keyMyHold[4])
 			{
 				switch (idSelect)
 				{
-					case 0:
-						if (mHPMP[0] > 10)
-						{
-							mHPMP[0] -= 10;
-						}
-						break;
-					case 1:
-						if (mHPMP[1] > 10)
-						{
-							mHPMP[1] -= 10;
-						}
-						break;
-					case 2:
-						if (isUutien == 1)
-						{
-							isUutien = 0;
-						}
-						break;
+				case 0:
+					if (mHPMP[0] > 10)
+					{
+						mHPMP[0] -= 10;
+					}
+					break;
+				case 1:
+					if (mHPMP[1] > 10)
+					{
+						mHPMP[1] -= 10;
+					}
+					break;
+				case 2:
+					if (isUutien == 1)
+					{
+						isUutien = 0;
+					}
+					break;
 				}
 				GameCanvas.clearKeyHold(4);
 			}
@@ -1943,24 +1943,24 @@ public class MsgDialog : MainDialog
 			{
 				switch (idSelect)
 				{
-					case 0:
-						if (mHPMP[0] < 90)
-						{
-							mHPMP[0] += 10;
-						}
-						break;
-					case 1:
-						if (mHPMP[1] < 90)
-						{
-							mHPMP[1] += 10;
-						}
-						break;
-					case 2:
-						if (isUutien == 0)
-						{
-							isUutien = 1;
-						}
-						break;
+				case 0:
+					if (mHPMP[0] < 90)
+					{
+						mHPMP[0] += 10;
+					}
+					break;
+				case 1:
+					if (mHPMP[1] < 90)
+					{
+						mHPMP[1] += 10;
+					}
+					break;
+				case 2:
+					if (isUutien == 0)
+					{
+						isUutien = 1;
+					}
+					break;
 				}
 				GameCanvas.clearKeyHold(6);
 			}
@@ -1977,7 +1977,7 @@ public class MsgDialog : MainDialog
 				idSelect++;
 				GameCanvas.clearKeyHold(8);
 			}
-			idSelect = resetSelect(idSelect, 2, true);
+			idSelect = resetSelect(idSelect, 2, isreset: true);
 			if (GameCanvas.keyMyHold[4])
 			{
 				if (mvalueItem[idSelect] == 0)
@@ -2015,7 +2015,7 @@ public class MsgDialog : MainDialog
 				idSelect++;
 				GameCanvas.clearKeyHold(8);
 			}
-			idSelect = resetSelect(idSelect, 1, true);
+			idSelect = resetSelect(idSelect, 1, isreset: true);
 			if (GameCanvas.keyMyHold[4])
 			{
 				if (mvalueItem[idSelect] == 0)
@@ -2053,7 +2053,7 @@ public class MsgDialog : MainDialog
 				idSelect++;
 				GameCanvas.clearKeyHold(6);
 			}
-			idSelect = resetSelect(idSelect, MaxSkillBuff - 1, true);
+			idSelect = resetSelect(idSelect, MaxSkillBuff - 1, isreset: true);
 		}
 		if (cmdList != null)
 		{
@@ -2071,7 +2071,7 @@ public class MsgDialog : MainDialog
 					idCommand++;
 					GameCanvas.clearKeyHold(6);
 				}
-				idCommand = resetSelect(idCommand, num - 1, false);
+				idCommand = resetSelect(idCommand, num - 1, isreset: false);
 				if (typeQuest == 2)
 				{
 					iCommand iCommand2 = (iCommand)cmdList.elementAt(idCommand);
@@ -2119,7 +2119,7 @@ public class MsgDialog : MainDialog
 				{
 					mSound.playSound(42, mSound.volumeSound);
 					idSelect = num;
-					idSelect = resetSelect(idSelect, Player.party.vecPartys.size() - 1, false);
+					idSelect = resetSelect(idSelect, Player.party.vecPartys.size() - 1, isreset: false);
 					timePaintParty = 3;
 					setMenuParty();
 					GameCanvas.isPointerSelect = false;
@@ -2305,7 +2305,7 @@ public class MsgDialog : MainDialog
 			iCommand o3 = new iCommand(T.yeucau + text + " " + T.leave, 6, this);
 			mVector3.addElement(o3);
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, objectParty.name, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, objectParty.name, isFocus: false, null);
 	}
 
 	private void setChucNangParty()
@@ -2332,7 +2332,7 @@ public class MsgDialog : MainDialog
 		mVector3.addElement(o3);
 		iCommand o4 = new iCommand(T.chatParty, 15, this);
 		mVector3.addElement(o4);
-		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, isFocus: false, null);
 	}
 
 	public void closeDialog()
@@ -2397,14 +2397,7 @@ public class MsgDialog : MainDialog
 					{
 					}
 					GameCanvas.connect();
-					GlobalService.gI().login(
-						LoginScreen.tfusername.getText(),
-						 LoginScreen.tfpassword.getText(),
-						  GameMidlet.version,
-						   "0", "0", "0",
-							SelectCharScreen.IDCHAR,
-							 LoadMap.Area
-							 );
+					GlobalService.gI().login(LoginScreen.tfusername.getText(), LoginScreen.tfpassword.getText(), GameMidlet.version, "0", "0", "0", SelectCharScreen.IDCHAR, LoadMap.Area);
 					isAutologin = true;
 					GameScreen.player.resetPlayer();
 					if (WorldMapScreen.namePos == null || TabQuest.nameItemQuest == null)
@@ -2433,12 +2426,7 @@ public class MsgDialog : MainDialog
 				{
 				}
 				GameCanvas.connect();
-				GlobalService.gI().login(LoginScreen.tfusername.getText(),
-				 LoginScreen.tfpassword.getText(),
-				  GameMidlet.version,
-				   "0", 
-				   "0",
-				    "0", SelectCharScreen.IDCHAR, LoadMap.Area);
+				GlobalService.gI().login(LoginScreen.tfusername.getText(), LoginScreen.tfpassword.getText(), GameMidlet.version, "0", "0", "0", SelectCharScreen.IDCHAR, LoadMap.Area);
 				isAutologin = true;
 				GameScreen.player.resetPlayer();
 				if (WorldMapScreen.namePos == null || TabQuest.nameItemQuest == null)
@@ -2469,11 +2457,11 @@ public class MsgDialog : MainDialog
 			}
 			else if (LoginScreen.MusicRandom == 0)
 			{
-				mSound.playMus(0, mSound.volumeMusic, true);
+				mSound.playMus(0, mSound.volumeMusic, loop: true);
 			}
 			else
 			{
-				mSound.playMus(1, mSound.volumeMusic, true);
+				mSound.playMus(1, mSound.volumeMusic, loop: true);
 			}
 			DataOutputStream dataOutputStream = new DataOutputStream();
 			try

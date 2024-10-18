@@ -13,7 +13,7 @@ public class ChatTextField : AvMain
 		tfChat = new TField();
 		tfChat.isChangeFocus = false;
 		tfChat.isnewTF = true;
-		tfChat.setFocus(true);
+		tfChat.setFocus(isFocus: true);
 		init();
 		tfChat.x = (GameCanvas.w - tfChat.width) / 2;
 		tfChat.setMaxTextLenght(70);
@@ -70,7 +70,7 @@ public class ChatTextField : AvMain
 		if (!Main.isPC)
 		{
 			ipKeyboard.openKeyBoard("Chat", ipKeyboard.TEXT, string.Empty, cmdChat);
-			tfChat.setFocusWithKb(true);
+			tfChat.setFocusWithKb(isFocus: true);
 		}
 	}
 
@@ -83,7 +83,7 @@ public class ChatTextField : AvMain
 			isShow = false;
 			if (Main.isPC)
 			{
-				tfChat.setFocus(true);
+				tfChat.setFocus(isFocus: true);
 			}
 			break;
 		case 1:

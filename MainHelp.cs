@@ -232,11 +232,11 @@ public class MainHelp : AvMain
 						MsgDialog msgDialog9 = new MsgDialog();
 						if (Main.isPC)
 						{
-							msgDialog9.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.hw - 45, PaintInfoGameScreen.yPointMove - PaintInfoGameScreen.wArrowMove - 5, 6, false, 90);
+							msgDialog9.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.hw - 45, PaintInfoGameScreen.yPointMove - PaintInfoGameScreen.wArrowMove - 5, 6, isCamera: false, 90);
 						}
 						else
 						{
-							msgDialog9.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.xPointMove - 45, PaintInfoGameScreen.yPointMove - PaintInfoGameScreen.wArrowMove - 5, 2, false, 90);
+							msgDialog9.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.xPointMove - 45, PaintInfoGameScreen.yPointMove - PaintInfoGameScreen.wArrowMove - 5, 2, isCamera: false, 90);
 						}
 						GameCanvas.currentDialog = msgDialog9;
 					}
@@ -256,11 +256,11 @@ public class MainHelp : AvMain
 						MsgDialog msgDialog7 = new MsgDialog();
 						if (Main.isPC)
 						{
-							msgDialog7.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.hw - 40, PaintInfoGameScreen.yPointKill - 40, -1, false, 80);
+							msgDialog7.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.hw - 40, PaintInfoGameScreen.yPointKill - 40, -1, isCamera: false, 80);
 						}
 						else
 						{
-							msgDialog7.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.xPointKill - 40, PaintInfoGameScreen.yPointKill - 40, 2, false, 80);
+							msgDialog7.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.xPointKill - 40, PaintInfoGameScreen.yPointKill - 40, 2, isCamera: false, 80);
 						}
 						GameCanvas.currentDialog = msgDialog7;
 					}
@@ -272,7 +272,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog8 = new MsgDialog();
-						msgDialog8.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[0][0], PaintInfoGameScreen.mPosOther[0][1] + 22, 3, false, 90);
+						msgDialog8.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[0][0], PaintInfoGameScreen.mPosOther[0][1] + 22, 3, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog8;
 					}
 					return;
@@ -406,7 +406,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog6 = new MsgDialog();
-						msgDialog6.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.minimap.maxY * MiniMap.wMini + 16, 5, false, 90);
+						msgDialog6.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.minimap.maxY * MiniMap.wMini + 16, 5, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog6;
 					}
 					return;
@@ -415,7 +415,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog5 = new MsgDialog();
-						msgDialog5.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.minimap.maxY * MiniMap.wMini + 16, 6, false, 90);
+						msgDialog5.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.minimap.maxY * MiniMap.wMini + 16, 6, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog5;
 					}
 					GameCanvas.minimap.setPoint(51, 2, GameCanvas.loadmap.idMap);
@@ -425,7 +425,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog3 = new MsgDialog();
-						msgDialog3.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - GameCanvas.minimap.maxX * MiniMap.wMini - 96, 45, 4, false, 90);
+						msgDialog3.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, GameCanvas.w - GameCanvas.minimap.maxX * MiniMap.wMini - 96, 45, 4, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog3;
 					}
 					return;
@@ -434,7 +434,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog2 = new MsgDialog();
-						msgDialog2.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, (!Main.isPC) ? (PaintInfoGameScreen.mPosOther[3][0] - 96 + 25) : (GameCanvas.hw - 45), PaintInfoGameScreen.mPosOther[3][1] - 10, (!Main.isPC) ? 1 : (-1), false, 90);
+						msgDialog2.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, (!Main.isPC) ? (PaintInfoGameScreen.mPosOther[3][0] - 96 + 25) : (GameCanvas.hw - 45), PaintInfoGameScreen.mPosOther[3][1] - 10, (!Main.isPC) ? 1 : (-1), isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog2;
 					}
 					return;
@@ -443,7 +443,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog4 = new MsgDialog();
-						msgDialog4.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[2][0] - 96 + 25, PaintInfoGameScreen.mPosOther[2][1] - 10, 1, false, 90);
+						msgDialog4.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[2][0] - 96 + 25, PaintInfoGameScreen.mPosOther[2][1] - 10, 1, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog4;
 					}
 					return;
@@ -452,7 +452,7 @@ public class MainHelp : AvMain
 					if (Next < T.mHelpPoint[Step].Length && T.mHelpPoint[Step][Next].Length > 0)
 					{
 						MsgDialog msgDialog = new MsgDialog();
-						msgDialog.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[1][0], PaintInfoGameScreen.mPosOther[1][1] + 45, 3, false, 90);
+						msgDialog.setDiaHelp(T.mHelpPoint[Step][Next], cmdNext, PaintInfoGameScreen.mPosOther[1][0], PaintInfoGameScreen.mPosOther[1][1] + 45, 3, isCamera: false, 90);
 						GameCanvas.currentDialog = msgDialog;
 					}
 					return;
@@ -933,7 +933,7 @@ public class MainHelp : AvMain
 				int x = GameCanvas.hw - num / 2;
 				int y = GameCanvas.h - GameCanvas.hCommand * 2;
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, false, num);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, isCamera: false, num);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			int num2 = 80;
@@ -1010,7 +1010,7 @@ public class MainHelp : AvMain
 			int x = GameCanvas.hw - num / 2;
 			int y = GameCanvas.h - GameCanvas.hCommand * 2;
 			MsgDialog msgDialog = new MsgDialog();
-			msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, false, num);
+			msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, isCamera: false, num);
 			GameCanvas.currentDialog = msgDialog;
 		}
 	}
@@ -1028,7 +1028,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 5, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1040,7 +1040,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog4 = new MsgDialog();
-				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 3, false, 90);
+				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 3, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog4;
 			}
 			break;
@@ -1066,7 +1066,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1095,7 +1095,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem * 2 + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 3, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem * 2 + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 3, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1118,7 +1118,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem * 3 - 40 + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 5, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem * 3 - 40 + MainTabNew.wOne5 * 4, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1143,7 +1143,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1183,7 +1183,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1191,7 +1191,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3 + MainTabNew.wblack / 5 * 2 + TabMySeftNew.delta + 16, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + MainTabNew.hblack / 12 * 8 / 2, 7, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3 + MainTabNew.wblack / 5 * 2 + TabMySeftNew.delta + 16, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + MainTabNew.hblack / 12 * 8 / 2, 7, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1199,7 +1199,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3 + MainTabNew.wblack / 5 * 2 + TabMySeftNew.delta - 16, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + MainTabNew.hblack / 12 * 8 / 2, 8, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wOne5 * 3 + MainTabNew.wblack / 5 * 2 + TabMySeftNew.delta - 16, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + MainTabNew.hblack / 12 * 8 / 2, 8, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1207,7 +1207,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog4 = new MsgDialog();
-				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack - MainTabNew.wOneItem * 2 - MainTabNew.wOne5 - 20, 2, false, 90);
+				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack - MainTabNew.wOneItem * 2 - MainTabNew.wOne5 - 20, 2, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog4;
 			}
 			break;
@@ -1248,7 +1248,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.h - 23 - GameCanvas.minimap.maxY * MiniMap.wMini - 16, 2, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.h - 23 - GameCanvas.minimap.maxY * MiniMap.wMini - 16, 2, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1257,7 +1257,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog6 = new MsgDialog();
-				msgDialog6.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.h - 23 - GameCanvas.minimap.maxY * MiniMap.wMini - 16, -1, false, 90);
+				msgDialog6.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 96, GameCanvas.h - 23 - GameCanvas.minimap.maxY * MiniMap.wMini - 16, -1, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog6;
 			}
 			GameCanvas.minimap.setPoint(51, 2, GameCanvas.loadmap.idMap);
@@ -1267,7 +1267,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, 3, 60, 5, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, 3, 60, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1276,7 +1276,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 93, 45, 5, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 93, 45, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1285,7 +1285,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog4 = new MsgDialog();
-				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 93, GameCanvas.h - GameCanvas.hCommand, 2, false, 90);
+				msgDialog4.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.w - 93, GameCanvas.h - GameCanvas.hCommand, 2, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog4;
 			}
 			break;
@@ -1294,7 +1294,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog5 = new MsgDialog();
-				msgDialog5.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, GameCanvas.h - GameCanvas.hCommand - 14 - 25, 2, false, 90);
+				msgDialog5.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, GameCanvas.h - GameCanvas.hCommand - 14 - 25, 2, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog5;
 			}
 			break;
@@ -1358,7 +1358,7 @@ public class MainHelp : AvMain
 				{
 					num = 24;
 				}
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, num * T.mKyNang.Length + MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + 20, 5, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, num * T.mKyNang.Length + MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + 20, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1372,7 +1372,7 @@ public class MainHelp : AvMain
 				{
 					num2 = 24;
 				}
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, num2 * T.mKyNang.Length + MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem, 2, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wblack / 2, num2 * T.mKyNang.Length + MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem, 2, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1383,7 +1383,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1440,7 +1440,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog6 = new MsgDialog();
-				msgDialog6.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog6.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog6;
 			}
 			break;
@@ -1457,7 +1457,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1469,7 +1469,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1485,7 +1485,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 7, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 7, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1496,7 +1496,7 @@ public class MainHelp : AvMain
 				if (Next < str[Step].Length && str[Step][Next].Length > 0)
 				{
 					MsgDialog msgDialog7 = new MsgDialog();
-					msgDialog7.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 2, false, 90);
+					msgDialog7.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 2, isCamera: false, 90);
 					GameCanvas.currentDialog = msgDialog7;
 				}
 			}
@@ -1506,7 +1506,7 @@ public class MainHelp : AvMain
 				if (Next < str[Step].Length && str[Step][Next].Length > 0)
 				{
 					MsgDialog msgDialog8 = new MsgDialog();
-					msgDialog8.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 7, false, 90);
+					msgDialog8.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 2 + MainTabNew.wblack / 8, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 7, isCamera: false, 90);
 					GameCanvas.currentDialog = msgDialog8;
 				}
 			}
@@ -1518,7 +1518,7 @@ public class MainHelp : AvMain
 				if (Next < str[Step].Length && str[Step][Next].Length > 0)
 				{
 					MsgDialog msgDialog4 = new MsgDialog();
-					msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 4 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 2, false, 90);
+					msgDialog4.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 4 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 2, isCamera: false, 90);
 					GameCanvas.currentDialog = msgDialog4;
 				}
 			}
@@ -1528,7 +1528,7 @@ public class MainHelp : AvMain
 				if (Next < str[Step].Length && str[Step][Next].Length > 0)
 				{
 					MsgDialog msgDialog5 = new MsgDialog();
-					msgDialog5.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 4 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 8, false, 90);
+					msgDialog5.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wblack / 4 * 3, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + MainTabNew.hblack / 2, 8, isCamera: false, 90);
 					GameCanvas.currentDialog = msgDialog5;
 				}
 			}
@@ -1586,7 +1586,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog2 = new MsgDialog();
-				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, false, 90);
+				msgDialog2.setDiaHelp(str[Step][Next], cmdNext, GameCanvas.hw - 45, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem * 2 + 22, 6, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog2;
 			}
 			break;
@@ -1595,7 +1595,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog3 = new MsgDialog();
-				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wblack / 4 - 45, MainTabNew.gI().yTab + MainTabNew.wOneItem + GameCanvas.h / 5 + 22, 5, false, 90);
+				msgDialog3.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wblack / 4 - 45, MainTabNew.gI().yTab + MainTabNew.wOneItem + GameCanvas.h / 5 + 22, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog3;
 			}
 			break;
@@ -1604,7 +1604,7 @@ public class MainHelp : AvMain
 			if (Next < str[Step].Length && str[Step][Next].Length > 0)
 			{
 				MsgDialog msgDialog = new MsgDialog();
-				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wblack / 4 * 3 - 45, MainTabNew.gI().yTab + MainTabNew.wOneItem + GameCanvas.h / 5 + 22, 5, false, 90);
+				msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOneItem + MainTabNew.wblack / 4 * 3 - 45, MainTabNew.gI().yTab + MainTabNew.wOneItem + GameCanvas.h / 5 + 22, 5, isCamera: false, 90);
 				GameCanvas.currentDialog = msgDialog;
 			}
 			break;
@@ -1645,7 +1645,7 @@ public class MainHelp : AvMain
 			int x = GameCanvas.hw - num / 2;
 			int y = GameCanvas.h - GameCanvas.hCommand * 2;
 			MsgDialog msgDialog = new MsgDialog();
-			msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, false, num);
+			msgDialog.setDiaHelp(str[Step][Next], cmdNext, x, y, -1, isCamera: false, num);
 			GameCanvas.currentDialog = msgDialog;
 		}
 	}
@@ -1656,7 +1656,7 @@ public class MainHelp : AvMain
 		if (Next < str[Step].Length && str[Step][Next].Length > 0)
 		{
 			MsgDialog msgDialog = new MsgDialog();
-			msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wOne5 / 2, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + 16 + index * MainTabNew.wOneItem, 3, false, 90);
+			msgDialog.setDiaHelp(str[Step][Next], cmdNext, MainTabNew.gI().xTab + MainTabNew.wOne5 + MainTabNew.wOne5 / 2, MainTabNew.gI().yTab + GameCanvas.h / 5 + MainTabNew.wOneItem + 16 + index * MainTabNew.wOneItem, 3, isCamera: false, 90);
 			GameCanvas.currentDialog = msgDialog;
 		}
 	}

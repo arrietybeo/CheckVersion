@@ -228,7 +228,7 @@ public class List_Server : MainScreen
 				mVector3.addElement(new iCommand(T.mChucVuClan[4], 9, 123, this));
 				mVector3.addElement(new iCommand(T.mChucVuClan[5], 9, 122, this));
 			}
-			GameCanvas.menu2.startAt(mVector3, 2, mainObject.name, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, mainObject.name, isFocus: false, null);
 		}
 	}
 
@@ -242,7 +242,7 @@ public class List_Server : MainScreen
 				mVector mVector3 = new mVector("List_server menu2");
 				mVector3.addElement(cmdInfoCLan);
 				mVector3.addElement(cmdListMemClan);
-				GameCanvas.menu2.startAt(mVector3, 2, T.clan, false, null);
+				GameCanvas.menu2.startAt(mVector3, 2, T.clan, isFocus: false, null);
 			}
 		}
 	}
@@ -276,7 +276,7 @@ public class List_Server : MainScreen
 			mVector3.addElement(cmdInfo);
 			mVector3.addElement(cmdchat);
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.chucnang, isFocus: false, null);
 	}
 
 	public void doMenu()
@@ -318,7 +318,7 @@ public class List_Server : MainScreen
 				mVector3.addElement(nextPage);
 			}
 		}
-		GameCanvas.menu2.startAt(mVector3, 2, T.friend, false, null);
+		GameCanvas.menu2.startAt(mVector3, 2, T.friend, isFocus: false, null);
 	}
 
 	public override void commandTab(int index, int sub)
@@ -366,7 +366,7 @@ public class List_Server : MainScreen
 			MainObject mainObject2 = (MainObject)vecListServer.elementAt(idSelect);
 			if (mainObject2 != null && mainObject2.hang != -1)
 			{
-				GameCanvas.msgchat.addNewChat(mainObject2.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, true);
+				GameCanvas.msgchat.addNewChat(mainObject2.name, string.Empty, string.Empty, ChatDetail.TYPE_CHAT, isFocus: true);
 				GameCanvas.start_Chat_Dialog();
 			}
 			break;
@@ -603,7 +603,7 @@ public class List_Server : MainScreen
 			MainObject mainObject = (MainObject)vecListServer.elementAt(i);
 			if (mainObject.hang == -1)
 			{
-				mainObject.paintNameShow(g, 50, 5 + ybegin, true);
+				mainObject.paintNameShow(g, 50, 5 + ybegin, islevel: true);
 				ybegin += hItem;
 				if (i < vecListServer.size() - 1)
 				{
@@ -627,7 +627,7 @@ public class List_Server : MainScreen
 			}
 			else
 			{
-				mainObject.paintNameShow(g, 50, 5 + ybegin, true);
+				mainObject.paintNameShow(g, 50, 5 + ybegin, islevel: true);
 			}
 			int num2 = 40;
 			if (i == idSelect)
@@ -761,7 +761,7 @@ public class List_Server : MainScreen
 				idSelect++;
 				GameCanvas.clearKeyHold(8);
 			}
-			idSelect = resetSelect(idSelect, vecListServer.size() - 1, false);
+			idSelect = resetSelect(idSelect, vecListServer.size() - 1, isreset: false);
 			if (num != idSelect)
 			{
 				setXmove();

@@ -772,7 +772,7 @@ public class MainObject : AvMain
 
 	public static void paintShadow(mGraphics g, int dir, int x, int y)
 	{
-		g.drawRegion(shadow1, 0, 0, mImage.getImageWidth(shadow1.image), mImage.getImageHeight(shadow1.image), 0, x, y, 3, false);
+		g.drawRegion(shadow1, 0, 0, mImage.getImageWidth(shadow1.image), mImage.getImageHeight(shadow1.image), 0, x, y, 3, useClip: false);
 	}
 
 	public virtual bool isLuaThieng()
@@ -1519,11 +1519,7 @@ public class MainObject : AvMain
 						}
 						FrameWP = (byte)((FrameWP + 1) % num);
 					}
-					DataSkillEff effMatNa2 = getEffMatNa(idHorse);
-					if (effMatNa2 != null)
-					{
-						effMatNa2.paintBottomHorse(g, x + xMount, y - ysai - dy + dyWater - yjum + yMount, getFrameHorse(), (Direction == 3) ? 2 : 0);
-					}
+					getEffMatNa(idHorse)?.paintBottomHorse(g, x + xMount, y - ysai - dy + dyWater - yjum + yMount, getFrameHorse(), (Direction == 3) ? 2 : 0);
 					int num2 = 0;
 					if (idImageHenshin != -1)
 					{
@@ -1566,142 +1562,139 @@ public class MainObject : AvMain
 							}
 						}
 						bool flag2 = false;
-						DataSkillEff effMatNa3 = getEffMatNa(idPhiPhong);
-						DataSkillEff effMatNa4 = getEffMatNa(idHair);
-						DataSkillEff effMatNa5 = getEffMatNa(idBody);
-						DataSkillEff effMatNa6 = getEffMatNa(idLeg);
-						DataSkillEff effMatNa7 = getEffMatNa(idBienhinh);
-						if (GameCanvas.gameTick % 6 == 0 && effMatNa7 != null)
+						DataSkillEff effMatNa2 = getEffMatNa(idPhiPhong);
+						DataSkillEff effMatNa3 = getEffMatNa(idHair);
+						DataSkillEff effMatNa4 = getEffMatNa(idBody);
+						DataSkillEff effMatNa5 = getEffMatNa(idLeg);
+						DataSkillEff effMatNa6 = getEffMatNa(idBienhinh);
+						if (GameCanvas.gameTick % 6 == 0 && effMatNa6 != null)
 						{
-							int num6 = effMatNa7.listFrame.size() / 18;
+							int num6 = effMatNa6.listFrame.size() / 18;
 							if (num6 == 0)
 							{
 								num6 = 1;
 							}
 							FrameBienhinh = (sbyte)((FrameBienhinh + 1) % num6);
 						}
-						if (GameCanvas.gameTick % 6 == 0 && effMatNa6 != null)
+						if (GameCanvas.gameTick % 6 == 0 && effMatNa5 != null)
 						{
-							int num7 = effMatNa6.listFrame.size() / 18;
+							int num7 = effMatNa5.listFrame.size() / 18;
 							if (num7 == 0)
 							{
 								num7 = 1;
 							}
 							FrameLeg = (sbyte)((FrameLeg + 1) % num7);
 						}
-						if (GameCanvas.gameTick % 10 == 0 && effMatNa3 != null)
+						if (GameCanvas.gameTick % 10 == 0 && effMatNa2 != null)
 						{
-							int num8 = effMatNa3.listFrame.size() / 18;
+							int num8 = effMatNa2.listFrame.size() / 18;
 							if (num8 == 0)
 							{
 								num8 = 1;
 							}
 							FramePP = (byte)((FramePP + 1) % num8);
 						}
-						if (GameCanvas.gameTick % 6 == 0 && effMatNa5 != null)
+						if (GameCanvas.gameTick % 6 == 0 && effMatNa4 != null)
 						{
-							int num9 = effMatNa5.listFrame.size() / 18;
+							int num9 = effMatNa4.listFrame.size() / 18;
 							if (num9 == 0)
 							{
 								num9 = 1;
 							}
 							FrameBody = (sbyte)((FrameBody + 1) % num9);
 						}
-						if (GameCanvas.gameTick % 6 == 0 && effMatNa4 != null)
+						if (GameCanvas.gameTick % 6 == 0 && effMatNa3 != null)
 						{
-							int num10 = effMatNa4.listFrame.size() / 18;
+							int num10 = effMatNa3.listFrame.size() / 18;
 							if (num10 == 0)
 							{
 								num10 = 1;
 							}
 							FrameHair = (sbyte)((FrameHair + 1) % num10);
 						}
-						DataSkillEff effMatNa8 = getEffMatNa(idWing);
-						if (GameCanvas.gameTick % 6 == 0 && effMatNa8 != null)
+						DataSkillEff effMatNa7 = getEffMatNa(idWing);
+						if (GameCanvas.gameTick % 6 == 0 && effMatNa7 != null)
 						{
-							int num11 = effMatNa8.listFrame.size() / 18;
+							int num11 = effMatNa7.listFrame.size() / 18;
 							if (num11 == 0)
 							{
 								num11 = 1;
 							}
 							FrameWing = (sbyte)((FrameWing + 1) % num11);
 						}
-						if (Direction != 1 && effMatNa3 != null)
+						if (Direction != 1)
 						{
-							effMatNa3.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+							effMatNa2?.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
 						}
-						DataSkillEff effMatNa9 = getEffMatNa(idMatna);
-						if (GameCanvas.gameTick % 5 == 0 && effMatNa9 != null)
+						DataSkillEff effMatNa8 = getEffMatNa(idMatna);
+						if (GameCanvas.gameTick % 5 == 0 && effMatNa8 != null)
 						{
-							int num12 = effMatNa9.listFrame.size() / 18;
+							int num12 = effMatNa8.listFrame.size() / 18;
 							if (num12 == 0)
 							{
 								num12 = 1;
 							}
 							FrameMatNa = (sbyte)((FrameMatNa + 1) % num12);
 						}
-						if (effMatNa7 != null && idBienhinh != -1)
+						if (effMatNa6 != null && idBienhinh != -1)
 						{
-							effMatNa7.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
-							effMatNa7.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
+							effMatNa6.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
+							effMatNa6.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
 						}
 						for (int i = 0; i < mTypePartPaintPlayer[Direction].Length; i++)
 						{
 							sbyte b = mTypePartPaintPlayer[Direction][i];
 							if (b == -1)
 							{
-								if (effMatNa9 != null)
-								{
-									effMatNa9.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
-								}
+								effMatNa8?.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
 								continue;
 							}
 							if (Direction == 1)
 							{
-								if (effMatNa3 != null)
+								if (effMatNa2 != null)
 								{
-									effMatNa3.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
-									effMatNa3.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+									effMatNa2.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+									effMatNa2.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
 								}
-								if (b == 2 && effMatNa9 != null)
+								if (b == 2 && effMatNa8 != null)
 								{
-									effMatNa9.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
-									effMatNa9.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+									effMatNa8.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+									effMatNa8.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
 								}
 							}
-							else if (b == 4 && effMatNa9 != null && paintMatnaTruocNon)
+							else if (b == 4 && effMatNa8 != null && paintMatnaTruocNon)
 							{
-								effMatNa9.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
-								effMatNa9.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+								effMatNa8.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+								effMatNa8.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
 							}
 							if ((b != 6 && b != 4) || (b == 6 && Direction == 1 && i == 7) || (b == 6 && Direction != 1 && i == 0) || (b == 4 && Direction != 1))
 							{
-								if (b == 6 && effMatNa8 != null && idWing != -1)
+								if (b == 6 && effMatNa7 != null && idWing != -1)
 								{
-									effMatNa8.paintBottomWing(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameWing(), (Direction == 3) ? 2 : 0);
-									effMatNa8.paintTopWing(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameWing(), (Direction == 3) ? 2 : 0);
+									effMatNa7.paintBottomWing(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameWing(), (Direction == 3) ? 2 : 0);
+									effMatNa7.paintTopWing(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameWing(), (Direction == 3) ? 2 : 0);
 									continue;
 								}
-								if (idBienhinh != -1 && effMatNa7 != null && (b == 1 || b == 0 || b == 3 || b == 5 || b == 2))
+								if (idBienhinh != -1 && effMatNa6 != null && (b == 1 || b == 0 || b == 3 || b == 5 || b == 2))
 								{
 									continue;
 								}
-								if (b == 1 && idBody != -1 && effMatNa5 != null)
+								if (b == 1 && idBody != -1 && effMatNa4 != null)
 								{
-									effMatNa5.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
-									effMatNa5.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
+									effMatNa4.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
+									effMatNa4.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameBody(), (Direction == 3) ? 2 : 0);
 									continue;
 								}
-								if (b == 0 && idLeg != -1 && effMatNa6 != null)
+								if (b == 0 && idLeg != -1 && effMatNa5 != null)
 								{
-									effMatNa6.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameLeg(), (Direction == 3) ? 2 : 0);
-									effMatNa6.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameLeg(), (Direction == 3) ? 2 : 0);
+									effMatNa5.paintBottomAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameLeg(), (Direction == 3) ? 2 : 0);
+									effMatNa5.paintTopAll(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameLeg(), (Direction == 3) ? 2 : 0);
 									continue;
 								}
-								if (b == 5 && idHair != -1 && effMatNa4 != null)
+								if (b == 5 && idHair != -1 && effMatNa3 != null)
 								{
-									effMatNa4.paintBottomHair(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameHair(), (Direction == 3) ? 2 : 0);
-									effMatNa4.paintTopHair(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameHair(), (Direction == 3) ? 2 : 0);
+									effMatNa3.paintBottomHair(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameHair(), (Direction == 3) ? 2 : 0);
+									effMatNa3.paintTopHair(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameHair(), (Direction == 3) ? 2 : 0);
 									continue;
 								}
 								if (getTypePart(i) >= 0)
@@ -1711,10 +1704,10 @@ public class MainObject : AvMain
 										if (b == 6 && (Direction == 0 || Direction == 2 || Direction == 3))
 										{
 											CRes.getCharPartInfo(b, getTypePart(i)).paint(g, x, y - ysai - dy + dyWater - yjum, Direction, frame);
-											if (effMatNa3 != null)
+											if (effMatNa2 != null)
 											{
-												effMatNa3.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
-												effMatNa3.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+												effMatNa2.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+												effMatNa2.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
 											}
 										}
 										else
@@ -1727,10 +1720,10 @@ public class MainObject : AvMain
 										if (b == 6 && (Direction == 0 || Direction == 2 || Direction == 3))
 										{
 											CRes.getCharPartInfo(b, getTypePart(i)).paint(g, x, y - ysai - dy + dyWater - dyMount - yjum, Direction, frame);
-											if (effMatNa3 != null)
+											if (effMatNa2 != null)
 											{
-												effMatNa3.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
-												effMatNa3.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+												effMatNa2.paintBottomPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
+												effMatNa2.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFramePP(), (Direction == 3) ? 2 : 0);
 											}
 										}
 										else
@@ -1749,15 +1742,15 @@ public class MainObject : AvMain
 									setReInfo();
 								}
 							}
-							if (b == 3 && effMatNa9 != null && !paintMatnaTruocNon && Direction != 1)
+							if (b == 3 && effMatNa8 != null && !paintMatnaTruocNon && Direction != 1)
 							{
-								effMatNa9.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
-								effMatNa9.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+								effMatNa8.paintBottom(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
+								effMatNa8.paintTop(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, getFrameMatNa(), (Direction == 3) ? 2 : 0);
 							}
 						}
-						if (Direction != 1 && effMatNa3 != null)
+						if (Direction != 1)
 						{
-							effMatNa3.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater, getFramePP(), (Direction == 3) ? 2 : 0);
+							effMatNa2?.paintTopPP(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater, getFramePP(), (Direction == 3) ? 2 : 0);
 						}
 						if (typeMount != -1)
 						{
@@ -1802,11 +1795,7 @@ public class MainObject : AvMain
 						}
 					}
 				}
-				DataSkillEff effMatNa10 = getEffMatNa(idHorse);
-				if (effMatNa10 != null)
-				{
-					effMatNa10.paintTopHorse(g, x + xMount, y - ysai - dy + dyWater - yjum + yMount, getFrameHorse(), (Direction == 3) ? 2 : 0);
-				}
+				getEffMatNa(idHorse)?.paintTopHorse(g, x + xMount, y - ysai - dy + dyWater - yjum + yMount, getFrameHorse(), (Direction == 3) ? 2 : 0);
 			}
 			if (!checktanghinh())
 			{
@@ -1833,20 +1822,20 @@ public class MainObject : AvMain
 		}
 		if (!checktanghinh())
 		{
-			DataSkillEff effMatNa11 = getEffMatNa(idName);
-			if (effMatNa11 != null)
+			DataSkillEff effMatNa9 = getEffMatNa(idName);
+			if (effMatNa9 != null)
 			{
-				if (GameCanvas.gameTick % 5 == 0 && effMatNa11 != null)
+				if (GameCanvas.gameTick % 5 == 0 && effMatNa9 != null)
 				{
-					int num14 = effMatNa11.listFrame.size();
+					int num14 = effMatNa9.listFrame.size();
 					if (num14 == 0)
 					{
 						num14 = 1;
 					}
 					FrameName = (sbyte)((FrameName + 1) % num14);
 				}
-				effMatNa11.paintBottomName(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, FrameName, 0);
-				effMatNa11.paintTopName(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, FrameName, 0);
+				effMatNa9.paintBottomName(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, FrameName, 0);
+				effMatNa9.paintTopName(g, x, y + ((typeMount != -1) ? (-dyMount) : 0) + dyWater - yjum, FrameName, 0);
 			}
 		}
 		if (!checktanghinh())
@@ -1893,16 +1882,11 @@ public class MainObject : AvMain
 
 	public void paintEffauto(mGraphics g, int xp, int yp)
 	{
-		if (!isMainChar() && hideEff == 1)
+		if (isMainChar() || hideEff != 1)
 		{
-			return;
-		}
-		for (int i = 0; i < vecEffauto.size(); i++)
-		{
-			EffectAuto effectAuto = (EffectAuto)vecEffauto.elementAt(i);
-			if (effectAuto != null)
+			for (int i = 0; i < vecEffauto.size(); i++)
 			{
-				effectAuto.paint(g, xp, yp - yEffAuto);
+				((EffectAuto)vecEffauto.elementAt(i))?.paint(g, xp, yp - yEffAuto);
 			}
 		}
 	}
@@ -1914,16 +1898,11 @@ public class MainObject : AvMain
 			return;
 		}
 		int num = vecDataSkillEff.size();
-		if (num <= 0)
+		if (num > 0)
 		{
-			return;
-		}
-		for (int i = 0; i < num; i++)
-		{
-			DataSkillEff dataSkillEff = (DataSkillEff)vecDataSkillEff.elementAt(i);
-			if (dataSkillEff != null)
+			for (int i = 0; i < num; i++)
 			{
-				dataSkillEff.paintTop(g, x, y);
+				((DataSkillEff)vecDataSkillEff.elementAt(i))?.paintTop(g, x, y);
 			}
 		}
 	}
@@ -1935,16 +1914,11 @@ public class MainObject : AvMain
 			return;
 		}
 		int num = vecDataSkillEff.size();
-		if (num <= 0)
+		if (num > 0)
 		{
-			return;
-		}
-		for (int i = 0; i < num; i++)
-		{
-			DataSkillEff dataSkillEff = (DataSkillEff)vecDataSkillEff.elementAt(i);
-			if (dataSkillEff != null)
+			for (int i = 0; i < num; i++)
 			{
-				dataSkillEff.paintBottom(g, x, y);
+				((DataSkillEff)vecDataSkillEff.elementAt(i))?.paintBottom(g, x, y);
 			}
 		}
 	}
@@ -1957,21 +1931,17 @@ public class MainObject : AvMain
 		}
 		for (int i = 0; i < veclowEffauto.size(); i++)
 		{
-			EffectAuto effectAuto = (EffectAuto)veclowEffauto.elementAt(i);
-			if (effectAuto != null)
-			{
-				effectAuto.paint(g, xp, yp - yEffAuto);
-			}
+			((EffectAuto)veclowEffauto.elementAt(i))?.paint(g, xp, yp - yEffAuto);
 		}
 		for (int j = 0; j < veclowEffauto.size(); j++)
 		{
-			EffectAuto effectAuto2 = (EffectAuto)veclowEffauto.elementAt(j);
-			if (effectAuto2 != null)
+			EffectAuto effectAuto = (EffectAuto)veclowEffauto.elementAt(j);
+			if (effectAuto != null)
 			{
-				effectAuto2.update();
-				if (effectAuto2.wantdestroy)
+				effectAuto.update();
+				if (effectAuto.wantdestroy)
 				{
-					veclowEffauto.removeElement(effectAuto2);
+					veclowEffauto.removeElement(effectAuto);
 				}
 			}
 		}
@@ -2068,25 +2038,17 @@ public class MainObject : AvMain
 
 	public int getTypeParthide(int i)
 	{
-		switch (mTypePartPaintPlayer[Direction][i])
+		return mTypePartPaintPlayer[Direction][i] switch
 		{
-		case 0:
-			return clazz;
-		case 1:
-			return clazz;
-		case 2:
-			return 0;
-		case 3:
-			return -1;
-		case 4:
-			return clazz + 8;
-		case 5:
-			return clazz;
-		case 6:
-			return -1;
-		default:
-			return -1;
-		}
+			0 => clazz, 
+			1 => clazz, 
+			2 => 0, 
+			3 => -1, 
+			4 => clazz + 8, 
+			5 => clazz, 
+			6 => -1, 
+			_ => -1, 
+		};
 	}
 
 	public int getTypePart(int i)
@@ -2217,9 +2179,9 @@ public class MainObject : AvMain
 		for (int i = 0; i < mTypePartPaintPlayer[Direction].Length - 1; i++)
 		{
 			sbyte b = mTypePartPaintPlayer[0][i];
-			if (b == -1 && effMatNa6 != null)
+			if (b == -1)
 			{
-				effMatNa6.paintBottom(g, x, y, getFrameMatNa_Wearing(num), 0);
+				effMatNa6?.paintBottom(g, x, y, getFrameMatNa_Wearing(num), 0);
 			}
 			if (effMatNa6 != null)
 			{
@@ -2620,7 +2582,7 @@ public class MainObject : AvMain
 		}
 		if (strChatPopup != null)
 		{
-			addChat(strChatPopup, true);
+			addChat(strChatPopup, isStop: true);
 			strChatPopup = null;
 		}
 		if (myClan != null && myClan.isRemove)
@@ -4372,32 +4334,22 @@ public class MainObject : AvMain
 
 	public void paintEffectCharWearing(mGraphics g)
 	{
-		if (vecEffectCharWearing.size() <= 0)
+		if (vecEffectCharWearing.size() > 0)
 		{
-			return;
-		}
-		for (int i = 0; i < vecEffectCharWearing.size(); i++)
-		{
-			EffectCharWearing effectCharWearing = (EffectCharWearing)vecEffectCharWearing.elementAt(i);
-			if (effectCharWearing != null)
+			for (int i = 0; i < vecEffectCharWearing.size(); i++)
 			{
-				effectCharWearing.paint(g, x, y);
+				((EffectCharWearing)vecEffectCharWearing.elementAt(i))?.paint(g, x, y);
 			}
 		}
 	}
 
 	public void updateEffectCharWearing()
 	{
-		if (vecEffectCharWearing.size() <= 0)
+		if (vecEffectCharWearing.size() > 0)
 		{
-			return;
-		}
-		for (int i = 0; i < vecEffectCharWearing.size(); i++)
-		{
-			EffectCharWearing effectCharWearing = (EffectCharWearing)vecEffectCharWearing.elementAt(i);
-			if (effectCharWearing != null)
+			for (int i = 0; i < vecEffectCharWearing.size(); i++)
 			{
-				effectCharWearing.update();
+				((EffectCharWearing)vecEffectCharWearing.elementAt(i))?.update();
 			}
 		}
 	}

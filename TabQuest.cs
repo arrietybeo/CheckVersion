@@ -74,7 +74,7 @@ public class TabQuest : MainTabNew
 
 	public override void init()
 	{
-		resetTab(true);
+		resetTab(isResetCmy: true);
 		xdich = (MainTabNew.wblack - wMainTab * 2) / 2;
 		if (!GameCanvas.isTouch)
 		{
@@ -127,7 +127,7 @@ public class TabQuest : MainTabNew
 				return;
 			}
 			GlobalService.gI().quest((short)questCurrent.ID, (!questCurrent.isMain) ? ((sbyte)1) : ((sbyte)0), 2);
-			resetTab(true);
+			resetTab(isResetCmy: true);
 			GameCanvas.end_Dialog();
 			break;
 		}
@@ -377,7 +377,7 @@ public class TabQuest : MainTabNew
 		MainTabNew.paintNameItem(g, num2 + MainTabNew.longwidth / 2, num4 + MainTabNew.wOneItem / 2 - 5, MainTabNew.longwidth, name, colorName);
 		num4 += MainTabNew.wOneItem - GameCanvas.hText + GameCanvas.hText / 4;
 		GameCanvas.resetTrans(g);
-		scr.setStyle(mContent.Length + 2, GameCanvas.hText + 2, num2, num4 + MainTabNew.wOneItem + 2 - GameCanvas.hText * 2, MainTabNew.longwidth, MainTabNew.hMaxContent + GameCanvas.hText, true, 1);
+		scr.setStyle(mContent.Length + 2, GameCanvas.hText + 2, num2, num4 + MainTabNew.wOneItem + 2 - GameCanvas.hText * 2, MainTabNew.longwidth, MainTabNew.hMaxContent + GameCanvas.hText, styleUPDOWN: true, 1);
 		scr.setClip(g, num2, num4 + MainTabNew.wOneItem + 2 - GameCanvas.hText, MainTabNew.longwidth, MainTabNew.hMaxContent - MainTabNew.wOneItem - 2 - iCommand.hButtonCmd / 2);
 		if (mContent != null)
 		{
@@ -488,7 +488,7 @@ public class TabQuest : MainTabNew
 				else
 				{
 					tabSelect = 0;
-					resetTab(true);
+					resetTab(isResetCmy: true);
 				}
 				GameCanvas.clearKeyHold(4);
 			}
@@ -497,18 +497,18 @@ public class TabQuest : MainTabNew
 				if (tabSelect == 1)
 				{
 					tabSelect = 0;
-					resetTab(true);
+					resetTab(isResetCmy: true);
 				}
 				else
 				{
 					tabSelect = 1;
-					resetTab(true);
+					resetTab(isResetCmy: true);
 				}
 				GameCanvas.clearKeyHold(6);
 			}
 			if (maxSize > 0)
 			{
-				idSelect = resetSelect(idSelect, maxSize, true);
+				idSelect = resetSelect(idSelect, maxSize, isreset: true);
 			}
 			else
 			{
@@ -538,7 +538,7 @@ public class TabQuest : MainTabNew
 				}
 				if (num != idSelect)
 				{
-					resetTab(false);
+					resetTab(isResetCmy: false);
 					if (idSelect == maxSize)
 					{
 						MainScreen.cameraSub.moveCamera(0, MainScreen.cameraSub.yLimit);
@@ -636,7 +636,7 @@ public class TabQuest : MainTabNew
 				if (tabSelect != 0)
 				{
 					tabSelect = 0;
-					resetTab(true);
+					resetTab(isResetCmy: true);
 				}
 				GameCanvas.isPointerSelect = false;
 			}
@@ -645,7 +645,7 @@ public class TabQuest : MainTabNew
 				if (tabSelect != 1)
 				{
 					tabSelect = 1;
-					resetTab(true);
+					resetTab(isResetCmy: true);
 				}
 				GameCanvas.isPointerSelect = false;
 			}
@@ -686,7 +686,7 @@ public class TabQuest : MainTabNew
 						else
 						{
 							idSelect = num3;
-							idSelect = resetSelect(idSelect, maxSize, false);
+							idSelect = resetSelect(idSelect, maxSize, isreset: false);
 						}
 						GameCanvas.isPointerSelect = false;
 					}
@@ -707,7 +707,7 @@ public class TabQuest : MainTabNew
 						{
 							num4 = (GameCanvas.py + MainScreen.cameraSub.yCam - num5) / HQuest + idSelect;
 							idSelect = num4;
-							idSelect = resetSelect(idSelect, maxSize, false);
+							idSelect = resetSelect(idSelect, maxSize, isreset: false);
 							GameCanvas.isPointerSelect = false;
 						}
 					}

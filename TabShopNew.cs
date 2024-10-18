@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.UI;
 
 public class TabShopNew : MainTabNew
 {
@@ -557,7 +558,7 @@ public class TabShopNew : MainTabNew
 			else if (item.ItemCatagory == 4 || item.ItemCatagory == 7)
 			{
 				inputDialog = new InputDialog();
-				inputDialog.setinfoSmallNew(T.nhapsoluongcanmua, cmdBuyPotion, true, -1, item.priceItem, T.buySell, item.getPriceType());
+				inputDialog.setinfoSmallNew(T.nhapsoluongcanmua, cmdBuyPotion, isNum: true, -1, item.priceItem, T.buySell, item.getPriceType());
 				GameCanvas.currentDialog = inputDialog;
 			}
 			else if (item.ItemCatagory == 3)
@@ -728,7 +729,7 @@ public class TabShopNew : MainTabNew
 					}
 					mVector5.addElement(iCommand2);
 					mVector5.addElement(iCommand3);
-					GameCanvas.menu2.startAt(mVector5, 2, T.Ring, false, null);
+					GameCanvas.menu2.startAt(mVector5, 2, T.Ring, isFocus: false, null);
 				}
 				else
 				{
@@ -765,7 +766,7 @@ public class TabShopNew : MainTabNew
 				{
 					text = T.iconclan;
 				}
-				GameCanvas.menu2.startAt(mVector6, 2, text, false, null);
+				GameCanvas.menu2.startAt(mVector6, 2, text, isFocus: false, null);
 				if (GameScreen.help.setStep_Next(2, 9) || GameScreen.help.setStep_Next(2, 4) || GameScreen.help.setStep_Next(3, 4))
 				{
 					Menu2.isHelp = true;
@@ -780,7 +781,7 @@ public class TabShopNew : MainTabNew
 				iCommand o = (GameCanvas.isTouch ? new iCommand(T.oso + (i + 1), 9, i, this) : ((!TField.isQwerty) ? new iCommand(T.phim + PaintInfoGameScreen.mValueHotKey[i], 9, i, this) : new iCommand(T.phim + PaintInfoGameScreen.mValueChar[i], 9, i, this)));
 				mVector11.addElement(o);
 			}
-			GameCanvas.menu2.startAt(mVector11, 2, T.setKey, false, null);
+			GameCanvas.menu2.startAt(mVector11, 2, T.setKey, isFocus: false, null);
 			if (GameScreen.help.Step >= 0 && GameScreen.help.setStep_Next(2, 9))
 			{
 				GameScreen.help.Next = 10;
@@ -922,7 +923,7 @@ public class TabShopNew : MainTabNew
 			if (item != null && (item.ItemCatagory == 4 || item.ItemCatagory == 7))
 			{
 				inputDialog = new InputDialog();
-				inputDialog.setinfo(T.nhapsoluongcanlay, cmdGetChest, true, T.chest);
+				inputDialog.setinfo(T.nhapsoluongcanlay, cmdGetChest, isNum: true, T.chest);
 				GameCanvas.currentDialog = inputDialog;
 			}
 			break;
@@ -931,7 +932,7 @@ public class TabShopNew : MainTabNew
 			if (item != null && (item.ItemCatagory == 4 || item.ItemCatagory == 7))
 			{
 				inputDialog = new InputDialog();
-				inputDialog.setinfo(T.nhapsoluongcancat, cmdSetChest, true, T.tabhanhtrang);
+				inputDialog.setinfo(T.nhapsoluongcancat, cmdSetChest, isNum: true, T.tabhanhtrang);
 				GameCanvas.currentDialog = inputDialog;
 			}
 			break;
@@ -940,7 +941,7 @@ public class TabShopNew : MainTabNew
 			mVector mVector4 = new mVector("TabShopNew menusell");
 			mVector4.addElement(new iCommand(T.banhettrang, 19, 0, this));
 			mVector4.addElement(new iCommand(T.banhetxanh, 19, 1, this));
-			GameCanvas.menu2.startAt(mVector4, 2, T.sell, false, null);
+			GameCanvas.menu2.startAt(mVector4, 2, T.sell, isFocus: false, null);
 			break;
 		}
 		case 18:
@@ -1309,7 +1310,7 @@ public class TabShopNew : MainTabNew
 		}
 		case 44:
 			inputDialog = new InputDialog();
-			inputDialog.setinfoSmallNew(T.nhapSlogan, cmdOkSell, false, -1, 0L, string.Empty);
+			inputDialog.setinfoSmallNew(T.nhapSlogan, cmdOkSell, isNum: false, -1, 0L, string.Empty);
 			GameCanvas.currentDialog = inputDialog;
 			break;
 		case 45:
@@ -1351,10 +1352,10 @@ public class TabShopNew : MainTabNew
 			break;
 		case 49:
 			inputWorld = new InputDialog();
-			inputWorld.setinfo(T.nhapnoidung, new iCommand(T.chat, 50, this), false, T.textkenhthegioi);
+			inputWorld.setinfo(T.nhapnoidung, new iCommand(T.chat, 50, this), isNum: false, T.textkenhthegioi);
 			inputWorld.tfInput.isnewTF = true;
 			newinput.TYPE_INPUT = 2;
-			newinput.input.Select();
+			((Selectable)newinput.input).Select();
 			newinput.input.ActivateInputField();
 			GameCanvas.currentDialog = inputWorld;
 			break;
@@ -1897,7 +1898,7 @@ public class TabShopNew : MainTabNew
 		g.endClip();
 		if (!GameCanvas.menu2.isShowMenu && GameCanvas.currentDialog == null && GameCanvas.subDialog == null && MainTabNew.Focus == MainTabNew.INFO && MainTabNew.timePaintInfo > MainTabNew.timeRequest)
 		{
-			paintPopupContent(g, false);
+			paintPopupContent(g, isOnlyName: false);
 			if (vecListCmd != null)
 			{
 				for (int n = 0; n < vecListCmd.size(); n++)
@@ -2128,7 +2129,7 @@ public class TabShopNew : MainTabNew
 			if (flag)
 			{
 				listContent = null;
-				idSelect = resetSelect(idSelect, mVector3.size() - 1, false);
+				idSelect = resetSelect(idSelect, mVector3.size() - 1, isreset: false);
 				if (!GameCanvas.isTouch && (typeTab == MainTabNew.INVENTORY || typeTab == MainTabNew.INVEN_AND_STORE || typeTab == MainTabNew.CHEST || typeTab == MainTabNew.SELLITEM))
 				{
 					center = cmdMenuInven;

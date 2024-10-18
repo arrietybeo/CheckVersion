@@ -163,7 +163,7 @@ public class MsgChat : MainDialog
 		if (!Main.isPC)
 		{
 			ipKeyboard.openKeyBoard("Chat", ipKeyboard.TEXT, string.Empty, cmdChat2);
-			curentfocus.tfchat.setFocusWithKb(true);
+			curentfocus.tfchat.setFocusWithKb(isFocus: true);
 		}
 	}
 
@@ -232,7 +232,7 @@ public class MsgChat : MainDialog
 				mVector3.addElement(cmdDelete);
 			}
 			mVector3.addElement(cmdClose);
-			GameCanvas.menu2.startAt(mVector3, 2, T.trochuyen, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, T.trochuyen, isFocus: false, null);
 			break;
 		}
 		case 3:
@@ -340,7 +340,7 @@ public class MsgChat : MainDialog
 				idSelect++;
 				GameCanvas.clearKeyHold((!Main.isPC) ? 6 : 34);
 			}
-			idSelect = resetSelect(idSelect, vecChatTab.size() - 1, true);
+			idSelect = resetSelect(idSelect, vecChatTab.size() - 1, isreset: true);
 			if (GameCanvas.keyMyHold[(!Main.isPC) ? 2 : 31])
 			{
 				cam.yTo -= GameCanvas.hText;
@@ -493,7 +493,7 @@ public class MsgChat : MainDialog
 			curentfocus.tfchat.setText(string.Empty);
 			if (Main.isPC)
 			{
-				curentfocus.tfchat.setFocus(true);
+				curentfocus.tfchat.setFocus(isFocus: true);
 				center = cmdChat;
 				right = curentfocus.tfchat.setCmdClear();
 			}
@@ -594,7 +594,7 @@ public class MsgChat : MainDialog
 						select = idSelect + maxTab;
 					}
 				}
-				select = resetSelect(select, vecChatTab.size() - 1, false);
+				select = resetSelect(select, vecChatTab.size() - 1, isreset: false);
 				if (select != idSelect)
 				{
 					idSelect = select;

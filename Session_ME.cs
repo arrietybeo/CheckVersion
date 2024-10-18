@@ -50,7 +50,7 @@ public class Session_ME : ISession
 				}
 				catch (Exception ex2)
 				{
-					Debug.Log("error send message! " + ex2.ToString());
+					Debug.Log((object)("error send message! " + ex2.ToString()));
 				}
 			}
 		}
@@ -96,14 +96,14 @@ public class Session_ME : ISession
 			}
 			catch (Exception ex3)
 			{
-				Debug.Log("error read message!");
-				Debug.Log(ex3.Message.ToString());
+				Debug.Log((object)"error read message!");
+				Debug.Log((object)ex3.Message.ToString());
 			}
 			if (!connected)
 			{
 				return;
 			}
-			Debug.Log("error read message!");
+			Debug.Log((object)"error read message!");
 			if (messageHandler != null)
 			{
 				if (currentTimeMillis() - timeConnected > 500)
@@ -203,7 +203,7 @@ public class Session_ME : ISession
 			}
 			catch (Exception ex)
 			{
-				Debug.Log(ex.StackTrace.ToString());
+				Debug.Log((object)ex.StackTrace.ToString());
 			}
 			return null;
 		}
@@ -261,7 +261,7 @@ public class Session_ME : ISession
 
 	public Session_ME()
 	{
-		Debug.Log("init Session_ME");
+		Debug.Log((object)"init Session_ME");
 	}
 
 	public void clearSendingMessage()
@@ -286,7 +286,7 @@ public class Session_ME : ISession
 
 	public void connect(string host, int port)
 	{
-		Debug.LogError("connect ...!" + connected + "  ::  " + connecting);
+		Debug.LogError((object)("connect ...!" + connected + "  ::  " + connecting));
 		if (!connected && !connecting)
 		{
 			this.host = host;
@@ -326,8 +326,8 @@ public class Session_ME : ISession
 		sc.Connect(host, port);
 		sc.ReceiveBufferSize = 128000;
 		dataStream = sc.GetStream();
-		dis = new BinaryReader(dataStream, new UTF8Encoding());
-		dos = new BinaryWriter(dataStream, new UTF8Encoding());
+		dis = new BinaryReader((Stream)(object)dataStream, new UTF8Encoding());
+		dos = new BinaryWriter((Stream)(object)dataStream, new UTF8Encoding());
 		new Thread(sender.run).Start();
 		MessageCollector @object = new MessageCollector();
 		collectorThread = new Thread(@object.run);
@@ -401,7 +401,7 @@ public class Session_ME : ISession
 		}
 		catch (Exception ex)
 		{
-			Debug.Log(ex.StackTrace);
+			Debug.Log((object)ex.StackTrace);
 		}
 	}
 
@@ -484,7 +484,7 @@ public class Session_ME : ISession
 			}
 			if (dataStream != null)
 			{
-				dataStream.Close();
+				((Stream)(object)dataStream).Close();
 				dataStream = null;
 			}
 			if (dos != null)

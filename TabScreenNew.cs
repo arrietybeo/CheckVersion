@@ -203,7 +203,7 @@ public class TabScreenNew : MainScreen
 				GameCanvas.clearKeyPressed();
 				SetInit();
 			}
-			selectTab = resetSelect(selectTab, VecTabScreen.size() - 1, true);
+			selectTab = resetSelect(selectTab, VecTabScreen.size() - 1, isreset: true);
 			if (num != selectTab)
 			{
 				MainScreen.cameraSub.yCam = 0;
@@ -263,7 +263,7 @@ public class TabScreenNew : MainScreen
 		if (GameCanvas.isPointSelect(MainTabNew.gI().xTab, MainTabNew.gI().yTab + GameCanvas.h / 5, MainTabNew.wOneItem + MainTabNew.wOne5 * 2, MainTabNew.wOneItem * VecTabScreen.size()))
 		{
 			int select = (GameCanvas.py - (MainTabNew.gI().yTab + GameCanvas.h / 5)) / MainTabNew.wOneItem;
-			select = resetSelect(select, VecTabScreen.size() - 1, false);
+			select = resetSelect(select, VecTabScreen.size() - 1, isreset: false);
 			if (select != selectTab)
 			{
 				if (TabRebuildItem.resetItemReplace)

@@ -126,7 +126,7 @@ public class TabInfoChar : MainTabNew
 			else if (Player.diemTiemNang > 0)
 			{
 				inputDialog = new InputDialog();
-				inputDialog.setinfo(T.nhapsodiem + T.mKyNang[idSelect] + T.nhohonhoacbang + Player.diemTiemNang + ") ", cmdHoiSendSetPoint, true, T.kynang);
+				inputDialog.setinfo(T.nhapsodiem + T.mKyNang[idSelect] + T.nhohonhoacbang + Player.diemTiemNang + ") ", cmdHoiSendSetPoint, isNum: true, T.kynang);
 				GameCanvas.currentDialog = inputDialog;
 			}
 			break;
@@ -400,7 +400,7 @@ public class TabInfoChar : MainTabNew
 				{
 					num++;
 				}
-				idSelect = resetSelect(idSelect, num, false);
+				idSelect = resetSelect(idSelect, num, isreset: false);
 				xCamInfo = 0;
 			}
 		}

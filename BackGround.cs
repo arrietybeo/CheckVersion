@@ -83,7 +83,7 @@ public class BackGround
 	public static void paint(mGraphics g)
 	{
 		g.setColor(16746751);
-		g.fillRect(0, 0, GameCanvas.w, GameCanvas.h, true);
+		g.fillRect(0, 0, GameCanvas.w, GameCanvas.h, useClip: true);
 		if (mImgSky == null || mImgSea == null || mImgFloating == null)
 		{
 			LoadBackGround();

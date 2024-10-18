@@ -1,5 +1,5 @@
 using System;
-using System.IO;
+
 public class Cmd_Message
 {
 	public const sbyte MINI_GAME = -91;
@@ -302,11 +302,6 @@ public class Cmd_Message
 
 	public void init(sbyte cmd)
 	{
-		string filePath = "G://KnightAge//msg.txt";
-		using (StreamWriter writer = new StreamWriter(filePath, true))
-		{
-			writer.WriteLine("init msg: [" + cmd + "]");
-		}
 		m = new Message(cmd);
 	}
 }

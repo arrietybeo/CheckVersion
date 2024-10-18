@@ -422,7 +422,7 @@ public class TabRebuildItem : MainTabNew
 				{
 					text = T.hoidapxuluong + MainItem.getDotNumber(dataRebuild[itemRe.tier].priceCoin) + " " + T.coin + T.hay + dataRebuild[itemRe.tier].priceGold + " " + T.gem + "?";
 				}
-				GameCanvas.menu2.startAt_NPC(mVector3, text, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(mVector3, text, Menu2.IdNPCLast, 2, isQuest: false, 0);
 			}
 			break;
 		case 1:
@@ -502,7 +502,7 @@ public class TabRebuildItem : MainTabNew
 				empty = T.hoinangcapcanh + nameWing + "? " + T.phi + ": " + MainItem.getDotNumber(priceWing) + " " + T.coin + ", " + T.LVyeucau + lvReWing + ", " + T.timeyeucau + PaintInfoGameScreen.getStringTime(timeUseWing) + ".";
 				mVector4.addElement(new iCommand(T.nangcap, 6, 0, this));
 			}
-			GameCanvas.menu2.startAt_NPC(mVector4, empty, Menu2.IdNPCLast, 2, false, 0);
+			GameCanvas.menu2.startAt_NPC(mVector4, empty, Menu2.IdNPCLast, 2, isQuest: false, 0);
 			break;
 		}
 		case 5:
@@ -599,7 +599,7 @@ public class TabRebuildItem : MainTabNew
 		}
 		if (itemPlus == null && itemFree == null)
 		{
-			GameCanvas.menu2.startAt_NPC(null, T.boitemreplace, Menu2.IdNPCLast, 2, false, 0);
+			GameCanvas.menu2.startAt_NPC(null, T.boitemreplace, Menu2.IdNPCLast, 2, isQuest: false, 0);
 		}
 	}
 
@@ -652,7 +652,7 @@ public class TabRebuildItem : MainTabNew
 		if (itemRe == null && typeRebuild != TYPE_GHEP_NGOC && typeRebuild != TYPE_ANY)
 		{
 			string text = ((!isTabHopNguyenLieu) ? T.bovatphamvao : T.hopNguyenLieu);
-			GameCanvas.menu2.startAt_NPC(null, text, Menu2.IdNPCLast, 2, false, 0);
+			GameCanvas.menu2.startAt_NPC(null, text, Menu2.IdNPCLast, 2, isQuest: false, 0);
 		}
 	}
 
@@ -948,11 +948,7 @@ public class TabRebuildItem : MainTabNew
 		}
 		for (int j = 0; j < vecGem.size(); j++)
 		{
-			MainItem mainItem = (MainItem)vecGem.elementAt(j);
-			if (mainItem != null)
-			{
-				mainItem.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
-			}
+			((MainItem)vecGem.elementAt(j))?.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
 		}
 	}
 
@@ -1052,7 +1048,7 @@ public class TabRebuildItem : MainTabNew
 			time++;
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 				ispaintitemRe = true;
@@ -1177,7 +1173,7 @@ public class TabRebuildItem : MainTabNew
 			time++;
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 				ispaintitemRe = true;
@@ -1242,11 +1238,7 @@ public class TabRebuildItem : MainTabNew
 		}
 		for (int j = 0; j < vecGem.size(); j++)
 		{
-			MainItem mainItem = (MainItem)vecGem.elementAt(j);
-			if (mainItem != null)
-			{
-				mainItem.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
-			}
+			((MainItem)vecGem.elementAt(j))?.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
 		}
 	}
 
@@ -1273,11 +1265,7 @@ public class TabRebuildItem : MainTabNew
 		}
 		for (int j = 0; j < vecGem.size(); j++)
 		{
-			MainItem mainItem = (MainItem)vecGem.elementAt(j);
-			if (mainItem != null)
-			{
-				mainItem.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
-			}
+			((MainItem)vecGem.elementAt(j))?.paintItemNew(g, posMaterial[j][0], posMaterial[j][1], 21, 0, 0);
 		}
 	}
 
@@ -1523,7 +1511,7 @@ public class TabRebuildItem : MainTabNew
 		}
 		y += num;
 		GameCanvas.resetTrans(g);
-		scr.setStyle(vecGem.size() + 2, GameCanvas.hText + 2, x, y - GameCanvas.hText * 2, winfo, num * (vecGem.size() + 1) * 2, true, 1);
+		scr.setStyle(vecGem.size() + 2, GameCanvas.hText + 2, x, y - GameCanvas.hText * 2, winfo, num * (vecGem.size() + 1) * 2, styleUPDOWN: true, 1);
 		scr.setClip(g, x, y, winfo, num * (vecGem.size() + 1) * 2);
 		mFont.tahoma_7b_white.drawString(g, T.nguyenlieu, x, y, 0, mGraphics.isTrue);
 		y += num;
@@ -1590,7 +1578,7 @@ public class TabRebuildItem : MainTabNew
 	{
 		if (itemRe != null)
 		{
-			paintContentNew(g, false);
+			paintContentNew(g, isOnlyName: false);
 		}
 	}
 
@@ -1897,7 +1885,7 @@ public class TabRebuildItem : MainTabNew
 			MainItem mainItem = (MainItem)Item.getItemInventory(3, idWingOk);
 			if (mainItem != null)
 			{
-				itemWing = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
+				itemWing = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, isTem: false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
 			}
 			else
 			{
@@ -1905,7 +1893,7 @@ public class TabRebuildItem : MainTabNew
 			}
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 			}
@@ -1987,13 +1975,13 @@ public class TabRebuildItem : MainTabNew
 				return;
 			}
 			mSound.playSound(26, mSound.volumeSound);
-			GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+			GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 			if (itemPlus != null)
 			{
 				MainItem mainItem = (MainItem)Item.getItemInventory(itemPlus.ItemCatagory, (short)itemPlus.Id);
 				if (mainItem != null)
 				{
-					itemPlus = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
+					itemPlus = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, isTem: false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
 				}
 				else
 				{
@@ -2005,7 +1993,7 @@ public class TabRebuildItem : MainTabNew
 				MainItem mainItem2 = (MainItem)Item.getItemInventory(itemFree.ItemCatagory, (short)itemFree.Id);
 				if (mainItem2 != null)
 				{
-					itemFree = MainItem.MainItem_Item(mainItem2.Id, mainItem2.itemNameExcludeLv, mainItem2.imageId, mainItem2.tier, mainItem2.colorNameItem, mainItem2.classcharItem, mainItem2.ItemCatagory, mainItem2.mInfo, mainItem2.type_Only_Item, false, mainItem2.IdTem, mainItem2.priceItem, (short)mainItem2.LvItem, mainItem2.canSell, mainItem2.canTrade, mainItem2.timeUse, 0, 0);
+					itemFree = MainItem.MainItem_Item(mainItem2.Id, mainItem2.itemNameExcludeLv, mainItem2.imageId, mainItem2.tier, mainItem2.colorNameItem, mainItem2.classcharItem, mainItem2.ItemCatagory, mainItem2.mInfo, mainItem2.type_Only_Item, isTem: false, mainItem2.IdTem, mainItem2.priceItem, (short)mainItem2.LvItem, mainItem2.canSell, mainItem2.canTrade, mainItem2.timeUse, 0, 0);
 				}
 				else
 				{
@@ -2120,7 +2108,7 @@ public class TabRebuildItem : MainTabNew
 			{
 				if (mainItem != null)
 				{
-					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
+					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, isTem: false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
 				}
 				else
 				{
@@ -2130,7 +2118,7 @@ public class TabRebuildItem : MainTabNew
 			tilemayman = tilemaymanafter;
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 			}
@@ -2271,7 +2259,7 @@ public class TabRebuildItem : MainTabNew
 			{
 				if (mainItem != null)
 				{
-					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
+					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, isTem: false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
 				}
 				else
 				{
@@ -2281,7 +2269,7 @@ public class TabRebuildItem : MainTabNew
 			tilemayman = tilemaymanafter;
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 			}
@@ -2409,7 +2397,7 @@ public class TabRebuildItem : MainTabNew
 			{
 				if (mainItem != null)
 				{
-					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
+					itemRe = MainItem.MainItem_Item(mainItem.Id, mainItem.itemNameExcludeLv, mainItem.imageId, mainItem.tier, mainItem.colorNameItem, mainItem.classcharItem, mainItem.ItemCatagory, mainItem.mInfo, mainItem.type_Only_Item, isTem: false, mainItem.IdTem, mainItem.priceItem, (short)mainItem.LvItem, mainItem.canSell, mainItem.canTrade, mainItem.timeUse, 0, 0);
 				}
 				else
 				{
@@ -2419,7 +2407,7 @@ public class TabRebuildItem : MainTabNew
 			tilemayman = tilemaymanafter;
 			if (vecEffRe.size() == 0 || time >= 100)
 			{
-				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, false, 0);
+				GameCanvas.menu2.startAt_NPC(null, contentShow, Menu2.IdNPCLast, 2, isQuest: false, 0);
 				time = 0L;
 				isBeginEff = 6;
 			}

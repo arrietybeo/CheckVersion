@@ -101,7 +101,7 @@ public class NPC : MainObject
 	{
 		if (strChatPopup != null)
 		{
-			addChat(strChatPopup, true);
+			addChat(strChatPopup, isStop: true);
 			strChatPopup = null;
 		}
 		if (chat != null)
@@ -228,7 +228,7 @@ public class NPC : MainObject
 			iCommand o2 = new iCommand(T.quest, 5, this);
 			mVector3.addElement(o2);
 		}
-		GameCanvas.menu2.startAt_NPC(mVector3, infoObject, ID, 2, false, 0);
+		GameCanvas.menu2.startAt_NPC(mVector3, infoObject, ID, 2, isQuest: false, 0);
 		mSound.playSound(39, mSound.volumeSound);
 	}
 
@@ -323,7 +323,7 @@ public class NPC : MainObject
 			GameCanvas.menu2.doCloseMenu();
 			GameCanvas.clearKeyHold();
 			GameCanvas.clearKeyPressed();
-			GameCanvas.menu2.startAt(mVector3, 2, T.quest, false, null);
+			GameCanvas.menu2.startAt(mVector3, 2, T.quest, isFocus: false, null);
 		}
 	}
 

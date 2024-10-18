@@ -25,6 +25,8 @@ internal class Net
 
 	public static void connectHTTP(string link, iCommand h)
 	{
+		//IL_0025: Unknown result type (might be due to invalid IL or missing references)
+		//IL_002f: Expected O, but got Unknown
 		if (www != null)
 		{
 			Cout.LogError("GET HTTP BUSY");

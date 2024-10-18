@@ -164,7 +164,7 @@ public class MiniMapFull_Screen : MainScreen
 		{
 			if (Main.isWindowsPhone)
 			{
-				ImageData imgData = MiniMap.getImgData((short)GameCanvas.loadmap.idMap, (short)(GameCanvas.loadmap.idMap + 1000), false);
+				ImageData imgData = MiniMap.getImgData((short)GameCanvas.loadmap.idMap, (short)(GameCanvas.loadmap.idMap + 1000), isThread: false);
 				if (imgData != null && !imgData.isLoad && imgData.img != null)
 				{
 					g.drawImage(imgData.img, 0, 0 + mGraphics.addYWhenOpenKeyBoard, 0, mGraphics.isFalse);

@@ -60,7 +60,7 @@ public class MonsterBox : MainMonster
 			MainImage imagePartMonster = ObjectData.getImagePartMonster((short)catalogyMonster);
 			if (imagePartMonster != null && imagePartMonster.img != null)
 			{
-				g.drawImage(imagePartMonster.img, x, y, mGraphics.BOTTOM | mGraphics.HCENTER, false);
+				g.drawImage(imagePartMonster.img, x, y, mGraphics.BOTTOM | mGraphics.HCENTER, useClip: false);
 			}
 		}
 	}

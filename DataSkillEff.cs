@@ -303,7 +303,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -358,7 +358,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -408,7 +408,7 @@ public class DataSkillEff
 					{
 						num2 = imageHeight - num4;
 					}
-					g.drawRegion(imgIcon.img, num3, num4, num, num2, (partFrame.flip == 1) ? 2 : 0, x + dx + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num3, num4, num, num2, (partFrame.flip == 1) ? 2 : 0, x + dx + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -463,7 +463,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -518,7 +518,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -573,7 +573,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -628,7 +628,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -677,7 +677,7 @@ public class DataSkillEff
 					{
 						num2 = imageHeight - num4;
 					}
-					g.drawRegion(imgIcon.img, num3, num4, num, num2, (partFrame.flip == 1) ? 2 : 0, x + dx + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num3, num4, num, num2, (partFrame.flip == 1) ? 2 : 0, x + dx + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -732,7 +732,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -787,7 +787,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -842,7 +842,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -897,7 +897,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1028,7 +1028,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1083,7 +1083,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1138,7 +1138,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1193,7 +1193,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1248,7 +1248,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}
@@ -1303,7 +1303,7 @@ public class DataSkillEff
 						num6 = ((num6 != 2) ? 2 : 0);
 						num = -(num + num2);
 					}
-					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, false);
+					g.drawRegion(imgIcon.img, num4, num5, num2, num3, num6, x + num + dxx, y + partFrame.dy + dyy, 0, useClip: false);
 				}
 			}
 		}

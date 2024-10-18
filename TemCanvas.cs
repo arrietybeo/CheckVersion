@@ -1,4 +1,3 @@
-using UnityEngine;
 public class TemCanvas
 {
 	public static TemCanvas instance;
@@ -35,7 +34,6 @@ public class TemCanvas
 
 	private void checkZoomLevel(int w, int h)
 	{
-		Debug.LogError("w: " + w + "h: " + h);
 		if (Main.isWindowsPhone)
 		{
 			mGraphics.zoomLevel = 2;

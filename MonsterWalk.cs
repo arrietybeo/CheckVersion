@@ -466,7 +466,7 @@ public class MonsterWalk : MainMonster
 		}
 		catch (Exception ex)
 		{
-			Debug.LogWarning("loi ham paint monster " + ex.ToString());
+			Debug.LogWarning((object)("loi ham paint monster " + ex.ToString()));
 		}
 	}
 
